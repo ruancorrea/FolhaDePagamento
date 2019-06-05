@@ -1,4 +1,3 @@
-package pg;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -222,9 +221,6 @@ public class Sistema
         Scanner input = new Scanner(System.in);
         int i=0, np, p=0;
 
-        if(tam == 0)System.out.println("NAO HA EMPREGADOS PARA REMOVER\n");
-        if(tam>0)
-        {
             System.out.println("|-----------------------------------------------------------------------------|");
             System.out.println("                              LISTA DE EMPREGADOS                              ");
             while(i < MAX)
@@ -264,7 +260,6 @@ public class Sistema
 
                 System.out.println("\nNOME REMOVIDO COM SUCESSO!\n");
             }
-        }
     }
 
     public static void cartaoPonto()
@@ -272,11 +267,6 @@ public class Sistema
         Scanner input = new Scanner(System.in);
         int i=0, np,p=0;
 
-        if(tam == 0){
-            System.out.println("NAO HA EMPREGADOS\n");
-        }
-        if(tam>0)
-        {
             System.out.println("|-----------------------------------------------------------------------------|");
             System.out.println("                              LISTA DE EMPREGADOS                              ");
             while(i < MAX)
@@ -299,7 +289,6 @@ public class Sistema
                 }
             }
             if(p==0) System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA!");
-        }
     }
 
     public static void resultadoVendas()
@@ -308,9 +297,6 @@ public class Sistema
         double valor;
         int i=0, np,p=0;
 
-        if(tam == 0) System.out.println("NAO HA EMPREGADOS\n");
-        if(tam>0)
-        {
             System.out.println("|-----------------------------------------------------------------------------|");
             System.out.println("                              LISTA DE EMPREGADOS                              ");
             while(i < MAX)
@@ -336,7 +322,6 @@ public class Sistema
                 }
             }
             if(p==0) System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA!");
-        }
     }
 
     public static void taxaServicos()
@@ -345,9 +330,6 @@ public class Sistema
         double valor;
         int i=0, np, p=0;
 
-        if(tam == 0) System.out.println("NAO HA EMPREGADOS\n");
-        if(tam>0)
-        {
             System.out.println("|-----------------------------------------------------------------------------|");
             System.out.println("                              LISTA DE EMPREGADOS                              ");
             while(i < MAX)
@@ -373,7 +355,6 @@ public class Sistema
                 }
             }
             if(p==0) System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA!");
-        }
     }
 
     public static void alterar()
@@ -382,12 +363,7 @@ public class Sistema
         String nome,endereco,id_sindicato;
         double salario, taxa_sindicato;
         int i=0, np, n=-1, sind=-1,t = -1 , metodoPagamento=-1,p=0;
-        if(tam == 0)
-        {
-            System.out.println("NAO HA EMPREGADOS\n");
-        }
-        if(tam > 0)
-        {
+
             System.out.println("|-----------------------------------------------------------------------------|");
             System.out.println("                              LISTA DE EMPREGADOS\n");
             while(i < MAX)
@@ -590,7 +566,6 @@ public class Sistema
                 }
                 n=0;
             }
-        }
     }
 
     public static void MenuEmp()
@@ -947,12 +922,6 @@ public class Sistema
     public static void informacoes()
     {
         int i=0;
-        if(tam == 0)
-        {
-            System.out.println("\nNAO HA EMPREGADOS\n");
-        }
-        if(tam > 0)
-        {
             System.out.println("\nLISTA E INFORMACOES DE EMPREGADOS\n");
             while(i < MAX)
             {
@@ -984,15 +953,12 @@ public class Sistema
 
                     System.out.printf("Agenda de pagamento: %s\n", AgendaPagamento[i]);
                     System.out.printf("Metodo de pagamento: %s\n", MetodoPagamento[i]);
-                    //System.out.printf("Entrada: %s\n", Entrada[i]);
-                    //System.out.printf("Saida: %s\n", Saida[i]);
                     System.out.printf("Data de Registro: ");
                     System.out.println(Data[i]);///
                     System.out.println();
                 }
                 i++;
             }
-        }
     }
 
     public static void SN()
