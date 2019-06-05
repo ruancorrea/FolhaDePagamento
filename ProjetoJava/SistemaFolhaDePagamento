@@ -1163,26 +1163,45 @@ public class Sistema
             day++;
             indice++;
             Sistema.diadasemana();
-            if(day == 1 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) diaPrimeiro = day + "/" + mes + "/" + 2019;
+            if(day == 1 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) diaPrimeiro = day + "/" + mes + "/" + year;
 
-            else if(day == 2 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) diaPrimeiro = day + "/" + mes + "/" + 2019;
+            else if(day == 2 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) diaPrimeiro = day + "/" + mes + "/" + year;
 
-            else if(day == 3 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) diaPrimeiro = day + "/" + mes + "/" + 2019;
+            else if(day == 3 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) diaPrimeiro = day + "/" + mes + "/" + year;
 
-            if(day == 7 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) dia7 = day + "/" + mes + "/" + 2019;
-            else if(day == 8 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) dia7 = day + "/" + mes + "/" + 2019;
-            else if(day == 9 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) dia7 = day + "/" + mes + "/" + 2019;
+            if(day == 7 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) dia7 = day + "/" + mes + "/" + year;
+            else if(day == 8 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) dia7 = day + "/" + mes + "/" + year;
+            else if(day == 9 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) dia7 = day + "/" + mes + "/" + year;
 
             Sistema.verifica();
             Sistema.diadasemana();
         }
-        diaUltimo= ultimodia + "/" + mes + "/" + 2019;
+        diaUltimo= ultimodia + "/" + mes + "/" + year;
         day=d;
         maxima=x;
         indice=ind;
         DiaDaSemana=semana;
         month= mes;
         DiasUteis = i;
+    }
+
+    public static void NovoPagamentoAssa(int i)
+    {
+        Sistema.uteis();
+        if(AgendaPagamento[i].equals("Mensalmente") || AgendaPagamento[i].equals("Mensal $"))
+        {
+            Pagamento[i] = diaUltimo;
+        }
+
+        if(AgendaPagamento[i].equals("Mensal 1"))
+        {
+            Pagamento[i] = diaPrimeiro;
+        }
+
+        if(AgendaPagamento[i].equals("Mensal 7"))
+        {
+            Pagamento[i] = dia7;
+        }
     }
 
     public static void folhaPagamento()
@@ -1255,7 +1274,6 @@ public class Sistema
                 if(Tipo[i].equals("assalariado"))
                 {
                     if(AgendaPagamento[i].equals("Mensalmente") || AgendaPagamento[i].equals("Mensal $"))
-
                     {
                         if(dataEmString.equals(Pagamento[i]))
                         {
@@ -1288,7 +1306,7 @@ public class Sistema
                             DiasTrabalho[i] = 0;
                         }
                     }
-
+                    Sistema.NovoPagamentoAssa(i);
                 }
 
                 if(Tipo[i].equals("comissionado"))
@@ -1620,4 +1638,3 @@ public class Sistema
         }
     }
 }
-
