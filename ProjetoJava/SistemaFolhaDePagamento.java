@@ -418,9 +418,9 @@ public class Sistema
                     {
                         System.out.println("|-----------------------------------------------------|");
                         System.out.println("| Digite o numero da respectiva escolha do novo tipo: |");
-                        System.out.println("| 1 - hourly;                                         |");
-                        System.out.println("| 2 - salaried;                                       |");
-                        System.out.println("| 3 - commissioned;                                   |");
+                        System.out.println("| 1 - horista                                         |");
+                        System.out.println("| 2 - assalariado                                     |");
+                        System.out.println("| 3 - assalariado comissionado                        |");
                         System.out.println("|-----------------------------------------------------|");
 
                         if(t == -1)
@@ -1002,7 +1002,7 @@ public class Sistema
         Sistema.verifica();
         Sistema.diadasemana();
         dataEmString = day + "/" + month + "/" + year;
-        System.out.println("Estamos em" + " " + dataEmString + " " + DiaDaSemana);
+        System.out.println("\nEstamos em" + " " + dataEmString + " " + DiaDaSemana);
     }
 
     public static void verifica()
@@ -1452,7 +1452,11 @@ public class Sistema
                 i++;
             }
         }
-        /////////////
+        else 
+        {
+            estado = 0;
+            redo = 0;
+        }
     }
 
     public static void aplicando()
