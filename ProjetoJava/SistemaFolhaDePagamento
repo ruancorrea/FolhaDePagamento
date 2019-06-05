@@ -613,7 +613,7 @@ public class Sistema
 
         if(Tipo[np].equals("horista"))
         {
-            System.out.println("Olá, " + Nome[np]);
+            System.out.println("Funcionario horista");
 
             if(Entrada[np].equals("-"))
             {
@@ -672,7 +672,7 @@ public class Sistema
         {
             if(!Saida[np].equals("1"))
             {
-                System.out.println("Olá, " + Nome[np] + "! Mais um dia de trabalho?");
+                System.out.println("Funcionario" + Tipo[np] +  ".Mais um dia de trabalho?");
                 Sistema.SN();
                 if(valor == -1)
                 {
