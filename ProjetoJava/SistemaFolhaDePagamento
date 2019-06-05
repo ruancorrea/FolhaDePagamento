@@ -1254,14 +1254,41 @@ public class Sistema
 
                 if(Tipo[i].equals("assalariado"))
                 {
-                    if(dataEmString.equals(Pagamento[i]))
+                    if(AgendaPagamento[i].equals("Mensalmente") || AgendaPagamento[i].equals("Mensal $"))
+
                     {
-                        SalarioAtual[i] = SalarioAtual[i] + (Salario[i] / DiasUteis) * DiasTrabalho[i];
-                        System.out.println(" " + ID[i] + " - " + Nome[i] + " - R$ " + SalarioAtual[i] + " / " + MetodoPagamento[i] + " DeS");
-                        SalarioAtual[i] = 0.0;
-                        SalarioAtual[i] = SalarioAtual[i] - TaxaSindicato[i];
-                        DiasTrabalho[i] = 0;
+                        if(dataEmString.equals(Pagamento[i]))
+                        {
+                            SalarioAtual[i] = SalarioAtual[i] + (Salario[i] / DiasUteis) * DiasTrabalho[i];
+                            System.out.println(" " + ID[i] + " - " + Nome[i] + " - R$ " + SalarioAtual[i] + " / " + MetodoPagamento[i] + " DeS");
+                            SalarioAtual[i] = 0.0;
+                            SalarioAtual[i] = SalarioAtual[i] - TaxaSindicato[i];
+                            DiasTrabalho[i] = 0;
+                        }
                     }
+                    if(AgendaPagamento[i].equals("Mensal 1"))
+                    {
+                        if(dataEmString.equals(Pagamento[i]))
+                        {
+                            SalarioAtual[i] = SalarioAtual[i] + (Salario[i] / DiasUteis) * DiasTrabalho[i];
+                            System.out.println(" " + ID[i] + " - " + Nome[i] + " - R$ " + SalarioAtual[i] + " / " + MetodoPagamento[i] + " DeS");
+                            SalarioAtual[i] = 0.0;
+                            SalarioAtual[i] = SalarioAtual[i] - TaxaSindicato[i];
+                            DiasTrabalho[i] = 0;
+                        }
+                    }
+                    if(AgendaPagamento[i].equals("Mensal 7"))
+                    {
+                        if(dataEmString.equals(Pagamento[i]))
+                        {
+                            SalarioAtual[i] = SalarioAtual[i] + (Salario[i] / DiasUteis) * DiasTrabalho[i];
+                            System.out.println(" " + ID[i] + " - " + Nome[i] + " - R$ " + SalarioAtual[i] + " / " + MetodoPagamento[i] + " DeS");
+                            SalarioAtual[i] = 0.0;
+                            SalarioAtual[i] = SalarioAtual[i] - TaxaSindicato[i];
+                            DiasTrabalho[i] = 0;
+                        }
+                    }
+
                 }
 
                 if(Tipo[i].equals("comissionado"))
@@ -1512,28 +1539,22 @@ public class Sistema
                 if(op==1)
                 {
                     Pagamento[np] = "segunda-feira";
-                    AgendaPagamento[np] = "segunda-feira";
                 }
-
                 if(op==2)
                 {
                     Pagamento[np] = "terça-feira";
-                    AgendaPagamento[np] = "terça-feira";
                 }
                 if(op==3)
                 {
                     Pagamento[np] = "quarta-feira";
-                    AgendaPagamento[np] = "quarta-feira";
                 }
                 if(op==4)
                 {
                     Pagamento[np] = "quinta-feira";
-                    AgendaPagamento[np] = "quinta-feira";
                 }
                 if(op==5)
                 {
                     Pagamento[np] = "sexta-feira";
-                    AgendaPagamento[np] = "sexta-feira";
                 }
                 if(op!=1 && op!=2 && op!=3 && op!=4 && op!=5 && op!=0) System.out.println("Insira um numero valido.");
             }
@@ -1547,17 +1568,17 @@ public class Sistema
                 if(op==1)
                 {
                     Pagamento[np] = dia7;
-                    AgendaPagamento[np] = "mensal 7";
+                    AgendaPagamento[np] = "Mensal 7";
                 }
                 if(op==2)
                 {
                     Pagamento[np] = diaPrimeiro;
-                    AgendaPagamento[np] = "mensal 1";
+                    AgendaPagamento[np] = "Mensal 1";
                 }
                 if(op==3)
                 {
                     Pagamento[np] = diaUltimo;
-                    AgendaPagamento[np] = "mensal $";
+                    AgendaPagamento[np] = "Mensal $";
                 }
                 if(op!=1 && op!=2 && op!=3 && op!=0) System.out.println("Insira um numero valido.");
             }
