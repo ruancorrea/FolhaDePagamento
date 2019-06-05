@@ -12,7 +12,7 @@ public class Sistema
     static String[] AgendaPagamento = new String[500];
     static String[] MetodoPagamento = new String[500];
     static String[] Data = new String[500];
-    static String[][] DataRV = new String[500][500];
+    static String[] DataRV = new String[500];
     static String[] Entrada = new String[500];
     static String[] Saida = new String[500];
     static String[] Pagamento = new String[500];
@@ -196,12 +196,9 @@ public class Sistema
             ResultadoVendas[i] = x;
             TaxaServicos[i] = x;
 
-            int j;
-            for(j=0;j<DiasUteis;j++)
-            {
-                DataRV[i][j] = "-";
-                j++;
-            }
+
+            DataRV[i] = "-";
+
 
             DiasTrabalho[i] = 0;
             Entrada[i] = "-";
@@ -219,18 +216,18 @@ public class Sistema
         Scanner input = new Scanner(System.in);
         int i=0, np, p=0;
 
-            System.out.println("|-----------------------------------------------------------------------------|");
-            System.out.println("                              LISTA DE EMPREGADOS                              ");
-            while(i < MAX)
+        System.out.println("|-----------------------------------------------------------------------------|");
+        System.out.println("                              LISTA DE EMPREGADOS                              ");
+        while(i < MAX)
+        {
+            if(ID[i] != -1)
             {
-                if(ID[i] != -1)
-                {
-                    System.out.printf(" %d - %s \n",ID[i], Nome[i]);
-                }
-                i++;
+                System.out.printf(" %d - %s \n",ID[i], Nome[i]);
             }
-            System.out.println("|-----------------------------------------------------------------------------|\n");
-            System.out.println("REMOVENDO EMPREGADO\n");
+            i++;
+        }
+        System.out.println("|-----------------------------------------------------------------------------|\n");
+        System.out.println("REMOVENDO EMPREGADO\n");
 
         while(p!=1)
         {
@@ -268,6 +265,7 @@ public class Sistema
                 ResultadoVendas[np] = null;
                 TaxaServicos[np] = null;
                 DataRV[np] = null;
+
                 DiasTrabalho[np] = null;
                 Pagamento[np] = null;
                 tam = tam - 1;
@@ -323,33 +321,35 @@ public class Sistema
         double valor;
         int i=0, np,p=0;
 
-            System.out.println("|-----------------------------------------------------------------------------|");
-            System.out.println("                              LISTA DE EMPREGADOS                              ");
-            while(i < MAX)
+        System.out.println("|-----------------------------------------------------------------------------|");
+        System.out.println("                              LISTA DE EMPREGADOS                              ");
+        while(i < MAX)
+        {
+            if(ID[i] != -1)
             {
-                if(ID[i] != -1)
-                {
-                    System.out.printf(" %d - %s \n",ID[i], Nome[i]);
-                    i++;
-                }
+                System.out.printf(" %d - %s \n",ID[i], Nome[i]);
+                i++;
             }
-            System.out.println("|-----------------------------------------------------------------------------|\n");
+        }
+        System.out.println("|-----------------------------------------------------------------------------|\n");
         while(p!=1) {
             System.out.println("Digite o numero do empregado\n");
             np = input.nextInt();
 
             i = 0;
             while (i < MAX) {
+                if (np == 0) {
+                    p = 1;
+                    break;
+                }
                 if (ID[i] == np && np != -1) {
                     Sistema.rvempre(np);
                     p = 1;
                     break;
                 }
-                if (np == 0) {
-                    p = 1;
-                    break;
-                }
+                i++;
             }
+
             if (p == 0) System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA!\nTente novamente\n");
         }
     }
@@ -360,17 +360,17 @@ public class Sistema
         double valor;
         int i=0, np, p=0;
 
-            System.out.println("|-----------------------------------------------------------------------------|");
-            System.out.println("                              LISTA DE EMPREGADOS                              ");
-            while(i < MAX)
+        System.out.println("|-----------------------------------------------------------------------------|");
+        System.out.println("                              LISTA DE EMPREGADOS                              ");
+        while(i < MAX)
+        {
+            if(ID[i] != -1)
             {
-                if(ID[i] != -1)
-                {
-                    System.out.printf(" %d - %s - \n",ID[i], Nome[i]);
-                    i++;
-                }
+                System.out.printf(" %d - %s \n",ID[i], Nome[i]);
+                i++;
             }
-            System.out.println("|-----------------------------------------------------------------------------|\n");
+        }
+        System.out.println("|-----------------------------------------------------------------------------|\n");
         while(p!=1) {
             System.out.println("Digite o numero do empregado\n");
             np = input.nextInt();
@@ -386,6 +386,7 @@ public class Sistema
                     p = 1;
                     break;
                 }
+                i++;
             }
             if (p == 0) System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA!\nTente novamente\n");
         }
@@ -398,181 +399,182 @@ public class Sistema
         double salario, taxa_sindicato;
         int i=0, np, n=-1, sind=-1,t = -1 , metodoPagamento=-1,p=0;
 
-            System.out.println("|-----------------------------------------------------------------------------|");
-            System.out.println("                              LISTA DE EMPREGADOS\n");
-            while(i < MAX)
+        System.out.println("|-----------------------------------------------------------------------------|");
+        System.out.println("                              LISTA DE EMPREGADOS\n");
+        while(i < MAX)
+        {
+            if(ID[i] != -1)
             {
-                if(ID[i] != -1)
-                {
-                    System.out.printf(" %d - %s\n",ID[i],Nome[i]);
-                    i++;
-                }
+                System.out.printf(" %d - %s\n",ID[i],Nome[i]);
+                i++;
             }
-            System.out.println("|-----------------------------------------------------------------------------|\n");
-            while(p!=1)
-            {
-                System.out.println("Digite o numero do empregado que voce deseja alterar os dados");
-                np = input.nextInt();
-                System.out.println(np + "  " + ID[MAX - 1]);
+        }
+        System.out.println("|-----------------------------------------------------------------------------|\n");
+        while(p!=1)
+        {
+            System.out.println("Digite o numero do empregado que voce deseja alterar os dados");
+            np = input.nextInt();
+            System.out.println(np + "  " + ID[MAX - 1]);
 
-                i = 0;
-                while (i < MAX) {
-                    if (np == ID[i] || np == 0) {
-                        p = 1;
-                        break;
-                    }
+            i = 0;
+            while (i < MAX) {
+                if (np == ID[i] || np == 0) {
+                    p = 1;
+                    break;
                 }
-                if (p == 0) System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA!");
+                i++;
+            }
+            if (p == 0) System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA!");
 
-                if (p == 1)
-                {
-                    np = Sistema.posicao(np);
-                    while (n != 0) {
-                        Sistema.Alteracao();
-                        n = input.nextInt();
+            if (p == 1)
+            {
+                np = Sistema.posicao(np);
+                while (n != 0) {
+                    Sistema.Alteracao();
+                    n = input.nextInt();
 
-                        if (n == 1) {
-                            System.out.println("Digite o novo nome do empregado:");
-                            input.nextLine();
-                            nome = input.nextLine();
-                            Nome[np] = nome;
+                    if (n == 1) {
+                        System.out.println("Digite o novo nome do empregado:");
+                        input.nextLine();
+                        nome = input.nextLine();
+                        Nome[np] = nome;
+                    }
+
+                    if (n == 2) {
+                        System.out.println("Digite o novo endereco do empregado:");
+                        input.nextLine();
+                        endereco = input.nextLine();
+                        Endereco[np] = endereco;
+                    }
+
+                    if (n == 3) {
+                        System.out.println("|-----------------------------------------------------|");
+                        System.out.println("| Digite o numero da respectiva escolha do novo tipo: |");
+                        System.out.println("| 1 - horista                                         |");
+                        System.out.println("| 2 - assalariado                                     |");
+                        System.out.println("| 3 - assalariado comissionado                        |");
+                        System.out.println("|-----------------------------------------------------|");
+
+                        if (t == -1) {
+                            while (t != 1 && t != 2 && t != 3) {
+                                t = input.nextInt();
+                                if (t == 1) {
+                                    Tipo[np] = "horista";
+                                    System.out.println("Insira o salario por hora:");
+                                    salario = input.nextDouble();
+                                    Salario[np] = salario;
+                                    AgendaPagamento[np] = "Semanalmente";
+                                    Pagamento[i] = "sexta-feira";
+                                }
+                                if (t == 2) {
+                                    Tipo[np] = "assalariado";
+                                    System.out.println("Insira o salario por mes:");
+                                    salario = input.nextDouble();
+                                    Salario[np] = salario;
+                                    AgendaPagamento[np] = "Mensalmente";
+                                    Pagamento[i] = diaUltimo;
+                                }
+                                if (t == 3) {
+                                    Tipo[np] = "comissionado";
+                                    System.out.println("Insira o salario:");
+                                    salario = input.nextDouble();
+                                    Salario[np] = salario;
+                                    Pagamento[i] = "sexta-feira";
+                                    bi[i] = "0";
+                                    AgendaPagamento[np] = "Bi- semanalmente";
+                                }
+                                if (t != 1 && t != 2 && t != 3) {
+                                    System.out.println("Insira um numero valido");
+                                }
+                            }
+                            t = -1;
+                        }
+                    }
+
+                    if (n == 4) {
+                        System.out.println("|-------------------------------------------------------|");
+                        System.out.println("| Insira o numero da respectiva escolha do novo metodo: |");
+                        System.out.println("| 1 - Cheque pelos Correios;                            |");
+                        System.out.println("| 2 - Cheque em maos;                                   |");
+                        System.out.println("| 3 - Deposito em conta bancaria;                       |");
+                        System.out.println("|-------------------------------------------------------|");
+
+                        if (metodoPagamento == -1) {
+                            while (metodoPagamento != 1 && metodoPagamento != 2 && metodoPagamento != 3) {
+                                metodoPagamento = input.nextInt();
+                                if (metodoPagamento == 1) {
+                                    MetodoPagamento[np] = "Cheque pelos Correios";
+                                }
+                                if (metodoPagamento == 2) {
+                                    MetodoPagamento[np] = "Cheque em maos";
+                                }
+                                if (metodoPagamento == 3) {
+                                    MetodoPagamento[np] = "Deposito em conta bancaria";
+                                }
+                                if (metodoPagamento != 1 && metodoPagamento != 2 && metodoPagamento != 3) {
+                                    System.out.println("Insira um numero valido");
+                                }
+                            }
+                            metodoPagamento = -1;
                         }
 
-                        if (n == 2) {
-                            System.out.println("Digite o novo endereco do empregado:");
-                            input.nextLine();
-                            endereco = input.nextLine();
-                            Endereco[np] = endereco;
-                        }
+                    }
 
-                        if (n == 3) {
-                            System.out.println("|-----------------------------------------------------|");
-                            System.out.println("| Digite o numero da respectiva escolha do novo tipo: |");
-                            System.out.println("| 1 - horista                                         |");
-                            System.out.println("| 2 - assalariado                                     |");
-                            System.out.println("| 3 - assalariado comissionado                        |");
-                            System.out.println("|-----------------------------------------------------|");
+                    if (n == 5) {
+                        if (sind == -1) {
+                            if (Sindicato[np].equals("Faz parte do Sindicato.")) {
+                                System.out.println("Nao faz mais parte do Sindicato?");
+                                System.out.println("|-----------------------------------------------|");
+                                System.out.println("| Digite o numero:                              |");
+                                System.out.println("| 0 - NAO, nao faço mais parte do Sindicato     |");
+                                System.out.println("| 1 - SIM, ainda faço parte do Sindicato        |");
+                                System.out.println("|-----------------------------------------------|");
 
-                            if (t == -1) {
-                                while (t != 1 && t != 2 && t != 3) {
-                                    t = input.nextInt();
-                                    if (t == 1) {
-                                        Tipo[np] = "horista";
-                                        System.out.println("Insira o salario por hora:");
-                                        salario = input.nextDouble();
-                                        Salario[np] = salario;
-                                        AgendaPagamento[np] = "Semanalmente";
-                                        Pagamento[i] = "sexta-feira";
-                                    }
-                                    if (t == 2) {
-                                        Tipo[np] = "assalariado";
-                                        System.out.println("Insira o salario por mes:");
-                                        salario = input.nextDouble();
-                                        Salario[np] = salario;
-                                        AgendaPagamento[np] = "Mensalmente";
-                                        Pagamento[i] = diaUltimo;
-                                    }
-                                    if (t == 3) {
-                                        Tipo[np] = "comissionado";
-                                        System.out.println("Insira o salario:");
-                                        salario = input.nextDouble();
-                                        Salario[np] = salario;
-                                        Pagamento[i] = "sexta-feira";
-                                        bi[i] = "0";
-                                        AgendaPagamento[np] = "Bi- semanalmente";
-                                    }
-                                    if (t != 1 && t != 2 && t != 3) {
+                                while (sind != 0 && sind != 1) {
+                                    sind = input.nextInt();
+                                    if (sind == 0) {
+                                        Sindicato[np] = "Nao faz parte do Sindicato.";
+                                        IdSindicato[np] = "-";
+                                        taxa_sindicato = 0;
+                                        TaxaSindicato[np] = taxa_sindicato;
+                                    } else if (sind != 0 && sind != 1) {
                                         System.out.println("Insira um numero valido");
                                     }
                                 }
-                                t = -1;
+                                sind = -1;
                             }
-                        }
 
-                        if (n == 4) {
-                            System.out.println("|-------------------------------------------------------|");
-                            System.out.println("| Insira o numero da respectiva escolha do novo metodo: |");
-                            System.out.println("| 1 - Cheque pelos Correios;                            |");
-                            System.out.println("| 2 - Cheque em maos;                                   |");
-                            System.out.println("| 3 - Deposito em conta bancaria;                       |");
-                            System.out.println("|-------------------------------------------------------|");
-
-                            if (metodoPagamento == -1) {
-                                while (metodoPagamento != 1 && metodoPagamento != 2 && metodoPagamento != 3) {
-                                    metodoPagamento = input.nextInt();
-                                    if (metodoPagamento == 1) {
-                                        MetodoPagamento[np] = "Cheque pelos Correios";
-                                    }
-                                    if (metodoPagamento == 2) {
-                                        MetodoPagamento[np] = "Cheque em maos";
-                                    }
-                                    if (metodoPagamento == 3) {
-                                        MetodoPagamento[np] = "Deposito em conta bancaria";
-                                    }
-                                    if (metodoPagamento != 1 && metodoPagamento != 2 && metodoPagamento != 3) {
+                            if (Sindicato[np].equals("Nao faz parte do Sindicato.")) {
+                                System.out.println("Agora faz parte do Sindicato?");
+                                System.out.println("|--------------------------------------------------|");
+                                System.out.println("| Digite o numero:                                 |");
+                                System.out.println("| 0 - NAO, continuo sem fazer parte do Sindicato   |");
+                                System.out.println("| 1 - SIM, agora faço parte do Sindicato           |");
+                                System.out.println("|--------------------------------------------------|");
+                                while (sind != 0 && sind != 1) {
+                                    sind = input.nextInt();
+                                    if (sind == 1) {
+                                        Sindicato[np] = "Faz parte do Sindicato.";
+                                        System.out.println("Identificacao no sindicato");
+                                        input.nextLine();
+                                        id_sindicato = input.nextLine();
+                                        IdSindicato[np] = id_sindicato;
+                                        System.out.println("Taxa Sindical");
+                                        taxa_sindicato = input.nextDouble();
+                                        TaxaSindicato[np] = taxa_sindicato;
+                                    } else if (sind != 0 && sind != 1) {
                                         System.out.println("Insira um numero valido");
                                     }
                                 }
-                                metodoPagamento = -1;
-                            }
-
-                        }
-
-                        if (n == 5) {
-                            if (sind == -1) {
-                                if (Sindicato[np].equals("Faz parte do Sindicato.")) {
-                                    System.out.println("Nao faz mais parte do Sindicato?");
-                                    System.out.println("|-----------------------------------------------|");
-                                    System.out.println("| Digite o numero:                              |");
-                                    System.out.println("| 0 - NAO, nao faço mais parte do Sindicato     |");
-                                    System.out.println("| 1 - SIM, ainda faço parte do Sindicato        |");
-                                    System.out.println("|-----------------------------------------------|");
-
-                                    while (sind != 0 && sind != 1) {
-                                        sind = input.nextInt();
-                                        if (sind == 0) {
-                                            Sindicato[np] = "Nao faz parte do Sindicato.";
-                                            IdSindicato[np] = "-";
-                                            taxa_sindicato = 0;
-                                            TaxaSindicato[np] = taxa_sindicato;
-                                        } else if (sind != 0 && sind != 1) {
-                                            System.out.println("Insira um numero valido");
-                                        }
-                                    }
-                                    sind = -1;
-                                }
-
-                                if (Sindicato[np].equals("Nao faz parte do Sindicato.")) {
-                                    System.out.println("Agora faz parte do Sindicato?");
-                                    System.out.println("|--------------------------------------------------|");
-                                    System.out.println("| Digite o numero:                                 |");
-                                    System.out.println("| 0 - NAO, continuo sem fazer parte do Sindicato   |");
-                                    System.out.println("| 1 - SIM, agora faço parte do Sindicato           |");
-                                    System.out.println("|--------------------------------------------------|");
-                                    while (sind != 0 && sind != 1) {
-                                        sind = input.nextInt();
-                                        if (sind == 1) {
-                                            Sindicato[np] = "Faz parte do Sindicato.";
-                                            System.out.println("Identificacao no sindicato");
-                                            input.nextLine();
-                                            id_sindicato = input.nextLine();
-                                            IdSindicato[np] = id_sindicato;
-                                            System.out.println("Taxa Sindical");
-                                            taxa_sindicato = input.nextDouble();
-                                            TaxaSindicato[np] = taxa_sindicato;
-                                        } else if (sind != 0 && sind != 1) {
-                                            System.out.println("Insira um numero valido");
-                                        }
-                                    }
-                                    sind = -1;
-                                }
+                                sind = -1;
                             }
                         }
-                        System.out.println("ALTERACAO FEITA COM SUCESSO!\n");
                     }
-                    n = 0;
+                    System.out.println("ALTERACAO FEITA COM SUCESSO!\n");
                 }
+                n = 0;
             }
+        }
     }
 
     public static void MenuEmp()
@@ -704,12 +706,12 @@ public class Sistema
         np = Sistema.posicao(np);
         if(Tipo[np].equals("comissionado"))
         {
-            if(DataRV[np][day].equals("-"))
+            if(DataRV[np].equals("-"))
             {
                 System.out.println("Informe o valor da venda");
                 valor = input.nextDouble();
                 SalarioAtual[np] = SalarioAtual[np] + (valor*ID[np]*0.2/10000);
-                DataRV[np][day] = dataEmString;
+                DataRV[np] = dataEmString;
             }
             else System.out.println("Resultado das vendas ja feita neste dia");
         }
@@ -927,43 +929,43 @@ public class Sistema
     public static void informacoes()
     {
         int i=0;
-            System.out.println("\nLISTA E INFORMACOES DE EMPREGADOS\n");
-            while(i < MAX)
+        System.out.println("\nLISTA E INFORMACOES DE EMPREGADOS\n");
+        while(i < MAX)
+        {
+            if(ID[i] != -1)
             {
-                if(ID[i] != -1)
+                System.out.printf("ID: %d\nNome: %s\nEndereco: %s\nTipo: %s\n",ID[i],Nome[i],Endereco[i],Tipo[i]);
+
+                if(Tipo[i].equals("horista"))
                 {
-                    System.out.printf("ID: %d\nNome: %s\nEndereco: %s\nTipo: %s\n",ID[i],Nome[i],Endereco[i],Tipo[i]);
-
-                    if(Tipo[i].equals("horista"))
-                    {
-                        System.out.printf("Salario horario: R$ %.2f\n",Salario[i]);
-                    }
-                    if(Tipo[i].equals("assalariado"))
-                    {
-                        System.out.printf("Salario mensal: R$ %.2f\n",Salario[i]);
-                    }
-                    if(Tipo[i].equals("comissionado"))
-                    {
-                        System.out.printf("Comissao: R$ %.2f\n",Salario[i]);
-                    }
-
-                    if(Sindicato[i].equals("Faz parte do Sindicato."))
-                    {
-                        System.out.printf("Faz parte do Sindicato.\n");
-                        System.out.printf ("Identificacao no sindicato: %s\n", IdSindicato[i]);
-                        System.out.printf ("Taxa sindical: R$ %.2f\n", TaxaSindicato[i]);
-                    }else{
-                        System.out.printf("Nao faz parte do Sindicato.\n");
-                    }
-
-                    System.out.printf("Agenda de pagamento: %s\n", AgendaPagamento[i]);
-                    System.out.printf("Metodo de pagamento: %s\n", MetodoPagamento[i]);
-                    System.out.printf("Data de Registro: ");
-                    System.out.println(Data[i]);///
-                    System.out.println();
+                    System.out.printf("Salario horario: R$ %.2f\n",Salario[i]);
                 }
-                i++;
+                if(Tipo[i].equals("assalariado"))
+                {
+                    System.out.printf("Salario mensal: R$ %.2f\n",Salario[i]);
+                }
+                if(Tipo[i].equals("comissionado"))
+                {
+                    System.out.printf("Comissao: R$ %.2f\n",Salario[i]);
+                }
+
+                if(Sindicato[i].equals("Faz parte do Sindicato."))
+                {
+                    System.out.printf("Faz parte do Sindicato.\n");
+                    System.out.printf ("Identificacao no sindicato: %s\n", IdSindicato[i]);
+                    System.out.printf ("Taxa sindical: R$ %.2f\n", TaxaSindicato[i]);
+                }else{
+                    System.out.printf("Nao faz parte do Sindicato.\n");
+                }
+
+                System.out.printf("Agenda de pagamento: %s\n", AgendaPagamento[i]);
+                System.out.printf("Metodo de pagamento: %s\n", MetodoPagamento[i]);
+                System.out.printf("Data de Registro: ");
+                System.out.println(Data[i]);///
+                System.out.println();
             }
+            i++;
+        }
     }
 
     public static void SN()
