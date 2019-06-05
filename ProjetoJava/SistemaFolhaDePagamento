@@ -1,4 +1,4 @@
-package projetojava;
+package pg;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -37,7 +37,6 @@ public class Sistema
     static String[][] AgendaPagamentoUR = new String[100][500];
     static String[][] MetodoPagamentoUR = new String[100][500];
     static String[][] DataUR = new String[100][500];
-    //  static String[][][] DataRVUR = new String[1000][1000][1000];
     static String[][] EntradaUR = new String[100][500];
     static String[][] SaidaUR = new String[100][500];
     static String[][] PagamentoUR = new String[100][500];
@@ -59,7 +58,7 @@ public class Sistema
     static String DiaDaSemana = "quarta-feira", nomemes = "junho";
     static String dataEmString = day + "/" + month + "/" + year;
     static String diaUltimo = dataEmString, diaPrimeiro, dia7 = "7/5/2019";
-    static int maxima = 30, estado = 0, redo,w=1,z=1,q=0;
+    static int maxima = 30, estado = 0, redo;
 
     public static void add()
     {
@@ -96,9 +95,7 @@ public class Sistema
             System.out.println("| 2 - assalariado;                               |");
             System.out.println("| 3 - assalariado commissionado;                 |");
             System.out.println("|------------------------------------------------|");
-
             double x=0.0;
-
             SalarioAtual[i] = x;
 
             if(t == -1)
@@ -133,12 +130,8 @@ public class Sistema
                         salario = input.nextDouble();
                         Salario[i] = salario;
                     }
-                    if(t != 1 && t != 2 && t != 3)
-                    {
-                        System.out.println("Insira um numero valido");
-                    }
+                    if(t != 1 && t != 2 && t != 3) System.out.println("Insira um numero valido");
                 }
-                t = -1;
             }
 
             System.out.println("Faz parte do Sindicato?");
@@ -172,12 +165,8 @@ public class Sistema
                         taxa_sindicato = 0;
                         TaxaSindicato[i] =(taxa_sindicato);
                     }
-                    else if(sind != 0 && sind != 1)
-                    {
-                        System.out.println("Insira um numero valido");
-                    }
+                    else if(sind != 0 && sind != 1) System.out.println("Insira um numero valido");
                 }
-                sind = -1;
             }
 
             System.out.println("Metodo de pagamento preterido:");
@@ -201,7 +190,6 @@ public class Sistema
 
                     if(metodoPagamento != 1 && metodoPagamento != 2 && metodoPagamento != 3) System.out.println("Insira um numero valido");
                 }
-                metodoPagamento = -1;
             }
 
             Data[i] =(dataEmString);
@@ -231,11 +219,9 @@ public class Sistema
     public static void remove()
     {
         Scanner input = new Scanner(System.in);
-        int i=0, np,p=0;
+        int i=0, np, p=0;
 
-        if(tam == 0){
-            System.out.println("NAO HA EMPREGADOS PARA REMOVER\n");
-        }
+        if(tam == 0)System.out.println("NAO HA EMPREGADOS PARA REMOVER\n");
         if(tam>0)
         {
             System.out.println("|-----------------------------------------------------------------------------|");
@@ -264,10 +250,7 @@ public class Sistema
                 i++;
             }
 
-            if(p==0)
-            {
-                System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA!\n");
-            }
+            if(p==0) System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA!\n");
             else if(p==1)
             {
                 np = Sistema.posicao(np);
@@ -286,7 +269,6 @@ public class Sistema
     public static void cartaoPonto()
     {
         Scanner input = new Scanner(System.in);
-        int valor=-1;
         int i=0, np,p=0;
 
         if(tam == 0){
@@ -298,20 +280,17 @@ public class Sistema
             System.out.println("                              LISTA DE EMPREGADOS                              ");
             while(i < MAX)
             {
-                if(ID[i] != -1)
-                {
-                    System.out.printf(" %d - %s \n",ID[i], Nome[i]);
-                }
+                if(ID[i] != -1) System.out.printf(" %d - %s \n",ID[i], Nome[i]);
+
                 i++;
             }
             System.out.println("|-----------------------------------------------------------------------------|\n");
             System.out.println("Digite o numero do empregado");
-
             np = input.nextInt();
             i=0;
             while(i<MAX)
             {
-                if(ID[i] == np)
+                if(ID[i] == np && np != -1)
                 {
                     Sistema.cpempre(np);
                     p=1;
@@ -328,9 +307,7 @@ public class Sistema
         double valor;
         int i=0, np,p=0;
 
-        if(tam == 0){
-            System.out.println("NAO HA EMPREGADOS\n");
-        }
+        if(tam == 0) System.out.println("NAO HA EMPREGADOS\n");
         if(tam>0)
         {
             System.out.println("|-----------------------------------------------------------------------------|");
@@ -350,7 +327,7 @@ public class Sistema
             i=0;
             while(i<MAX)
             {
-                if(ID[i] == np)
+                if(ID[i] == np && np != -1)
                 {
                     Sistema.rvempre(np);
                     p=1;
@@ -367,9 +344,7 @@ public class Sistema
         double valor;
         int i=0, np, p=0;
 
-        if(tam == 0){
-            System.out.println("NAO HA EMPREGADOS\n");
-        }
+        if(tam == 0) System.out.println("NAO HA EMPREGADOS\n");
         if(tam>0)
         {
             System.out.println("|-----------------------------------------------------------------------------|");
@@ -389,7 +364,7 @@ public class Sistema
             i=0;
             while(i<MAX)
             {
-                if(ID[i] == np)
+                if(ID[i] == np && np != -1)
                 {
                     Sistema.tsempre(np);
                     p=1;
@@ -627,7 +602,7 @@ public class Sistema
         System.out.println("| 1- Cartao de ponto                     |");
         System.out.println("| 2- Resultado da venda                  |");
         System.out.println("| 3- Taxa de servico                     |");
-        System.out.println("| 4- Nova Agenda de Pagamento            |");
+        System.out.println("| 4- Agenda de Pagamento                 |");
         System.out.println("| 5- Informacoes do Funcionario          |");
         System.out.println("| 0- Sair                                |");
         System.out.println("|                                        |");
@@ -643,13 +618,12 @@ public class Sistema
         System.out.println("| O que deseja fazer?                    |");
         System.out.println("| 1- Adicionar empregado                 |");
         System.out.println("| 2- Remover empregado                   |");
-        System.out.println("| 3- Cartao de ponto                     |");// MANUTENCAO
-        System.out.println("| 4- Resultado da venda                  |");// MANUTENCAO
-        System.out.println("| 5- Taxa de servico                     |");// AINDA NAO CRIADO
-        System.out.println("| 6- Alterar detalhes do empregado       |");// MANUTENCAO
-        //System.out.println("| 7- Agenda de Pagamento                 |");
-        System.out.println("| 8- Lista e Informacoes de empregados   |");
-        System.out.println("| 9- Passar o dia                        |");
+        System.out.println("| 3- Cartao de ponto                     |");
+        System.out.println("| 4- Resultado da venda                  |");
+        System.out.println("| 5- Taxa de servico                     |");
+        System.out.println("| 6- Alterar detalhes do empregado       |");
+        System.out.println("| 7- Lista e Informacoes de empregados   |");
+        System.out.println("| 8- Passar o dia                        |");
         System.out.println("| 0- Sair                                |");
         System.out.println("|                                        |");
         System.out.println("| 37- undo                       73-redo |");
@@ -704,10 +678,7 @@ public class Sistema
                     if(hora > 8)
                     {
                         extra = hora - 8 ;
-
                         SalarioAtual[np] = SalarioAtual[np] + (Salario[np] * 8) + (Salario[np] * extra * 1.5 );
-
-                        //System.out.printf("Salario atual eh de: %.2f", SalarioAtual[np]);
                     }
                     else if(hora <= 8)
                     {
@@ -720,10 +691,7 @@ public class Sistema
                 {
                 }
             }
-            else if(!Entrada[np].equals("-") && !Saida[np].equals("-"))
-            {
-                System.out.println("Esse dia ja foi finalizado.");
-            }
+            else if(!Entrada[np].equals("-") && !Saida[np].equals("-")) System.out.println("Esse dia ja foi finalizado.");
         }
         if(Tipo[np].equals("assalariado") || Tipo[np].equals("comissionado"))
         {
@@ -760,7 +728,7 @@ public class Sistema
             {
                 System.out.println("Informe o valor da venda");
                 valor = input.nextDouble();
-                SalarioAtual[np] = SalarioAtual[np] + valor;
+                SalarioAtual[np] = SalarioAtual[np] + (valor*ID[np]*0.2/10000);
                 DataRV[np][day] = dataEmString;
             }
             else System.out.println("Resultado das vendas ja feita neste dia");
@@ -792,35 +760,24 @@ public class Sistema
         i = Sistema.posicao(i);
         System.out.printf("ID: %d\nNome: %s\nEndereco: %s\nTipo: %s\n",ID[i],Nome[i],Endereco[i],Tipo[i]);
 
-        if(Tipo[i].equals("horista"))
-        {
-            System.out.printf("Salario horario: R$ %.2f\n",Salario[i]);
-        }
-        if(Tipo[i].equals("assalariado"))
-        {
-            System.out.printf("Salario mensal: R$ %.2f\n",Salario[i]);
-        }
-        if(Tipo[i].equals("comissionado"))
-        {
-            System.out.printf("Comissao: R$ %.2f\n",Salario[i]);
-        }
+        if(Tipo[i].equals("horista")) System.out.printf("Salario horario: R$ %.2f\n",Salario[i]);
+
+        if(Tipo[i].equals("assalariado")) System.out.printf("Salario mensal: R$ %.2f\n",Salario[i]);
+
+        if(Tipo[i].equals("comissionado")) System.out.printf("Comissao: R$ %.2f\n",Salario[i]);
 
         if(Sindicato[i].equals("Faz parte do Sindicato."))
         {
             System.out.printf("Faz parte do Sindicato.\n");
             System.out.printf ("Identificacao no sindicato: %s\n", IdSindicato[i]);
             System.out.printf ("Taxa sindical: R$ %.2f\n", TaxaSindicato[i]);
-        }else{
-            System.out.printf("Nao faz parte do Sindicato.\n");
         }
+        else System.out.printf("Nao faz parte do Sindicato.\n");
 
         System.out.printf("Agenda de pagamento: %s\n", AgendaPagamento[i]);
         System.out.printf("Metodo de pagamento: %s\n", MetodoPagamento[i]);
-        //System.out.printf("Entrada: %s\n", Entrada[i]);
-        //System.out.printf("Saida: %s\n", Saida[i]);
         System.out.printf("Data de Registro: ");
-        System.out.println(Data[i]);///
-        System.out.println();
+        System.out.println(Data[i] + "\n");///
     }
 
     public static void main(String[] args)
@@ -890,7 +847,7 @@ public class Sistema
                             Sistema.MenuAdm();
                             opcao = input.nextInt();
 
-                            if(opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4 || opcao == 5 || opcao == 6 || opcao == 9) Sistema.UR();
+                            if(opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4 || opcao == 5 || opcao == 6 || opcao == 8) Sistema.UR();
 
                             if(opcao == 1) Sistema.add();
 
@@ -904,11 +861,9 @@ public class Sistema
 
                             if(opcao == 6) Sistema.alterar();
 
-                            //if(opcao == 7);
+                            if(opcao == 7) Sistema.informacoes();
 
-                            if(opcao == 8) Sistema.informacoes();
-
-                            if(opcao == 9)
+                            if(opcao == 8)
                             {
                                 Sistema.tempo(opcao);
                                 Sistema.folhaPagamento();
@@ -937,7 +892,6 @@ public class Sistema
             NomeUR[0][i] = null;
             EnderecoUR[0][i] = null;
             TipoUR[0][i] = null;
-            //TAMANHOUR[0][i] = TAMANHO[i];
             SindicatoUR[0][i] = null;
             IdSindicatoUR[0][i] = null;
             AgendaPagamentoUR[0][i] = null;
@@ -973,11 +927,7 @@ public class Sistema
         System.out.println();
         System.out.println("|-----------------------------------------------------------------------------|");
         System.out.println("                         FICHA DO EMPREGADO ADICIONADO  ");
-        System.out.printf ("  ID: %d\n", ID[MAX]);
-        System.out.printf ("  Nome: %s\n", Nome[MAX]);
-        System.out.printf ("  Endereco: %s\n", Endereco[MAX]);
-        System.out.printf ("  Tipo: %s\n", Tipo[MAX]);
-        System.out.printf ("  Salario/Comissao: R$ %.2f\n", Salario[MAX]);
+        System.out.println ("  ID: " + ID[MAX] +"\n  Nome: " + Nome[MAX] + "\n  Endereco: " + Endereco[MAX] + "\n  Tipo: " + Tipo[MAX] + "\n  Salario/Comissao: R$ " + Salario[MAX] + "\n");
         if(Sindicato[tam].equals("Faz parte do Sindicato."))
         {
             System.out.printf ("  Faz parte do Sindicato.\n");
@@ -989,7 +939,6 @@ public class Sistema
         System.out.printf ("  Agenda de pagamento: %s\n", AgendaPagamento[MAX]);
         System.out.printf ("  Metodo de pagamento: %s\n", MetodoPagamento[MAX]);
         System.out.printf ("  Data de Registro: %s\n",Data[MAX]);
-        //System.out.println(novo.getSdf().format(novo.getData().getTime()));////
         System.out.println("|-----------------------------------------------------------------------------|\n");
     }
 
@@ -1081,15 +1030,11 @@ public class Sistema
                 j++;
             }
         }
-
         Sistema.diadasemana();
         Sistema.verifica();
         Sistema.diadasemana();
-
-
         dataEmString = day + "/" + month + "/" + year;
         System.out.println("Estamos em" + " " + dataEmString + " " + DiaDaSemana);
-
     }
 
     public static void verifica()
@@ -1154,7 +1099,6 @@ public class Sistema
             nomemes = "janeiro";
             maxima = 31;
         }
-
         if(month == 2)
         {
             nomemes = "fevereiro";
@@ -1163,61 +1107,51 @@ public class Sistema
                 maxima = 29;
             }else maxima = 28;
         }
-
         if(month == 3)
         {
             nomemes = "março";
             maxima = 31;
         }
-
         if(month == 4)
         {
             nomemes = "abril";
             maxima = 30;
         }
-
         if(month == 5)
         {
             nomemes = "maio";
             maxima = 31;
         }
-
         if(month == 6)
         {
             nomemes = "junho";
             maxima = 30;
         }
-
         if(month == 7)
         {
             nomemes = "julho";
             maxima = 31;
         }
-
         if(month == 8)
         {
             nomemes = "agosto";
             maxima = 31;
         }
-
         if(month == 9)
         {
             nomemes = "setembro";
             maxima = 30;
         }
-
         if(month == 10)
         {
             nomemes = "outubro";
             maxima = 31;
         }
-
         if(month == 11)
         {
             nomemes = "novembro";
             maxima = 30;
         }
-
         if(month == 12)
         {
             nomemes = "dezembro";
@@ -1250,10 +1184,9 @@ public class Sistema
 
     public static void uteis()
     {
-        int ind= indice, d = day, x = maxima, i =0, mes = month;
+        int ind= indice, d = day, x = maxima, i =0, mes = month,ultimodia = 5;
         DiasUteis = 0;
         String semana= DiaDaSemana;
-        int ultimodia = 5;
 
         while(day<=x && month == mes)
         {
@@ -1262,32 +1195,15 @@ public class Sistema
             day++;
             indice++;
             Sistema.diadasemana();
+            if(day == 1 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) diaPrimeiro = day + "/" + mes + "/" + 2019;
 
-            if(day == 1 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo"))
-            {
-                diaPrimeiro = day + "/" + mes + "/" + 2019;
-            }
-            else if(day == 2 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo"))
-            {
-                diaPrimeiro = day + "/" + mes + "/" + 2019;
-            }
-            else if(day == 3 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo"))
-            {
-                diaPrimeiro = day + "/" + mes + "/" + 2019;
-            }
+            else if(day == 2 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) diaPrimeiro = day + "/" + mes + "/" + 2019;
 
-            if(day == 7 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo"))
-            {
-                dia7 = day + "/" + mes + "/" + 2019;
-            }
-            else if(day == 8 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo"))
-            {
-                dia7 = day + "/" + mes + "/" + 2019;
-            }
-            else if(day == 9 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo"))
-            {
-                dia7 = day + "/" + mes + "/" + 2019;
-            }
+            else if(day == 3 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) diaPrimeiro = day + "/" + mes + "/" + 2019;
+
+            if(day == 7 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) dia7 = day + "/" + mes + "/" + 2019;
+            else if(day == 8 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) dia7 = day + "/" + mes + "/" + 2019;
+            else if(day == 9 && !DiaDaSemana.equals("sábado") && !DiaDaSemana.equals("domingo")) dia7 = day + "/" + mes + "/" + 2019;
 
             Sistema.verifica();
             Sistema.diadasemana();
@@ -1661,4 +1577,3 @@ public class Sistema
         }
     }
 }
-
