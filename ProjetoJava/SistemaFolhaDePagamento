@@ -810,8 +810,6 @@ public class Sistema
                             Sistema.MenuEmp();
                             opcao = input.nextInt();
 
-                            if(opcao == 1 || opcao == 2 || opcao == 3) Sistema.UR();
-
                             if(opcao == 1) Sistema.cpempre(acesso);
 
                             if(opcao == 2) Sistema.rvempre(acesso);
@@ -825,6 +823,10 @@ public class Sistema
                             if(opcao == 37) Sistema.undo();
 
                             if(opcao == 73) Sistema.redo();
+                            
+                            if(opcao == 1 || opcao == 2 || opcao == 3) Sistema.UR();
+                            
+                            System.out.println();
                         }
                     }
                     else if(p==0) System.out.println("SENHA INCORRETA. TENTE NOVAMENTE.");
@@ -845,9 +847,7 @@ public class Sistema
                             if(opcao == -1) Sistema.tempo(opcao);
 
                             Sistema.MenuAdm();
-                            opcao = input.nextInt();
-
-                            if(opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4 || opcao == 5 || opcao == 6 || opcao == 8) Sistema.UR();
+                            opcao = input.nextInt();                      
 
                             if(opcao == 1) Sistema.add();
 
@@ -872,6 +872,8 @@ public class Sistema
                             if(opcao == 37) Sistema.undo();
 
                             if(opcao == 73) Sistema.redo();
+                            
+                            if(opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4 || opcao == 5 || opcao == 6 || opcao == 8) Sistema.UR();
 
                             System.out.println();
 
@@ -1483,7 +1485,7 @@ public class Sistema
 
     public static void redo()///////
     {
-        if(estado>99 && redo>estado)
+        if(estado>=0 && redo>estado)
         {
             estado++;
             Sistema.aplicando();
@@ -1498,8 +1500,8 @@ public class Sistema
         System.out.println("| 1- semanal 1 segunda                   |");
         System.out.println("| 2- semanal 1 terça                     |");
         System.out.println("| 3- semanal 1 quarta                    |");
-        System.out.println("| 4- semanal 1 quinta                    |");// MANUTENCAO
-        System.out.println("| 5- semanal 1 sexta                     |");// MANUTENCAO
+        System.out.println("| 4- semanal 1 quinta                    |");
+        System.out.println("| 5- semanal 1 sexta                     |");
         System.out.println("| 0- Voltar                              |");
         System.out.println("|----------------------------------------|");
     }
@@ -1511,8 +1513,8 @@ public class Sistema
         System.out.println("| 1- semanal 2 segunda                   |");
         System.out.println("| 2- semanal 2 terça                     |");
         System.out.println("| 3- semanal 2 quarta                    |");
-        System.out.println("| 4- semanal 2 quinta                    |");// MANUTENCAO
-        System.out.println("| 5- semanal 2 sexta                     |");// MANUTENCAO
+        System.out.println("| 4- semanal 2 quinta                    |");
+        System.out.println("| 5- semanal 2 sexta                     |");
         System.out.println("| 0- Voltar                              |");
         System.out.println("|----------------------------------------|");
     }
@@ -1541,11 +1543,32 @@ public class Sistema
             {
                 Sistema.nvagHorista();
                 op = input.nextInt();
-                if(op==1) Pagamento[np] = "segunda-feira";
-                if(op==2) Pagamento[np] = "terça-feira";
-                if(op==3) Pagamento[np] = "quarta-feira";
-                if(op==4) Pagamento[np] = "quinta-feira";
-                if(op==5) Pagamento[np] = "sexta-feira";
+                if(op==1) 
+                {
+                    Pagamento[np] = "segunda-feira";
+                    AgendaPagamento[np] = "segunda-feira";
+                }
+       
+                if(op==2) 
+                {
+                    Pagamento[np] = "terça-feira";
+                    AgendaPagamento[np] = "terça-feira";
+                }
+                if(op==3)
+                {
+                    Pagamento[np] = "quarta-feira";
+                    AgendaPagamento[np] = "quarta-feira";
+                }
+                if(op==4)
+                {
+                    Pagamento[np] = "quinta-feira";
+                    AgendaPagamento[np] = "quinta-feira";
+                }
+                if(op==5)
+                {
+                    Pagamento[np] = "sexta-feira";
+                    AgendaPagamento[np] = "sexta-feira";
+                }
                 if(op!=1 && op!=2 && op!=3 && op!=4 && op!=5 && op!=0) System.out.println("Insira um numero valido.");
             }
         }
@@ -1555,9 +1578,21 @@ public class Sistema
             {
                 Sistema.nvagAssaalariado();
                 op = input.nextInt();
-                if(op==1) Pagamento[np] = dia7;
-                if(op==2) Pagamento[np] = diaPrimeiro;
-                if(op==3) Pagamento[np] = diaUltimo;
+                if(op==1)
+                {
+                    Pagamento[np] = dia7;
+                    AgendaPagamento[np] = "mensal 7";
+                }
+                if(op==2)
+                {
+                    Pagamento[np] = diaPrimeiro;
+                    AgendaPagamento[np] = "mensal 1";
+                }
+                if(op==3) 
+                {
+                    Pagamento[np] = diaUltimo;
+                    AgendaPagamento[np] = "mensal $";
+                }
                 if(op!=1 && op!=2 && op!=3 && op!=0) System.out.println("Insira um numero valido.");
             }
         }
@@ -1567,11 +1602,32 @@ public class Sistema
             {
                 Sistema.nvagComissionado();
                 op = input.nextInt();
-                if(op==1) Pagamento[np] = "segunda-feira";
-                if(op==2) Pagamento[np] = "terça-feira";
-                if(op==3) Pagamento[np] = "quarta-feira";
-                if(op==4) Pagamento[np] = "quinta-feira";
-                if(op==5) Pagamento[np] = "sexta-feira";
+                if(op==1) 
+                {
+                    Pagamento[np] = "segunda-feira";
+                    //AgendaPagamento[np] = "segunda-feira";
+                }
+       
+                if(op==2) 
+                {
+                    Pagamento[np] = "terça-feira";
+                    //AgendaPagamento[np] = "terça-feira";
+                }
+                if(op==3)
+                {
+                    Pagamento[np] = "quarta-feira";
+                    //AgendaPagamento[np] = "quarta-feira";
+                }
+                if(op==4)
+                {
+                    Pagamento[np] = "quinta-feira";
+                    //AgendaPagamento[np] = "quinta-feira";
+                }
+                if(op==5)
+                {
+                    Pagamento[np] = "sexta-feira";
+                    //AgendaPagamento[np] = "sexta-feira";
+                }
                 if(op!=1 && op!=2 && op!=3 && op!=4 && op!=5 && op!=0) System.out.println("Insira um numero valido.");
             }
         }
