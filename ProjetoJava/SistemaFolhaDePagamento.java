@@ -1508,6 +1508,7 @@ public class Sistema
     {
         System.out.println("|----------------------------------------|");
         System.out.println("| Ola horista, qual agenda prefere?      |");
+        System.out.println("|                                        |");
         System.out.println("| 1- semanal 1 segunda                   |");
         System.out.println("| 2- semanal 1 terça                     |");
         System.out.println("| 3- semanal 1 quarta                    |");
@@ -1519,26 +1520,28 @@ public class Sistema
 
     public static void nvagComissionado()
     {
-        System.out.println("|----------------------------------------|");
-        System.out.println("| Ola horista, qual agenda prefere?      |");
-        System.out.println("| 1- semanal 2 segunda                   |");
-        System.out.println("| 2- semanal 2 terça                     |");
-        System.out.println("| 3- semanal 2 quarta                    |");
-        System.out.println("| 4- semanal 2 quinta                    |");
-        System.out.println("| 5- semanal 2 sexta                     |");
-        System.out.println("| 0- Voltar                              |");
-        System.out.println("|----------------------------------------|");
+        System.out.println("|----------------------------------------------|");
+        System.out.println("| Ola comissionado, qual nova agenda prefere?  |");
+        System.out.println("|                                              |");
+        System.out.println("| 1- semanal 2 segunda                         |");
+        System.out.println("| 2- semanal 2 terça                           |");
+        System.out.println("| 3- semanal 2 quarta                          |");
+        System.out.println("| 4- semanal 2 quinta                          |");
+        System.out.println("| 5- semanal 2 sexta                           |");
+        System.out.println("| 0- Voltar                                    |");
+        System.out.println("|----------------------------------------------|");
     }
 
     public static void nvagAssaalariado()
     {
-        System.out.println("|-----------------------------------------|");
-        System.out.println("| Ola assalariado, qual agenda prefere?   |");
-        System.out.println("| 1- mensal 7                             |");
-        System.out.println("| 2- mensal $                             |");
-        System.out.println("| 3- mensal 1                             |");
-        System.out.println("| 0- Voltar                               |");
-        System.out.println("|-----------------------------------------|");
+        System.out.println("|----------------------------------------------|");
+        System.out.println("| Ola assalariado, qual nova agenda prefere?   |");
+        System.out.println("|                                              |");
+        System.out.println("| 1- mensal 7                                  |");
+        System.out.println("| 2- mensal $                                  |");
+        System.out.println("| 3- mensal 1                                  |");
+        System.out.println("| 0- Voltar                                    |");
+        System.out.println("|----------------------------------------------|");
     }
 
     public static void NovaAgenda(int np)
