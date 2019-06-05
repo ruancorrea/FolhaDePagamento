@@ -55,10 +55,11 @@ public class Sistema
 
     static int tam = 0, MAX=0, day = 5, month = 6, year = 2019, indice = 4;
     static int ultimoDiaUtil = day, DiasUteis;
+    static int maxima = 30, estado = 0, redo;
+
     static String DiaDaSemana = "quarta-feira", nomemes = "junho";
     static String dataEmString = day + "/" + month + "/" + year;
     static String diaUltimo = dataEmString, diaPrimeiro, dia7 = "7/5/2019";
-    static int maxima = 30, estado = 0, redo;
 
     public static void add()
     {
@@ -407,7 +408,6 @@ public class Sistema
             {
                 if(np == ID[i])
                 {
-                    Sistema.cpempre(np);
                     p=1;
                     break;
                 }
@@ -823,9 +823,9 @@ public class Sistema
                             if(opcao == 37) Sistema.undo();
 
                             if(opcao == 73) Sistema.redo();
-                            
+
                             if(opcao == 1 || opcao == 2 || opcao == 3) Sistema.UR();
-                            
+
                             System.out.println();
                         }
                     }
@@ -847,7 +847,7 @@ public class Sistema
                             if(opcao == -1) Sistema.tempo(opcao);
 
                             Sistema.MenuAdm();
-                            opcao = input.nextInt();                      
+                            opcao = input.nextInt();
 
                             if(opcao == 1) Sistema.add();
 
@@ -872,7 +872,7 @@ public class Sistema
                             if(opcao == 37) Sistema.undo();
 
                             if(opcao == 73) Sistema.redo();
-                            
+
                             if(opcao == 1 || opcao == 2 || opcao == 3 || opcao == 4 || opcao == 5 || opcao == 6 || opcao == 8) Sistema.UR();
 
                             System.out.println();
@@ -929,7 +929,7 @@ public class Sistema
         System.out.println();
         System.out.println("|-----------------------------------------------------------------------------|");
         System.out.println("                         FICHA DO EMPREGADO ADICIONADO  ");
-        System.out.println ("  ID: " + ID[MAX] +"\n  Nome: " + Nome[MAX] + "\n  Endereco: " + Endereco[MAX] + "\n  Tipo: " + Tipo[MAX] + "\n  Salario/Comissao: R$ " + Salario[MAX] + "\n");
+        System.out.println ("  ID: " + ID[MAX] +"\n  Nome: " + Nome[MAX] + "\n  Endereco: " + Endereco[MAX] + "\n  Tipo: " + Tipo[MAX] + "\n  Salario/Comissao: R$ " + Salario[MAX] );
         if(Sindicato[tam].equals("Faz parte do Sindicato."))
         {
             System.out.printf ("  Faz parte do Sindicato.\n");
@@ -1020,7 +1020,7 @@ public class Sistema
     public static void tempo(int op)
     {
         Sistema.uteis();
-        if(op == 9)
+        if(op == 8)
         {
             day++;
             indice++;
@@ -1219,7 +1219,7 @@ public class Sistema
         DiasUteis = i;
     }
 
-    public static void folhaPagamento()//////////////////////////
+    public static void folhaPagamento()
     {
         int i=0;
         if(tam>0)
@@ -1409,7 +1409,7 @@ public class Sistema
 
     }
 
-    public static void UR()//////////////
+    public static void UR()
     {
         int i=0;
         if(redo<99)
@@ -1444,7 +1444,7 @@ public class Sistema
         /////////////
     }
 
-    public static void aplicando()////////////
+    public static void aplicando()
     {
         int i;
         for(i=0;i<500;i++)
@@ -1473,7 +1473,7 @@ public class Sistema
         }
     }
 
-    public static void undo()///////
+    public static void undo()
     {
         if(estado>0)
         {
@@ -1483,7 +1483,7 @@ public class Sistema
         else System.out.println("Limite alcançado!");
     }
 
-    public static void redo()///////
+    public static void redo()
     {
         if(estado>=0 && redo>estado)
         {
@@ -1543,13 +1543,13 @@ public class Sistema
             {
                 Sistema.nvagHorista();
                 op = input.nextInt();
-                if(op==1) 
+                if(op==1)
                 {
                     Pagamento[np] = "segunda-feira";
                     AgendaPagamento[np] = "segunda-feira";
                 }
-       
-                if(op==2) 
+
+                if(op==2)
                 {
                     Pagamento[np] = "terça-feira";
                     AgendaPagamento[np] = "terça-feira";
@@ -1588,7 +1588,7 @@ public class Sistema
                     Pagamento[np] = diaPrimeiro;
                     AgendaPagamento[np] = "mensal 1";
                 }
-                if(op==3) 
+                if(op==3)
                 {
                     Pagamento[np] = diaUltimo;
                     AgendaPagamento[np] = "mensal $";
@@ -1602,13 +1602,13 @@ public class Sistema
             {
                 Sistema.nvagComissionado();
                 op = input.nextInt();
-                if(op==1) 
+                if(op==1)
                 {
                     Pagamento[np] = "segunda-feira";
                     //AgendaPagamento[np] = "segunda-feira";
                 }
-       
-                if(op==2) 
+
+                if(op==2)
                 {
                     Pagamento[np] = "terça-feira";
                     //AgendaPagamento[np] = "terça-feira";
@@ -1633,3 +1633,4 @@ public class Sistema
         }
     }
 }
+
