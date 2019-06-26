@@ -80,7 +80,7 @@ public class Administrador {
 
                     }catch(InputMismatchException e)
                     {
-                        System.err.printf("\nExceptiom: %s\n", e);
+                        System.err.printf("\nException: %s\n", e);
                         input.nextLine();
                         System.out.println("Insira um valor double valido\n");
                     }
@@ -111,7 +111,7 @@ public class Administrador {
                                     x = true;
                                 }
                             } catch (InputMismatchException e) {
-                                System.err.printf("\nExceptiom: %s\n", e);
+                                System.err.printf("\nException: %s\n", e);
                                 input.nextLine();
                                 System.out.println("Coloque um valor double valido - \n");
                             }
@@ -195,7 +195,7 @@ public class Administrador {
                             valido = true;
                         }
                     } catch (InputMismatchException e) {
-                        System.err.printf("\nExceptiom: %s\n", e);
+                        System.err.printf("\nException: %s\n", e);
                         input.nextLine();
                         System.out.println("Insira um ID inteiro valido\n");
                     }
@@ -255,7 +255,7 @@ public class Administrador {
                             np = input.nextInt();
                             valido = false;
                         } catch (InputMismatchException e) {
-                            System.err.printf("\nExceptiom: %s\n", e);
+                            System.err.printf("\nException: %s\n", e);
                             input.nextLine();
                             System.out.println("Insira um ID inteiro valido\n");
                         }
@@ -279,7 +279,7 @@ public class Administrador {
                                         n = input.nextInt();
                                         x = false;
                                     } catch (InputMismatchException e) {
-                                        System.err.printf("\nExceptiom: %s\n", e);
+                                        System.err.printf("\nException: %s\n", e);
                                         input.nextLine();
                                         System.out.println("Coloque um valor inteiro valido -  de 0 a 7\n");
                                     }
@@ -357,7 +357,7 @@ public class Administrador {
 
                                             }catch(InputMismatchException e)
                                             {
-                                                System.err.printf("\nExceptiom: %s\n", e);
+                                                System.err.printf("\nException: %s\n", e);
                                                 input.nextLine();
                                                 System.out.println("Insira um valor double valido\n");
                                             }
@@ -398,7 +398,7 @@ public class Administrador {
                                                                 }
                                                                 z = false;
                                                             } catch (InputMismatchException e) {
-                                                                System.err.printf("\nExceptiom: %s\n", e);
+                                                                System.err.printf("\nException: %s\n", e);
                                                                 input.nextLine();
                                                                 System.out.println("Coloque um valor double valido - \n");
                                                             }

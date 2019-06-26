@@ -46,7 +46,7 @@ public class Comissionado extends Assalariado {
                     x = true;
                 }
             } catch (InputMismatchException e) {
-                System.err.printf("\nExceptiom: %s\n", e);
+                System.err.printf("\nException: %s\n", e);
                 input.nextLine();
                 System.out.println("Insira um valor double valido - \n");
             }

@@ -31,7 +31,7 @@ public class Sistema
 
                 }catch(InputMismatchException e)
                 {
-                    System.err.printf("\nExceptiom: %s\n", e);
+                    System.err.printf("\nException: %s\n", e);
                     input.nextLine();
                     System.out.println("Coloque um valor inteiro valido - 0 , 1 ou 2\n");
                 }
@@ -50,7 +50,7 @@ public class Sistema
                                 x=false;
 
                             }catch(InputMismatchException e){
-                                System.err.printf("\nExceptiom: %s\n", e);
+                                System.err.printf("\nException: %s\n", e);
                                 input.nextLine();
                                 System.out.println("Coloque um ID valido (numero inteiro)");
                             }

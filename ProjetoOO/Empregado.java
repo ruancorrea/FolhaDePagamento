@@ -20,7 +20,7 @@ public class Empregado{
                     valido = false;
                 }catch(InputMismatchException e)
                 {
-                    System.err.printf("\nExceptiom: %s\n", e);
+                    System.err.printf("\nException: %s\n", e);
                     input.nextLine();
                     System.out.println("Coloque um valor inteiro valido - de 0 a 7\n");
                 }
@@ -236,7 +236,7 @@ public class Empregado{
 
                     }catch(InputMismatchException e)
                     {
-                        System.err.printf("\nExceptiom: %s\n", e);
+                        System.err.printf("\nException: %s\n", e);
                         input.nextLine();
                         System.out.println("Insira um valor double valido\n");
                     }
@@ -290,7 +290,7 @@ public class Empregado{
 
                     }catch(InputMismatchException e)
                     {
-                        System.err.printf("\nExceptiom: %s\n", e);
+                        System.err.printf("\nException: %s\n", e);
                         input.nextLine();
                         System.out.println("Coloque um valor inteiro valido - 0 a 5\n");
                     }
@@ -333,7 +333,7 @@ public class Empregado{
                     }
 
                 } catch (InputMismatchException e) {
-                    System.err.printf("\nExceptiom: %s\n", e);
+                    System.err.printf("\nException: %s\n", e);
                     input.nextLine();
                     System.out.println("Coloque um valor inteiro valido\n");
                 }
@@ -351,7 +351,7 @@ public class Empregado{
 
                     }catch(InputMismatchException e)
                     {
-                        System.err.printf("\nExceptiom: %s\n", e);
+                        System.err.printf("\nException: %s\n", e);
                         input.nextLine();
                         System.out.println("Coloque um valor inteiro valido - 0 a 5\n");
                     }

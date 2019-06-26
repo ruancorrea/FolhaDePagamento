@@ -3,9 +3,7 @@ package P_OO;
 public class Horista extends Funcionario{
 
     public Horista()
-    {
-
-    }
+    {}
 
     public Horista(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double salario, double taxaSindical, String tipo,
                    String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year, int diastrabalhados,

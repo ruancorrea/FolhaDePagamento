@@ -1,7 +1,7 @@
 package P_OO;
 
 public class Empresa{
-    private Funcionario[] ListadeFuncionarios = new Funcionario[201];
+    private Funcionario[] ListadeFuncionarios = new Funcionario[501];
     private int tamanho = 0;
     private int day, month, year;
     private String dia, data;
