@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class AgendaDePagamento {
+public abstract class AgendaDePagamento {
     public static Empresa NovaAgenda(Empresa P3, int i, Empresa[] undoredo) {
         Funcionario[] Lista = P3.getListadeFuncionarios();
         String pagamento = Lista[i].getPagamento();
@@ -20,7 +20,7 @@ public class AgendaDePagamento {
         int opcao=-1;
         boolean valido = true;
 
-        if(Lista[i].getTipo().equals("horista"))
+        if(Lista[i] instanceof Horista)
         {
             Prints.nvagenda();
             while(opcao!=0 && opcao!=1 && opcao!=2 && opcao!=3 && opcao!=4 && opcao!=5)
@@ -61,29 +61,7 @@ public class AgendaDePagamento {
             }
         }
 
-        if(Lista[i].getTipo().equals("assalariado"))
-        {
-            System.out.println("Ola! Digite o dia do mês, menor ou igual a " + max + " que desejas receber o pagamento");
-            System.out.println("Certifique-se que se o dia cair em um final de semana, a data de pagamento será na segunda-feira");
-
-            while(valido) {
-                try {
-                    opcao = input.nextInt();
-                    valido = false;
-                    if (opcao > max) {
-                        valido = true;
-                        System.out.println("Insira um numero menor que " + max);
-                    }
-
-                } catch (InputMismatchException e) {
-                    System.err.printf("\nException: %s\n", e);
-                    input.nextLine();
-                    System.out.println("Coloque um valor inteiro valido\n");
-                }
-            }
-        }
-
-        if(Lista[i].getTipo().equals("comissionado")) {
+        if(Lista[i] instanceof Comissionado) {
             Prints.nvagenda();
             while(opcao!=0 && opcao!=1 && opcao!=2 && opcao!=3 && opcao!=4 && opcao!=5) {
                 while(valido)
@@ -120,7 +98,29 @@ public class AgendaDePagamento {
             }
         }
 
-        pagamento = FolhaPagamento.CalcularDiaPagamento(P3,Lista[i], opcao);
+        else if(Lista[i] instanceof Assalariado)
+        {
+            System.out.println("Ola! Digite o dia do mês, menor ou igual a " + max + " que desejas receber o pagamento");
+            System.out.println("Certifique-se que se o dia cair em um final de semana, a data de pagamento será na segunda-feira");
+
+            while(valido) {
+                try {
+                    opcao = input.nextInt();
+                    valido = false;
+                    if (opcao > max) {
+                        valido = true;
+                        System.out.println("Insira um numero menor que " + max);
+                    }
+
+                } catch (InputMismatchException e) {
+                    System.err.printf("\nException: %s\n", e);
+                    input.nextLine();
+                    System.out.println("Coloque um valor inteiro valido\n");
+                }
+            }
+        }
+
+        pagamento = Lista[i].CalcularDiaPagamento(P3,Lista[i], opcao);
         Lista[i].setPagamento(pagamento);
         P3.setListadeFuncionarios(P3,Lista);
         UndoRedo.UR(P3, undoredo);

@@ -1,6 +1,6 @@
 package FolhaDePagamento.Empregado;
 
-public class Sindicato {
+public abstract class Sindicato {
     private static boolean parte = false;
     private boolean taxa;
     private boolean taxa2;
@@ -73,5 +73,21 @@ public class Sindicato {
 
     public void setSindicatoID(String sindicatoID) {
         this.sindicatoID = sindicatoID;
+    }
+
+    public static double TaxasDescontos(Funcionario F, double salarioatual)
+    {
+        if (F.getSindicato().equals("Faz parte do Sindicato"))
+        {
+            if(!F.isTaxa2())
+            {
+                salarioatual = salarioatual - F.getTaxaSindical();
+                F.setTaxa2(false);
+            }
+
+            salarioatual = salarioatual - F.getTaxaServiço();
+        }
+
+        return salarioatual;
     }
 }

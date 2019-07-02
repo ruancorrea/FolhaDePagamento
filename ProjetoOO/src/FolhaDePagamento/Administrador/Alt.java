@@ -10,7 +10,7 @@ import FolhaDePagamento.Main.UndoRedo;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Alt {
+public abstract class Alt {
     public static Empresa Alterar(Empresa P3, Empresa[] undoredo) {
         {
             Scanner input = new Scanner(System.in);
@@ -63,7 +63,7 @@ public class Alt {
                                 nome = Lista[i].getNome();
                                 endereco = Lista[i].getEndereco();
                                 salario = Lista[i].getSalario();
-                                tipo = Lista[i].getTipo();
+                                tipo = Lista[i].Instancia();
                                 sindicato = Lista[i].getSindicato();
                                 id_sindicato = Lista[i].getSindicatoID();
                                 taxa_sindicato = Lista[i].getTaxaSindical();

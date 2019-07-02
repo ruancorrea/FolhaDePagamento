@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 public class Sistema
 {
-    public static int max= 30, day = 03, month = 6, year = 2019;
-    public static String senha, dataEmString = day + "/" + "0" + month + "/" + year, DiaDaSemana = "quarta-feira";
-
-    public static Empresa[] undoredo = new Empresa[501];
-    public static Empresa P3 = new Empresa(new Funcionario[501], DiaDaSemana, dataEmString, day, month, year, 0, 0 , 0);
-
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        int day = 03, month = 6, year = 2019;
+        String senha, dataEmString = "0" + day + "/" + "0" + month + "/" + year, DiaDaSemana = "quarta-feira";
+        Empresa[] undoredo = new Empresa[501];
+        undoredo[0] = new Empresa(DiaDaSemana, dataEmString, day, month, year, 0);
+        Empresa P3 = new Empresa(new Funcionario[501], DiaDaSemana, dataEmString, day, month, year, 0, 0 , 0);
+
         int acesso=-1, i, escolha=-1;
         boolean entrou = false;
         boolean valido = true;

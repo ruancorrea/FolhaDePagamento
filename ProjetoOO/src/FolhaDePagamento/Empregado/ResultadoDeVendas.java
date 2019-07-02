@@ -3,10 +3,10 @@ package FolhaDePagamento.Empregado;
 import FolhaDePagamento.Administrador.Empresa;
 import FolhaDePagamento.Main.UndoRedo;
 
-public class ResultadoDeVendas {
+public abstract class ResultadoDeVendas {
     public static Empresa ResultadoVendas(Empresa P3, int i, String dataEmString, Empresa[] undoredo) {
         Funcionario[] Lista = P3.getListadeFuncionarios();
-        if(Lista[i].getTipo().equals("comissionado"))
+        if(Lista[i] instanceof Comissionado)
         {
             if(((Comissionado) Lista[i]).getResultadoVendas() > 0)
             {

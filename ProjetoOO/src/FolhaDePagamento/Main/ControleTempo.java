@@ -7,8 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class ControleTempo {
-    public static Empresa datas(Empresa P3, Empresa[] undoredo) {
+public abstract class ControleTempo
+{
+    public static void datas(Empresa P3, Empresa[] undoredo) {
         Calendar data = new GregorianCalendar(P3.getYear(), P3.getMonth(), P3.getDay());
         int max = data.getActualMaximum (Calendar.DAY_OF_MONTH);
         P3.setDay(P3.getDay()+1);
@@ -21,7 +22,6 @@ public class ControleTempo {
         P3.setData(sdf.format(data.getTime()));
         P3 = Sistema.reiniciando(P3);
         UndoRedo.UR(P3,undoredo);
-        return P3;
     }
 
     public static void verifica(Empresa P3, Calendar data, int max) {

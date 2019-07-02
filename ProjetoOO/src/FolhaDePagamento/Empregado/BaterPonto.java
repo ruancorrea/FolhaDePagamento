@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class BaterPonto {
+public abstract class BaterPonto {
     public static Empresa BaterPonto(Empresa P3, int i, Empresa[] undoredo) {
         Funcionario[] Lista = P3.getListadeFuncionarios().clone();
         Scanner input = new Scanner(System.in);
@@ -61,7 +61,7 @@ public class BaterPonto {
 
         if (Lista[i] instanceof Assalariado) {
             if (!Lista[i].isBateuPonto()) {
-                System.out.println("Funcionario " + Lista[i].getTipo() + ". Mais um dia de trabalho?");
+                System.out.println("Funcionario " + Lista[i].Instancia() + ". Mais um dia de trabalho?");
                 Prints.SN();
                 while (a) {
                     try {

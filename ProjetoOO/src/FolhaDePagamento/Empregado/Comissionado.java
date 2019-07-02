@@ -1,9 +1,15 @@
 package FolhaDePagamento.Empregado;
 
+import FolhaDePagamento.Administrador.Empresa;
+
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Comissionado extends Assalariado {
+public class Comissionado extends Assalariado implements Calculos {
     private double resultadoVendas;
     private String DataVendas;
 
@@ -31,6 +37,56 @@ public class Comissionado extends Assalariado {
         DataVendas = dataVendas;
     }
 
+    public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n)
+    {
+        int dia = P3.getDay(), month = P3.getMonth(), year = P3.getYear(), bi=0, p=0;
+        Calendar data = new GregorianCalendar(year, month, dia);
+        String diadasemana = new DateFormatSymbols().getWeekdays()[data.get(Calendar.DAY_OF_WEEK)];
+        String DataPagamento = null;
+        int max = data.getActualMaximum (Calendar.DAY_OF_MONTH);
+
+        if(F.getAgenda().equals("bi-semanalmente"))
+        {
+            while(bi!=2)
+            {
+                dia++;
+                if(dia > max)
+                {
+                    dia = dia - max;
+                    month++;
+                    if(month>11)
+                    {
+                        month = 0;
+                        year++;
+                    }
+                    data = new GregorianCalendar(year, month, dia);
+                    max = data.getActualMaximum (Calendar.DAY_OF_MONTH);
+                }
+
+                data = new GregorianCalendar(year, month, dia);
+                diadasemana = new DateFormatSymbols().getWeekdays()[data.get(Calendar.DAY_OF_WEEK)];
+
+                if(diadasemana.equalsIgnoreCase(F.getNasemana())) bi++;
+            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            DataPagamento = sdf.format(data.getTime());
+        }
+
+        F.setDay(dia);
+        F.setMonth(month);
+        F.setYear(year);
+
+        return DataPagamento;
+    }
+
+    public void CalculoSalario(Funcionario F)
+    {
+        double salarioatual = F.getSalarioAtual();
+        salarioatual = (((F.getSalario()/2)/F.getDiaspassados()) * F.getDiastrabalhados()) + salarioatual;
+        salarioatual = Sindicato.TaxasDescontos(F, salarioatual);
+        F.setSalarioAtual(salarioatual);
+    }
+
     public static void CalculoResultadoVendas(Comissionado empregado, String data)
     {
         Scanner input = new Scanner(System.in);
@@ -52,11 +108,15 @@ public class Comissionado extends Assalariado {
                 System.out.println("Insira um valor double valido - \n");
             }
         }
-
         empregado.setDataVendas(data);
         empregado.setResultadoVendas(valor);
         System.out.println("Venda no valor de R$ " + valor + " na data: " + data);
         valor = empregado.getSalarioAtual() + (valor*empregado.getID()*0.37);
         empregado.setSalarioAtual(valor);
+    }
+
+    public String Instancia()
+    {
+        return "comissionado";
     }
 }

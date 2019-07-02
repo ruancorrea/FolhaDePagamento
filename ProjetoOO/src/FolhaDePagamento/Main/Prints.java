@@ -3,7 +3,7 @@ package FolhaDePagamento.Main;
 import FolhaDePagamento.Administrador.*;
 import FolhaDePagamento.Empregado.*;
 
-public class Prints {
+public abstract class Prints {
 
     public static void EscolhaTipo()
     {
@@ -100,11 +100,11 @@ public class Prints {
     {
         System.out.println();
         System.out.println("|-----------------------------------------------------------------------------|");
-        System.out.println("                         FICHA DO EMPREGADO ADICIONADO  ");
+        System.out.println("                               FICHA DO EMPREGADO  ");
         System.out.println ("  ID: " + F.getID());
         System.out.println ("  Nome: " + F.getNome());
         System.out.println ("  Endereco: " + F.getEndereco());
-        System.out.println ("  Tipo: " + F.getTipo());
+        System.out.println ("  Tipo: " + F.Instancia());
         System.out.println ("  Salario/Comissao: R$ " + F.getSalario());
         if(F.getSindicato().equals("Faz parte do Sindicato."))
         {
@@ -156,10 +156,9 @@ public class Prints {
                     System.out.println("\nLISTA E INFORMACOES DE EMPREGADOS\n");
                     tem=true;
                 }
-                System.out.printf("ID: %d\nNome: %s\nEndereco: %s\nTipo: %s\n",Lista[i].getID(),Lista[i].getNome(), Lista[i].getEndereco(),Lista[i].getTipo());
-                if(Lista[i].getTipo().equals("horista")) System.out.printf("Salario horario: R$ %.2f\n",Lista[i].getSalario());
-                if(Lista[i].getTipo().equals("assalariado")) System.out.printf("Salario mensal: R$ %.2f\n",Lista[i].getSalario());
-                if(Lista[i].getTipo().equals("comissionado")) System.out.printf("Comissao: R$ %.2f\n",Lista[i].getSalario());
+                System.out.printf("ID: %d\nNome: %s\nEndereco: %s\nTipo: %s\n",Lista[i].getID(),Lista[i].getNome(), Lista[i].getEndereco(),Lista[i].Instancia());
+                if(Lista[i] instanceof Horista) System.out.printf("Salario horario: R$ %.2f\n",Lista[i].getSalario());
+                if(Lista[i] instanceof Assalariado) System.out.printf("Salario: R$ %.2f\n",Lista[i].getSalario());
                 if(Lista[i].getSindicato().equals("Faz parte do Sindicato."))
                 {
                     System.out.printf("Faz parte do Sindicato.\n");

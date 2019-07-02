@@ -2,12 +2,11 @@ package FolhaDePagamento.Main;
 
 import FolhaDePagamento.Administrador.*;
 
-public class UndoRedo {
+public abstract class UndoRedo {
+
     public static void UR(Empresa P3, Empresa[] undoredo){
         if(P3.getRedo()<501)
         {
-            if(P3.getIndice() == 0) undoredo[0] = new Empresa(P3.getDia(), P3.getData(), P3.getDay(), P3.getMonth(), P3.getYear(), 0);
-
             P3.setIndice(P3.getIndice()+1);
             P3.setRedo(P3.getIndice());
             undoredo[P3.getIndice()] = new Empresa(P3);

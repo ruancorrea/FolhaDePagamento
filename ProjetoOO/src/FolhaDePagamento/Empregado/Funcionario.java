@@ -1,6 +1,8 @@
 package FolhaDePagamento.Empregado;
 
-public class Funcionario extends Sindicato{
+import FolhaDePagamento.Administrador.Empresa;
+
+public abstract class Funcionario extends Sindicato implements Calculos{
     private int ID;
     private String nome;
     private String endereco;
@@ -162,14 +164,6 @@ public class Funcionario extends Sindicato{
         this.nome = nome;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public String getEndereco() {
         return endereco;
     }
@@ -192,5 +186,19 @@ public class Funcionario extends Sindicato{
 
     public void setSindicato(String sindicato) {
         Sindicato = sindicato;
+    }
+
+    public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n)
+    {
+        return pagamento;
+    }
+
+    public String Instancia()
+    {
+        return "funcionario";
+    }
+
+    public void CalculoSalario(Funcionario F)
+    {
     }
 }

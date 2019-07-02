@@ -4,7 +4,6 @@ import FolhaDePagamento.Empregado.Assalariado;
 import FolhaDePagamento.Empregado.Comissionado;
 import FolhaDePagamento.Empregado.Funcionario;
 import FolhaDePagamento.Empregado.Horista;
-import FolhaDePagamento.Main.FolhaPagamento;
 import FolhaDePagamento.Main.Prints;
 import FolhaDePagamento.Main.UndoRedo;
 import java.text.DateFormatSymbols;
@@ -13,7 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Add {
+public abstract class Add {
 
     public static void Adicionando(Empresa P3, Empresa[] undoredo) {
         Scanner input = new Scanner(System.in);
@@ -131,7 +130,7 @@ public class Add {
                 System.out.println("Taxa Sindical");
                 while (valido) {
                     try {
-                        taxa_sindicato = input.nextInt();
+                        taxa_sindicato = input.nextDouble();
                         valido = false;
                         if(taxa_sindicato<0)
                         {
@@ -185,7 +184,7 @@ public class Add {
                     F = new Comissionado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(),0, 0, false , 1, false, false);
                     break;
             }
-            pagamento = FolhaPagamento.CalcularDiaPagamento(P3,F, data.getActualMaximum (Calendar.DAY_OF_MONTH));
+            pagamento = F.CalcularDiaPagamento(P3,F, data.getActualMaximum (Calendar.DAY_OF_MONTH));
             F.setPagamento(pagamento);
             Lista[tam] = F;
             Prints.ficha(F);

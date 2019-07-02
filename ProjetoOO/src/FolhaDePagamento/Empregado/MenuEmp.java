@@ -3,15 +3,16 @@ package FolhaDePagamento.Empregado;
 import FolhaDePagamento.Administrador.*;
 import FolhaDePagamento.Main.Prints;
 import FolhaDePagamento.Main.UndoRedo;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MenuEmp {
+public abstract class MenuEmp {
     public static void MenuEmpregado(Empresa P3, int i, Empresa[] undoredo) {
         Scanner input = new Scanner(System.in);
-        int opcao = -1;
+        int opcao=-1;
         boolean valido = true;
+
+        Funcionario[] Lista = P3.getListadeFuncionarios();
 
         while (true) {
             Prints.MenuEmp(P3);
@@ -42,7 +43,7 @@ public class MenuEmp {
                     AgendaDePagamento.NovaAgenda(P3, i, undoredo);
                     break;
                 case 5:
-                    Informacoes.Informacoes(P3.getListadeFuncionarios(), i);
+                    Prints.ficha(Lista[i]);
                     break;
                 case 6:
                     P3 = UndoRedo.und(P3, undoredo);

@@ -1,6 +1,13 @@
 package FolhaDePagamento.Empregado;
 
-public class Horista extends Funcionario{
+import FolhaDePagamento.Administrador.Empresa;
+
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public class Horista extends Funcionario implements Calculos{
 
     public Horista()
     {}
@@ -33,5 +40,53 @@ public class Horista extends Funcionario{
         empregado.setDiastrabalhados(dias);
         empregado.setSalarioAtual(salarioatual);
         return empregado;
+    }
+
+    public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n)
+    {
+        int dia = P3.getDay(), month = P3.getMonth(), year = P3.getYear(), bi=0, p=0;
+
+        Calendar data = new GregorianCalendar(year, month, dia);
+        String diadasemana = new DateFormatSymbols().getWeekdays()[data.get(Calendar.DAY_OF_WEEK)];
+        String DataPagamento = null;
+        int max = data.getActualMaximum (Calendar.DAY_OF_MONTH);
+
+        if(F.getAgenda().equals("semanalmente"))
+        {
+            while(!diadasemana.equalsIgnoreCase(F.getNasemana()) || p!=1)
+            {
+                dia++;
+                if(dia > max)
+                {
+                    dia = dia - max;
+                    month++;
+                    if(month>11)
+                    {
+                        month = 0;
+                        year++;
+                    }
+                    data = new GregorianCalendar(year, month, dia);
+                    max = data.getActualMaximum (Calendar.DAY_OF_MONTH);
+                }
+
+                data = new GregorianCalendar(year, month, dia);
+                diadasemana = new DateFormatSymbols().getWeekdays()[data.get(Calendar.DAY_OF_WEEK)];
+                p=1;
+            }
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            DataPagamento = sdf.format(data.getTime());
+        }
+
+        F.setDay(dia);
+        F.setMonth(month);
+        F.setYear(year);
+
+        return DataPagamento;
+    }
+
+    public String Instancia()
+    {
+        return "horista";
     }
 }

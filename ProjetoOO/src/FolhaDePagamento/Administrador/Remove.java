@@ -1,16 +1,13 @@
 package FolhaDePagamento.Administrador;
-
-import FolhaDePagamento.Empregado.Assalariado;
-import FolhaDePagamento.Empregado.Comissionado;
 import FolhaDePagamento.Empregado.Funcionario;
-import FolhaDePagamento.Empregado.Horista;
 import FolhaDePagamento.Main.Prints;
 import FolhaDePagamento.Main.UndoRedo;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Remove {
+public abstract class Remove
+{
     public static void Removendo(Empresa P3, Empresa[] undoredo){
         Scanner input = new Scanner(System.in);
         int i=0, np=-2, p=0, tam = P3.getTamanho();
@@ -52,20 +49,6 @@ public class Remove {
                     i=0;
                 } else if (p == 1) {
                     Lista[i]=null;
-                    /*tipo = Lista[i].getTipo();
-                    Funcionario F = new Horista();
-                    switch (tipo) {
-                        case "horista":
-                            F = new Horista("-", "-", -1, "-", "-", -1, -1, "-", "-", "-", "-", "-", -1, -1, -1, -1, -1, false, 0, false, false);
-                            break;
-                        case "assalariado":
-                            F = new Assalariado("-", "-", -1, "-", "-", -1, -1, "-", "-", "-", "-", "-", -1, -1, -1, -1, -1, false, 0, false, false);
-                            break;
-                        case "comissionado":
-                            F = new Comissionado("-", "-", -1, "-", "-", -1, -1, "-", "-", "-", "-", "-", -1, -1, -1, -1, -1, false, 0, false, false);
-                            break;
-                    }
-                    Lista[i] = F;*/
                     System.out.println("\nNOME REMOVIDO COM SUCESSO!\n");
                     P3.setTamanho(P3.getTamanho()-1);
                     P3.setListadeFuncionarios(P3, Lista);
