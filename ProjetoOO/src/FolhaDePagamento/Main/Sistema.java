@@ -17,7 +17,7 @@ public class Sistema
         Empresa P3 = new Empresa(new Funcionario[501], DiaDaSemana, dataEmString, day, month, year, 0);
 
         int acesso=-1, i, escolha=-1;
-        boolean entrou = false;
+        boolean entrou = true;
         boolean valido = true;
         boolean x= true;
         Funcionario[] Lista;
@@ -43,15 +43,16 @@ public class Sistema
                     {
                         while(acesso!=0 && entrou)
                         {
-                            Lista = P3.getListadeFuncionarios().clone();
+                            Lista = P3.getListadeFuncionarios();
                             try{
                                 acesso = input.nextInt();
-                                x=false;
+                                x = false;
                             }catch(InputMismatchException e){
                                 System.err.printf("\nException: %s\n", e);
                                 input.nextLine();
                                 System.out.println("Coloque um ID valido (numero inteiro)");
                             }
+
                             if(!x && acesso!=0)
                             {
                                 if(Empresa.verificaempregados(P3))

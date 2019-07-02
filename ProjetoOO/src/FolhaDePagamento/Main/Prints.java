@@ -87,7 +87,7 @@ public abstract class Prints {
     }
     public static void MetodoP()
     {
-        System.out.println("Metodo de pagamento preterido:");
+        System.out.println("Escolha o metodo de pagamento:");
         System.out.println("|--------------------------------------------------|");
         System.out.println("| Insira o numero da respectiva escolha do metodo: |");
         System.out.println("| 1 - Cheque pelos Correios;                       |");
