@@ -14,7 +14,7 @@ public class Sistema
         String senha, dataEmString = "0" + day + "/" + "0" + month + "/" + year, DiaDaSemana = "quarta-feira";
         Empresa[] undoredo = new Empresa[501];
         undoredo[0] = new Empresa(DiaDaSemana, dataEmString, day, month, year, 0);
-        Empresa P3 = new Empresa(new Funcionario[501], DiaDaSemana, dataEmString, day, month, year, 0, 0 , 0);
+        Empresa P3 = new Empresa(new Funcionario[501], DiaDaSemana, dataEmString, day, month, year, 0);
 
         int acesso=-1, i, escolha=-1;
         boolean entrou = false;

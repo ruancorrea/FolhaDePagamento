@@ -1,10 +1,8 @@
 package FolhaDePagamento.Empregado;
 
 import FolhaDePagamento.Administrador.Empresa;
-import FolhaDePagamento.Main.FolhaPagamento;
 import FolhaDePagamento.Main.Prints;
 import FolhaDePagamento.Main.UndoRedo;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
@@ -13,7 +11,7 @@ import java.util.Scanner;
 public abstract class AgendaDePagamento {
     public static Empresa NovaAgenda(Empresa P3, int i, Empresa[] undoredo) {
         Funcionario[] Lista = P3.getListadeFuncionarios();
-        String pagamento = Lista[i].getPagamento();
+        String pagamento;
         Calendar data = new GregorianCalendar(P3.getYear(),P3.getMonth(),P3.getDay());
         int max = data.getActualMaximum (Calendar.DAY_OF_MONTH);
         Scanner input = new Scanner(System.in);

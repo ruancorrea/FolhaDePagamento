@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class Add {
+public class Add{
 
     public static void Adicionando(Empresa P3, Empresa[] undoredo) {
         Scanner input = new Scanner(System.in);
@@ -39,7 +39,6 @@ public abstract class Add {
                 break;
             }
         }
-
         if(p == 0)
         {
             System.out.println("Digite o endereco:");
@@ -143,9 +142,13 @@ public abstract class Add {
                         System.out.println("Coloque um valor double valido - \n");
                     }
                 }
-                //input.nextLine();
             }
-                else if(sind==0) sindicato = "Nao faz parte do Sindicato.";
+                else if(sind==0)
+                {
+                    sindicato = "Nao faz parte do Sindicato.";
+                    id_sindicato = null;
+                    taxa_sindicato = 0;
+                }
             Prints.MetodoP();
             valido=true;
             while(valido) {
@@ -175,13 +178,13 @@ public abstract class Add {
             Funcionario F = new Horista();
             switch(tipo){
                 case "horista":
-                    F = new Horista(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0,false,1, false, false);
+                    F = new Horista(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0,false,1, false, false, 0);
                     break;
                 case "assalariado":
-                    F = new Assalariado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, false, 1, false, false);
+                    F = new Assalariado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, false, 1, false, false, 0);
                     break;
                 case "comissionado":
-                    F = new Comissionado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(),0, 0, false , 1, false, false);
+                    F = new Comissionado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(),0, 0, false , 1, false, false, 0 , null, 0);
                     break;
             }
             pagamento = F.CalcularDiaPagamento(P3,F, data.getActualMaximum (Calendar.DAY_OF_MONTH));

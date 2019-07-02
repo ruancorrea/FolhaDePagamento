@@ -9,10 +9,12 @@ import java.util.Date;
 import java.util.Scanner;
 
 public abstract class BaterPonto {
-    public static Empresa BaterPonto(Empresa P3, int i, Empresa[] undoredo) {
-        Funcionario[] Lista = P3.getListadeFuncionarios().clone();
+    public static void BaterPonto(Empresa P3, int i, Empresa[] undoredo)
+    {
+        Funcionario[] Lista = P3.getListadeFuncionarios();
         Scanner input = new Scanner(System.in);
-        int valor = -1;
+        int valor = -1, diastrabalhados=0;
+        double salarioatual=0;
         String entrada, saida;
         boolean a = true;
 
@@ -45,8 +47,16 @@ public abstract class BaterPonto {
 
                         int hora = diff;
                         System.out.println(hora + " horas trabalhando.");
-                        if (hora < 14) {
+                        if (hora < 18) {
                             Lista[i] = ((Horista) Lista[i]).CalculoCPHorista((Horista) Lista[i], hora);
+                            salarioatual = Lista[i].getSalarioAtual();
+                            diastrabalhados = Lista[i].getDiastrabalhados();
+
+                            Funcionario F = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+                                    Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
+                                    Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, true, Lista[i].getDiaspassados(),
+                                    Lista[i].isTaxa(), Lista[i].isTaxa2(), Lista[i].getTaxaServico());
+                            Lista[i] = F;
                             P3.setListadeFuncionarios(P3, Lista);
                             UndoRedo.UR(P3, undoredo);
                             a = false;
@@ -76,13 +86,27 @@ public abstract class BaterPonto {
                     }
                 }
                 if (valor == 1) {
-                    Lista[i].setDiastrabalhados(Lista[i].getDiastrabalhados() + 1);
-                    Lista[i].setBateuPonto(true);
+                    diastrabalhados = Lista[i].getDiastrabalhados() + 1;
+                    Funcionario F= new Assalariado();
+                    if(Lista[i] instanceof Comissionado)
+                    {
+                        F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+                                Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
+                                Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, Lista[i].getSalarioAtual(),
+                                true, Lista[i].getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxa2(), ((Comissionado)Lista[i]).getResultadoVendas(),
+                                ((Comissionado)Lista[i]).getDataVendas(), Lista[i].getTaxaServico());
+                    }
+                    else if(Lista[i] instanceof Assalariado){
+                        F = new Assalariado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+                                Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
+                                Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, Lista[i].getSalarioAtual(), true, Lista[i].getDiaspassados(),
+                                Lista[i].isTaxa(), Lista[i].isTaxa2(), Lista[i].getTaxaServico());
+                    }
+                    Lista[i] = F;
                     P3.setListadeFuncionarios(P3, Lista);
                     UndoRedo.UR(P3, undoredo);
                 }
-        } else System.out.println("Esse dia ja foi finalizado.");
-    }
-        return P3;
+            } else System.out.println("Esse dia ja foi finalizado.");
+        }
     }
 }

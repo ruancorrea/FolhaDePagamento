@@ -15,10 +15,10 @@ public class Comissionado extends Assalariado implements Calculos {
 
     public Comissionado(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double salario, double taxaSindical,
                         String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year, int diastrabalhados,
-                        double salarioAtual, boolean cartao, int diaspassados, boolean taxa, boolean taxa2) {
-        super(nome, endereco, ID, Sindicato, SindicatoID, salario, taxaSindical, metodo, pagamento, agenda, nasemana, day, month, year,diastrabalhados,salarioAtual, cartao, diaspassados, taxa, taxa2);
-        this.resultadoVendas = 0;
-        this.DataVendas = null;
+                        double salarioAtual, boolean cartao, int diaspassados, boolean taxa, boolean taxa2, double rv, String data, double taxaServico) {
+        super(nome, endereco, ID, Sindicato, SindicatoID, salario, taxaSindical, metodo, pagamento, agenda, nasemana, day, month, year,diastrabalhados,salarioAtual, cartao, diaspassados, taxa, taxa2, taxaServico);
+        this.resultadoVendas = rv;
+        this.DataVendas = data;
     }
 
     public double getResultadoVendas() {
@@ -87,7 +87,7 @@ public class Comissionado extends Assalariado implements Calculos {
         F.setSalarioAtual(salarioatual);
     }
 
-    public static void CalculoResultadoVendas(Comissionado empregado, String data)
+    public static double CalculoResultadoVendas(Comissionado empregado)
     {
         Scanner input = new Scanner(System.in);
         System.out.println("Informe o valor da venda");
@@ -97,7 +97,7 @@ public class Comissionado extends Assalariado implements Calculos {
             try {
                 valor = input.nextDouble();
                 x = false;
-                if(valor<0)
+                if(valor<=0)
                 {
                     System.out.println("Insira um valor maior que zero!");
                     x = true;
@@ -108,11 +108,7 @@ public class Comissionado extends Assalariado implements Calculos {
                 System.out.println("Insira um valor double valido - \n");
             }
         }
-        empregado.setDataVendas(data);
-        empregado.setResultadoVendas(valor);
-        System.out.println("Venda no valor de R$ " + valor + " na data: " + data);
-        valor = empregado.getSalarioAtual() + (valor*empregado.getID()*0.37);
-        empregado.setSalarioAtual(valor);
+        return valor;
     }
 
     public String Instancia()

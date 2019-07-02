@@ -26,9 +26,9 @@ public abstract class Funcionario extends Sindicato implements Calculos{
 
     public Funcionario(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double taxaSindical, double salario,
                        String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year, int diastrabalhados,
-                       double salarioAtual, boolean cartao, int diaspassados, boolean taxa, boolean taxa2)
+                       double salarioAtual, boolean cartao, int diaspassados, boolean taxa, boolean taxa2, double taxaServico)
     {
-        super(taxaSindical, SindicatoID,Sindicato, taxa, taxa2);
+        super(taxaSindical, SindicatoID,Sindicato, taxa, taxa2, taxaServico);
         this.nome = nome;
         this.endereco = endereco;
         this.ID = ID;
@@ -198,7 +198,5 @@ public abstract class Funcionario extends Sindicato implements Calculos{
         return "funcionario";
     }
 
-    public void CalculoSalario(Funcionario F)
-    {
-    }
+    public void CalculoSalario(Funcionario F) {}
 }

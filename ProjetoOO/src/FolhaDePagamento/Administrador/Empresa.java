@@ -7,8 +7,6 @@ public class Empresa {
     private int tamanho = 0;
     private int day, month, year;
     private String dia, data;
-    private int indice;
-    private int redo;
 
     public Empresa(String dia, String data, int day, int month, int year, int tamanho){
         this.data = data;
@@ -30,7 +28,7 @@ public class Empresa {
         this.tamanho = empresa.getTamanho();
     }
 
-    public Empresa(Funcionario[] ListadeFuncionarios, String dia, String data, int day, int month, int year, int tamanho, int indice, int redo)
+    public Empresa(Funcionario[] ListadeFuncionarios, String dia, String data, int day, int month, int year, int tamanho)
     {
         this.ListadeFuncionarios = ListadeFuncionarios;
         this.data = data;
@@ -39,8 +37,6 @@ public class Empresa {
         this.month = month;
         this.year = year;
         this.tamanho = tamanho;
-        this.indice = indice;
-        this.redo = redo;
     }
 
     public static boolean verificaempregados(Empresa P3)
@@ -54,22 +50,6 @@ public class Empresa {
         }
 
         return tem;
-    }
-
-    public int getIndice() {
-        return indice;
-    }
-
-    public void setIndice(int indice) {
-        this.indice = indice;
-    }
-
-    public int getRedo() {
-        return redo;
-    }
-
-    public void setRedo(int redo) {
-        this.redo = redo;
     }
 
     public int getYear() {

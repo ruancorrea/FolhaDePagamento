@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public abstract class TaxaDeServicos {
-    public static Empresa TaxaServicos(Empresa P3, int i, Empresa[] undoredo) {
+    public static void TaxaServicos(Empresa P3, int i, Empresa[] undoredo) {
         boolean y = true;
         Funcionario[] Lista = P3.getListadeFuncionarios();
         boolean taxa = Lista[i].isTaxa();
@@ -38,15 +38,36 @@ public abstract class TaxaDeServicos {
                         System.out.println("Insira um valor double valido\n");
                     }
                 }
-            Lista[i].setTaxa(taxa);
-            Lista[i].setTaxaServiço(valor);
-            P3.setListadeFuncionarios(P3,Lista);
-            UndoRedo.UR(P3, undoredo);
+                Funcionario F = new Horista();
+                if(Lista[i].Instancia().equalsIgnoreCase("horista"))
+                {
+                    F = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+                            Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
+                            Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), Lista[i].getDiastrabalhados(),
+                            Lista[i].getSalarioAtual(), Lista[i].isBateuPonto(), Lista[i].getDiaspassados(), taxa, Lista[i].isTaxa2(), valor);
+                }
+                if(Lista[i].Instancia().equalsIgnoreCase("assalariado"))
+                {
+                    F = new Assalariado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+                            Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
+                            Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), Lista[i].getDiastrabalhados(), Lista[i].getSalarioAtual(),
+                            Lista[i].isBateuPonto(), Lista[i].getDiaspassados(), taxa, Lista[i].isTaxa2(), valor);
+                }
+                if(Lista[i].Instancia().equalsIgnoreCase("comissionado"))
+                {
+                    F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+                            Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
+                            Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), Lista[i].getDiastrabalhados(), Lista[i].getSalarioAtual(),
+                            Lista[i].isBateuPonto(), Lista[i].getDiaspassados(), taxa, Lista[i].isTaxa2(), ((Comissionado) Lista[i]).getResultadoVendas(),
+                            ((Comissionado)Lista[i]).getDataVendas(), valor);
+                }
+
+                Lista[i] = F;
+                P3.setListadeFuncionarios(P3,Lista);
+                UndoRedo.UR(P3, undoredo);
             }
-            else if(taxa) System.out.println("Taxa de servico do Sindicato ja cobrada no mes: R$ " + Lista[i].getTaxaServiço());
+            else if(taxa) System.out.println("Taxa de servico do Sindicato ja cobrada no mes: R$ " + Lista[i].getTaxaServico());
         }
         else System.out.println("Empregado nao faz parte do sindicato.");
-        return P3;
     }
 }
-

@@ -4,38 +4,40 @@ import FolhaDePagamento.Administrador.*;
 
 public abstract class UndoRedo {
 
+    static int indice =0, redo=0;
+
     public static void UR(Empresa P3, Empresa[] undoredo){
-        if(P3.getRedo()<501)
+        if(redo<501)
         {
-            P3.setIndice(P3.getIndice()+1);
-            P3.setRedo(P3.getIndice());
-            undoredo[P3.getIndice()] = new Empresa(P3);
+            indice++;
+            redo=indice;
+            undoredo[indice] = new Empresa(P3);
         }
         else
         {
-            P3.setRedo(0);
-            P3.setIndice(0);
+            redo=0;
+            indice=0;
         }
     }
 
     protected static Empresa aplicando(Empresa P3, Empresa[] undoredo) {
-        if(P3.getIndice()>=0) P3 = new Empresa (undoredo[P3.getIndice()]);
+        if(indice>=0) P3 = new Empresa (undoredo[indice]);
         return P3;
     }
 
     public static Empresa und(Empresa P3, Empresa[] undoredo) {
-        if(P3.getIndice()>0)
+        if(indice>0)
         {
-            P3.setIndice(P3.getIndice()-1);
+            indice= indice-1;
             P3 = aplicando(P3, undoredo);
         }
         return P3;
     }
 
     public static Empresa red(Empresa P3, Empresa[] undoredo){
-        if(P3.getIndice() < 501 && P3.getRedo()>P3.getIndice())
+        if(indice < 501 && redo>indice)
         {
-            P3.setIndice(P3.getIndice()+1);
+            indice=indice+1;
             P3 = aplicando(P3, undoredo);
         }
         else System.out.println("Limite alcançado!");

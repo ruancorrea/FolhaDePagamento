@@ -6,7 +6,6 @@ import FolhaDePagamento.Empregado.Funcionario;
 import FolhaDePagamento.Empregado.Horista;
 import FolhaDePagamento.Main.Prints;
 import FolhaDePagamento.Main.UndoRedo;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,11 +13,11 @@ public abstract class Alt {
     public static Empresa Alterar(Empresa P3, Empresa[] undoredo) {
         {
             Scanner input = new Scanner(System.in);
-            String nome, endereco, id_sindicato, metodoPagamento, tipo, sindicato, agenda=null, pagamento, nasemana,t="-1", m = "-1", sind = "-1";
-            double salario, taxa_sindicato,salarioatual;
-            int i=0, np=-1, n=-1,p=0, tam = P3.getTamanho(), diastrabalhados, diaspassados;
+            String nome, endereco, id_sindicato, metodoPagamento, tipo, sindicato, agenda=null, pagamento, nasemana ,data;
+            double salario, taxa_sindicato,salarioatual, rv, taxaservico;
+            int i=0, np=-1, n=-1,p=0, tam = P3.getTamanho(), diastrabalhados, diaspassados, t=-1, sind=-1, m=-1;
             Funcionario[] Lista = P3.getListadeFuncionarios().clone();
-            boolean tem = Prints.ListaEmpregados(Lista,P3.getTamanho()), mudança=false, cartao, valido = true, x= true, y=true, taxa, z =true ,taxa2;
+            boolean tem = Prints.ListaEmpregados(Lista,P3.getTamanho()), val=true, mudança=false, cartao, valido = true, x= true, y=true, taxa, z =true ,taxa2;
             if(tem)
             {
                 System.out.println("Digite o numero do empregado que voce deseja alterar os dados");
@@ -36,7 +35,7 @@ public abstract class Alt {
                         }
 
                         while (i < tam) {
-                            if (np == Lista[i].getID() && np != -1) {
+                            if (np == Lista[i].getID() && Lista[i] != null) {
                                 p = 1;
                                 break;
                             }
@@ -46,13 +45,19 @@ public abstract class Alt {
                             System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA. Tente novamente!");
                             valido = true;
                         }
-                        else if (p == 1) {
-                            while (n != 0) {
+                        else if (p == 1)
+                        {
+                            while (true) {
                                 Prints.Alteracao(P3);
                                 while (x) {
                                     try {
                                         n = input.nextInt();
                                         x = false;
+                                        if(n!=0 && n !=1 && n!=2 && n!=3 && n!=4 && n !=5 && n!=6 && n!=7)
+                                        {
+                                            System.out.println("Insira uma opcao valida");
+                                            x=true;
+                                        }
                                     } catch (InputMismatchException e) {
                                         System.err.printf("\nException: %s\n", e);
                                         input.nextLine();
@@ -77,6 +82,16 @@ public abstract class Alt {
                                 cartao = Lista[i].isBateuPonto();
                                 taxa = Lista[i].isTaxa();
                                 taxa2 = Lista[i].isTaxa2();
+                                rv=0;
+                                data=null;
+                                taxaservico= Lista[i].getTaxaServico();
+                                if(Lista[i] instanceof Comissionado)
+                                {
+                                    rv = ((Comissionado)Lista[i]).getResultadoVendas();
+                                    data = ((Comissionado)Lista[i]).getDataVendas();
+                                }
+
+
                                 switch (n) {
                                     case 1:
                                         System.out.println("Digite o novo nome do empregado:");
@@ -92,122 +107,156 @@ public abstract class Alt {
                                         break;
                                     case 3:
                                         Prints.novoTipo();
-                                        while(!t.equals("1") && !t.equals("2") && !t.equals("3"))
-                                        {
-                                            t = input.nextLine();
-                                            switch (t) {
-                                                case "1":
-                                                    tipo = "horista";
-                                                    agenda = "semanalmente";
-                                                    nasemana = "sexta-feira";
-                                                    System.out.println("Insira o salario por hora:");
-                                                    mudança = true;
-                                                    break;
-                                                case "2":
-                                                    tipo = "assalariado";
-                                                    agenda = "mensalmente";
-                                                    System.out.println("Insira o salario por mes:");
-                                                    mudança = true;
-                                                    break;
-                                                case "3":
-                                                    tipo = "comissionado";
-                                                    agenda = "bi-semanalmente";
-                                                    nasemana = "sexta-feira";
-                                                    System.out.println("Insira o salario:");
-                                                    mudança = true;
-                                                    break;
+                                        while (val) {
+                                            try {
+                                                t = input.nextInt();
+                                                val = false;
+                                                if (t != 1 && t != 2 && t != 3) {
+                                                    System.out.println("Insira uma opcao valida!");
+                                                    val = true;
+                                                }
+                                            } catch (InputMismatchException e) {
+                                                System.err.printf("\nException: %s\n", e);
+                                                input.nextLine();
+                                                System.out.println("Insira um valor inteiro valido\n");
                                             }
-                                            if(!t.equals("1") && !t.equals("2") && !t.equals("3")) System.out.println("Insira um numero valido");
                                         }
-                                        while(y)
-                                        {
-                                            try{
+                                        switch (t) {
+                                            case 1:
+                                                tipo = "horista";
+                                                agenda = "semanalmente";
+                                                nasemana = "sexta-feira";
+                                                System.out.println("Insira o salario por hora:");
+                                                mudança = true;
+                                                break;
+                                            case 2:
+                                                tipo = "assalariado";
+                                                agenda = "mensalmente";
+                                                System.out.println("Insira o salario por mes:");
+                                                mudança = true;
+                                                break;
+                                            case 3:
+                                                tipo = "comissionado";
+                                                agenda = "bi-semanalmente";
+                                                nasemana = "sexta-feira";
+                                                System.out.println("Insira o salario:");
+                                                mudança = true;
+                                                break;
+                                        }
+                                        while (y) {
+                                            try {
                                                 salario = input.nextDouble();
                                                 y = false;
-                                                if(salario<0)
-                                                {
+                                                if (salario < 0) {
                                                     System.out.println("Insira um salario maior que zero!");
-                                                    y=true;
+                                                    y = true;
                                                 }
 
-                                            }catch(InputMismatchException e)
-                                            {
+                                            } catch (InputMismatchException e) {
                                                 System.err.printf("\nException: %s\n", e);
                                                 input.nextLine();
                                                 System.out.println("Insira um valor double valido\n");
                                             }
                                         }
-                                        t= "-1";
+                                        y = true;
                                         break;
                                     case 4:
-                                        if (sind.equals("-1")) {
-                                            if (sindicato.equals("Faz parte do Sindicato.")) {
-                                                Prints.NaoFazParte();
-                                                while (!sind.equals("1") && !sind.equals("0")) {
-                                                    sind = input.nextLine();
-                                                    if (sind.equals("0")) {
-                                                        sindicato = "Nao faz parte do Sindicato.";
-                                                        id_sindicato = "-";
-                                                        taxa_sindicato = 0;
-                                                        mudança = true;
-                                                    } else if (!sind.equals("1") && !sind.equals("0")) System.out.println("Insira um numero valido");
+                                        if (sindicato.equals("Faz parte do Sindicato.")) {
+                                            Prints.NaoFazParte();
+                                            while (y) {
+                                                try {
+                                                    sind = input.nextInt();
+                                                    y = false;
+                                                    if (sind != 0 && sind != 1) {
+                                                        System.out.println("Insira uma opcao valida!");
+                                                        y = true;
+                                                    }
+                                                } catch (InputMismatchException e) {
+                                                    System.err.printf("\nException: %s\n", e);
+                                                    input.nextLine();
+                                                    System.out.println("Insira um valor double valido\n");
                                                 }
                                             }
-                                            else if (sindicato.equals("Nao faz parte do Sindicato.")) {
-                                                Prints.QuerFazer();
-                                                while (!sind.equals("1") && !sind.equals("0")){
-                                                    sind = input.nextLine();
-                                                    if (sind.equals("1")) {
-                                                        Lista[i].setSindicato("Faz parte do Sindicato.");
-                                                        System.out.println("Identificacao no sindicato");
-                                                        input.nextLine();
-                                                        id_sindicato = input.nextLine();
-                                                        System.out.println("Taxa Sindical");
-                                                        while (z) {
-                                                            try {
-                                                                taxa_sindicato = input.nextInt();
-                                                                if(taxa_sindicato<0)
-                                                                {
-                                                                    System.out.println("Insira uma taxa maior que zero!");
-                                                                    z = true;
-                                                                }
-                                                                z = false;
-                                                            } catch (InputMismatchException e) {
-                                                                System.err.printf("\nException: %s\n", e);
-                                                                input.nextLine();
-                                                                System.out.println("Coloque um valor double valido - \n");
-                                                            }
-                                                        }
-                                                        mudança = true;
-                                                    } else if (!sind.equals("1") && !sind.equals("0")) System.out.println("Insira um numero valido");
+                                            y = true;
+                                            if (sind == 0) {
+                                                sindicato = "Nao faz parte do Sindicato.";
+                                                id_sindicato = null;
+                                                taxa_sindicato = 0;
+                                                mudança = true;
+                                            }
+                                        } else if (sindicato.equals("Nao faz parte do Sindicato.")) {
+                                            Prints.QuerFazer();
+                                            while (y) {
+                                                try {
+                                                    sind = input.nextInt();
+                                                    y = false;
+                                                    if (sind != 0 && sind != 1) {
+                                                        System.out.println("Insira uma opcao valida!");
+                                                        y = true;
+                                                    }
+                                                } catch (InputMismatchException e) {
+                                                    System.err.printf("\nException: %s\n", e);
+                                                    input.nextLine();
+                                                    System.out.println("Insira um valor double valido\n");
                                                 }
+                                            }
+                                            y = true;
+                                            if (sind == 1) {
+                                                sindicato="Faz parte do Sindicato.";
+                                                System.out.println("Identificacao no sindicato");
+                                                input.nextLine();
+                                                id_sindicato = input.nextLine();
+                                                System.out.println("Taxa Sindical");
+                                                while (z) {
+                                                    try {
+                                                        taxa_sindicato = input.nextDouble();
+                                                        if (taxa_sindicato <= 0) {
+                                                            System.out.println("Insira uma taxa maior que zero!");
+                                                            z = true;
+                                                        }
+                                                        z = false;
+                                                    } catch (InputMismatchException e) {
+                                                        System.err.printf("\nException: %s\n", e);
+                                                        input.nextLine();
+                                                        System.out.println("Coloque um valor double valido \n");
+                                                    }
+                                                }
+                                                mudança = true;
                                             }
                                         }
-                                        sind="-1";
                                         break;
                                     case 5:
                                         Prints.novoMetodo();
-                                        while(!m.equals("1") && !m.equals("2") && !m.equals("3"))
-                                        {
-                                            m = input.nextLine();
-                                            switch (m) {
-                                                case "1":
-                                                    metodoPagamento = "Cheque pelos Correios";
-                                                    mudança = true;
-                                                    break;
-                                                case "2":
-                                                    metodoPagamento = "Cheque em maos";
-                                                    mudança = true;
-                                                    break;
-                                                case "3":
-                                                    metodoPagamento = "Deposito em conta bancaria";
-                                                    mudança = true;
-                                                    break;
+                                        while (y) {
+                                            try {
+                                                m = input.nextInt();
+                                                y = false;
+                                                if (m!=1 && m!=2 && m!=3) {
+                                                    System.out.println("Insira uma opcao valida!");
+                                                    y = true;
+                                                }
+                                            } catch (InputMismatchException e) {
+                                                System.err.printf("\nException: %s\n", e);
+                                                input.nextLine();
+                                                System.out.println("Insira um valor double valido\n");
                                             }
-
-                                            if(!m.equals("1") && !m.equals("2") && !m.equals("3")) System.out.println("Insira um numero valido");
                                         }
-                                        m="-1";
+                                        y = true;
+
+                                        switch (m) {
+                                            case 1:
+                                                metodoPagamento = "Cheque pelos Correios";
+                                                mudança = true;
+                                                break;
+                                            case 2:
+                                                metodoPagamento = "Cheque em maos";
+                                                mudança = true;
+                                                break;
+                                            case 3:
+                                                metodoPagamento = "Deposito em conta bancaria";
+                                                mudança = true;
+                                                break;
+                                        }
                                         break;
                                     case 6:
                                         P3 = UndoRedo.und(P3, undoredo);
@@ -220,17 +269,19 @@ public abstract class Alt {
                                         mudança = false;
                                         break;
                                 }
+
                                 Funcionario F = new Horista();
-                                if (mudança) {
+
+                                if(mudança) {
                                     switch (tipo) {
                                         case "horista":
-                                            F = new Horista(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2);
+                                            F = new Horista(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2, taxaservico);
                                             break;
                                         case "assalariado":
-                                            F = new Assalariado(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2);
+                                            F = new Assalariado(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2, taxaservico);
                                             break;
                                         case "comissionado":
-                                            F = new Comissionado(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2);
+                                            F = new Comissionado(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2, rv, data, taxaservico);
                                             break;
                                     }
                                     Lista[i] = F;
@@ -238,7 +289,14 @@ public abstract class Alt {
                                     P3.setListadeFuncionarios(P3, Lista);
                                     UndoRedo.UR(P3, undoredo);
                                 }
-                                mudança=false;
+
+                                mudança = false;
+                                val = x = y = z = true;
+                                if(n==0)
+                                {
+                                    valido=false;
+                                    break;
+                                }
                             }
                         }
                         i=0;

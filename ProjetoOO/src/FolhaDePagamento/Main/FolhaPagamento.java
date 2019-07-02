@@ -27,7 +27,7 @@ public abstract class FolhaPagamento {
 
                 Lista[i].CalculoSalario(Lista[i]);
 
-                System.out.println(Lista[i].getID() + " - " + Lista[i].getNome() + " R$ " + Lista[i].getSalarioAtual());
+                System.out.println(Lista[i].getID() + " - " + Lista[i].getNome() + " R$ " + Lista[i].getSalarioAtual() + Lista[i].getMetodo());
                 Lista[i].setSalarioAtual(0);
                 Lista[i].setDiastrabalhados(0);
                 Lista[i].setDiaspassados(1);

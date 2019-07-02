@@ -31,7 +31,7 @@ public abstract class MenuEmp {
 
             switch (opcao) {
                 case 1:
-                    P3 = BaterPonto.BaterPonto(P3, i, undoredo);
+                    BaterPonto.BaterPonto(P3, i, undoredo);
                     break;
                 case 2:
                     ResultadoDeVendas.ResultadoVendas(P3, i, P3.getData(), undoredo);

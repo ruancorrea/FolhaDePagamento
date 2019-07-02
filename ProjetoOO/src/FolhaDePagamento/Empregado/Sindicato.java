@@ -5,15 +5,15 @@ public abstract class Sindicato {
     private boolean taxa;
     private boolean taxa2;
     private double taxaSindical;
-    private double taxaServiço;
+    private double taxaServico;
     private String sindicatoID;
 
     public Sindicato(){}
 
-    public Sindicato(double taxaSindical, String sindicatoID,String Sindicato, boolean taxa, boolean taxa2) {
+    public Sindicato(double taxaSindical, String sindicatoID,String Sindicato, boolean taxa, boolean taxa2, double taxaServico) {
         if(verifica(Sindicato)){
             this.taxaSindical = taxaSindical;
-            this.taxaServiço = 0;
+            this.taxaServico = taxaServico;
             this.sindicatoID = sindicatoID;
             this.taxa = taxa;
             this.taxa2 = taxa2;
@@ -59,12 +59,12 @@ public abstract class Sindicato {
         this.taxaSindical = taxaSindical;
     }
 
-    public double getTaxaServiço() {
-        return taxaServiço;
+    public double getTaxaServico() {
+        return taxaServico;
     }
 
-    public void setTaxaServiço(double taxaServiço) {
-        this.taxaServiço = taxaServiço;
+    public void setTaxaServiço(double taxaServico) {
+        this.taxaServico = taxaServico;
     }
 
     public String getSindicatoID() {
@@ -85,7 +85,7 @@ public abstract class Sindicato {
                 F.setTaxa2(false);
             }
 
-            salarioatual = salarioatual - F.getTaxaServiço();
+            salarioatual = salarioatual - F.getTaxaServico();
         }
 
         return salarioatual;
