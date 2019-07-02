@@ -3,7 +3,6 @@ package FolhaDePagamento.Main;
 import FolhaDePagamento.Administrador.*;
 
 public class UndoRedo {
-
     public static void UR(Empresa P3, Empresa[] undoredo){
         if(P3.getRedo()<501)
         {

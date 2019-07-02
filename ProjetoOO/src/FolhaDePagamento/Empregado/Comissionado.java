@@ -7,10 +7,10 @@ public class Comissionado extends Assalariado {
     private double resultadoVendas;
     private String DataVendas;
 
-    public Comissionado(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double salario, double taxaSindical, String tipo,
+    public Comissionado(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double salario, double taxaSindical,
                         String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year, int diastrabalhados,
                         double salarioAtual, boolean cartao, int diaspassados, boolean taxa, boolean taxa2) {
-        super(nome, endereco, ID, Sindicato, SindicatoID, salario, taxaSindical, tipo, metodo, pagamento, agenda, nasemana, day, month, year,diastrabalhados,salarioAtual, cartao, diaspassados, taxa, taxa2);
+        super(nome, endereco, ID, Sindicato, SindicatoID, salario, taxaSindical, metodo, pagamento, agenda, nasemana, day, month, year,diastrabalhados,salarioAtual, cartao, diaspassados, taxa, taxa2);
         this.resultadoVendas = 0;
         this.DataVendas = null;
     }

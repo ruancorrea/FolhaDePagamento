@@ -2,13 +2,13 @@ package FolhaDePagamento.Main;
 
 import FolhaDePagamento.Administrador.Empresa;
 import FolhaDePagamento.Empregado.Funcionario;
-
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class FolhaPagamento {
+
     public static String CalcularDiaPagamento(Empresa P3, Funcionario F, int n)
     {
         int dia = P3.getDay(), month = P3.getMonth(), year = P3.getYear(), bi=0, p=0;
@@ -20,7 +20,7 @@ public class FolhaPagamento {
 
         if(F.getAgenda().equals("semanalmente"))
         {
-            while(!diadasemana.equals(F.getNasemana()) || p!=1)
+            while(!diadasemana.equalsIgnoreCase(F.getNasemana()) || p!=1)
             {
                 dia++;
                 if(dia > max)
@@ -59,7 +59,7 @@ public class FolhaPagamento {
             F.setNasemana(new DateFormatSymbols().getWeekdays()[data.get(Calendar.DAY_OF_WEEK)]);
             diadasemana = new DateFormatSymbols().getWeekdays()[data.get(Calendar.DAY_OF_WEEK)];
 
-            while(!diadasemana.equals(F.getNasemana()))
+            while(!diadasemana.equalsIgnoreCase(F.getNasemana()))
             {
                 dia++;
                 if(dia > max)
@@ -122,7 +122,7 @@ public class FolhaPagamento {
                 data = new GregorianCalendar(year, month, dia);
                 diadasemana = new DateFormatSymbols().getWeekdays()[data.get(Calendar.DAY_OF_WEEK)];
 
-                if(diadasemana.equals(F.getNasemana())) bi++;
+                if(diadasemana.equalsIgnoreCase(F.getNasemana())) bi++;
             }
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             DataPagamento = sdf.format(data.getTime());
@@ -144,7 +144,7 @@ public class FolhaPagamento {
         for(int i=0; i< P3.getTamanho(); i++)
         {
 
-            if(Lista[i].getPagamento().equals(P3.getData()) && Lista[i].getID() != -1)
+            if(Lista[i].getPagamento().equalsIgnoreCase(P3.getData()) && Lista[i] != null)
             {
                 if(!tem)
                 {

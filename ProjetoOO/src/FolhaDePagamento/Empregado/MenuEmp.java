@@ -8,27 +8,25 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuEmp {
-    public static Empresa MenuEmpregado(Empresa P3, int i, Empresa[] undoredo) {
+    public static void MenuEmpregado(Empresa P3, int i, Empresa[] undoredo) {
         Scanner input = new Scanner(System.in);
         int opcao = -1;
         boolean valido = true;
 
-        while(opcao!=0) {
+        while (true) {
             Prints.MenuEmp(P3);
 
-            while(valido)
-            {
-                try{
+            while (valido) {
+                try {
                     opcao = input.nextInt();
                     valido = false;
-                }catch(InputMismatchException e)
-                {
+                } catch (InputMismatchException e) {
                     System.err.printf("\nException: %s\n", e);
                     input.nextLine();
                     System.out.println("Coloque um valor inteiro valido - de 0 a 7\n");
                 }
             }
-            valido =true;
+            valido = true;
 
             switch (opcao) {
                 case 1:
@@ -47,13 +45,14 @@ public class MenuEmp {
                     Informacoes.Informacoes(P3.getListadeFuncionarios(), i);
                     break;
                 case 6:
-                    P3 = UndoRedo.und(P3,undoredo);
+                    P3 = UndoRedo.und(P3, undoredo);
                     break;
                 case 7:
-                    P3 = UndoRedo.red(P3,undoredo);
+                    P3 = UndoRedo.red(P3, undoredo);
                     break;
             }
+
+            if (opcao == 0) break;
         }
-        return P3;
     }
 }

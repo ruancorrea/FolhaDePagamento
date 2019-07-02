@@ -22,7 +22,7 @@ public class Funcionario extends Sindicato{
 
     public Funcionario(){}
 
-    public Funcionario(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double taxaSindical, String tipo, double salario,
+    public Funcionario(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double taxaSindical, double salario,
                        String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year, int diastrabalhados,
                        double salarioAtual, boolean cartao, int diaspassados, boolean taxa, boolean taxa2)
     {

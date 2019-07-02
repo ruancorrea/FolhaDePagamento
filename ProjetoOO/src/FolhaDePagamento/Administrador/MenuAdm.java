@@ -10,19 +10,20 @@ import java.util.Scanner;
 public class MenuAdm {
     public static Empresa MenuAdministrador(Empresa P3, Empresa[] undoredo) {
         Scanner input = new Scanner(System.in);
-        int opcao = -1;
-        while(opcao != 0) {
+        int opcao;
+
+        while(true) {
             Prints.MenuAd(P3);
             opcao = input.nextInt();
             switch (opcao) {
                 case 1:
-                    P3 = Adicionando.Adicionando(P3, undoredo);
+                    Add.Adicionando(P3, undoredo);
                     break;
                 case 2:
-                    P3 = Removendo.Removendo(P3, undoredo);
+                    Remove.Removendo(P3, undoredo);
                     break;
                 case 3:
-                    P3 = Alterando.Alterar(P3, undoredo);
+                    P3 = Alt.Alterar(P3, undoredo);
                     break;
                 case 4:
                     Prints.ListaInformacoesEmpregados(P3.getListadeFuncionarios(), P3.getTamanho());
@@ -40,6 +41,7 @@ public class MenuAdm {
                     Prints.ListaEmpregados(P3.getListadeFuncionarios(), P3.getTamanho());
                     break;
             }
+            if(opcao == 0) break;
         }
         return P3;
     }
