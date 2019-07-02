@@ -36,7 +36,7 @@ public abstract class ControleTempo
             {
                 Lista[i].setTaxa2(false);
                 Lista[i].setTaxa(false);
-                Lista[i].setTaxaServiço(0);
+                Lista[i].setTaxaServico(0);
             }
 
             P3.setDay(P3.getDay() - max);

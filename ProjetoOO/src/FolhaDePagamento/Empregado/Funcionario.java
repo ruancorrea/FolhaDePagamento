@@ -120,8 +120,8 @@ public abstract class Funcionario extends Sindicato implements Calculos{
         BateuPonto = bateuPonto;
     }
 
-    public void setTaxaServiço(double taxaServiço) {
-        taxaServiço = taxaServiço;
+    public void setTaxaServico(double taxaServico) {
+        taxaServico = taxaServico;
     }
 
     public int getDay() {

@@ -63,7 +63,7 @@ public abstract class Sindicato {
         return taxaServico;
     }
 
-    public void setTaxaServiço(double taxaServico) {
+    public void setTaxaServico(double taxaServico) {
         this.taxaServico = taxaServico;
     }
 

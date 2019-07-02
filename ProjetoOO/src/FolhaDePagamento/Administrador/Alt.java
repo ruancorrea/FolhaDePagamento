@@ -17,7 +17,7 @@ public abstract class Alt {
             double salario, taxa_sindicato,salarioatual, rv, taxaservico;
             int i=0, np=-1, n=-1,p=0, tam = P3.getTamanho(), diastrabalhados, diaspassados, t=-1, sind=-1, m=-1;
             Funcionario[] Lista = P3.getListadeFuncionarios().clone();
-            boolean tem = Prints.ListaEmpregados(Lista,P3.getTamanho()), val=true, mudança=false, cartao, valido = true, x= true, y=true, taxa, z =true ,taxa2;
+            boolean tem = Prints.ListaEmpregados(Lista,P3.getTamanho()), val=true, mudanca=false, cartao, valido = true, x= true, y=true, taxa, z =true ,taxa2;
             if(tem)
             {
                 System.out.println("Digite o numero do empregado que voce deseja alterar os dados");
@@ -97,13 +97,13 @@ public abstract class Alt {
                                         System.out.println("Digite o novo nome do empregado:");
                                         input.nextLine();
                                         nome = input.nextLine();
-                                        mudança = true;
+                                        mudanca = true;
                                         break;
                                     case 2:
                                         System.out.println("Digite o novo endereco do empregado:");
                                         input.nextLine();
                                         endereco = input.nextLine();
-                                        mudança = true;
+                                        mudanca = true;
                                         break;
                                     case 3:
                                         Prints.novoTipo();
@@ -127,20 +127,20 @@ public abstract class Alt {
                                                 agenda = "semanalmente";
                                                 nasemana = "sexta-feira";
                                                 System.out.println("Insira o salario por hora:");
-                                                mudança = true;
+                                                mudanca = true;
                                                 break;
                                             case 2:
                                                 tipo = "assalariado";
                                                 agenda = "mensalmente";
                                                 System.out.println("Insira o salario por mes:");
-                                                mudança = true;
+                                                mudanca = true;
                                                 break;
                                             case 3:
                                                 tipo = "comissionado";
                                                 agenda = "bi-semanalmente";
                                                 nasemana = "sexta-feira";
                                                 System.out.println("Insira o salario:");
-                                                mudança = true;
+                                                mudanca = true;
                                                 break;
                                         }
                                         while (y) {
@@ -182,7 +182,7 @@ public abstract class Alt {
                                                 sindicato = "Nao faz parte do Sindicato.";
                                                 id_sindicato = null;
                                                 taxa_sindicato = 0;
-                                                mudança = true;
+                                                mudanca = true;
                                             }
                                         } else if (sindicato.equals("Nao faz parte do Sindicato.")) {
                                             Prints.QuerFazer();
@@ -221,7 +221,7 @@ public abstract class Alt {
                                                         System.out.println("Coloque um valor double valido \n");
                                                     }
                                                 }
-                                                mudança = true;
+                                                mudanca = true;
                                             }
                                         }
                                         break;
@@ -246,33 +246,33 @@ public abstract class Alt {
                                         switch (m) {
                                             case 1:
                                                 metodoPagamento = "Cheque pelos Correios";
-                                                mudança = true;
+                                                mudanca = true;
                                                 break;
                                             case 2:
                                                 metodoPagamento = "Cheque em maos";
-                                                mudança = true;
+                                                mudanca = true;
                                                 break;
                                             case 3:
                                                 metodoPagamento = "Deposito em conta bancaria";
-                                                mudança = true;
+                                                mudanca = true;
                                                 break;
                                         }
                                         break;
                                     case 6:
                                         P3 = UndoRedo.und(P3, undoredo);
                                         Prints.ListaInformacoesEmpregados(P3.getListadeFuncionarios(), P3.getTamanho());
-                                        mudança = false;
+                                        mudanca = false;
                                         break;
                                     case 7:
                                         P3 = UndoRedo.red(P3,undoredo);
                                         Prints.ListaInformacoesEmpregados(P3.getListadeFuncionarios(), P3.getTamanho());
-                                        mudança = false;
+                                        mudanca = false;
                                         break;
                                 }
 
                                 Funcionario F = new Horista();
 
-                                if(mudança) {
+                                if(mudanca) {
                                     switch (tipo) {
                                         case "horista":
                                             F = new Horista(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2, taxaservico);
@@ -290,7 +290,7 @@ public abstract class Alt {
                                     UndoRedo.UR(P3, undoredo);
                                 }
 
-                                mudança = false;
+                                mudanca = false;
                                 val = x = y = z = true;
                                 if(n==0)
                                 {
