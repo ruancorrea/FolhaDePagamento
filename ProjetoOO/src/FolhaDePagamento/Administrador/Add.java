@@ -21,7 +21,7 @@ public class Add{
         String nome, acesso, endereco, pagamento= null, id_sindicato = null;
         String dianasemana = null, tipo = null, sindicato = null, metodoPagamento = null, agenda = null;
         double salario = 0, taxa_sindicato = 0;
-        int p=0, i, ID, t=0, sind=0, m=0;
+        int p=0, i, ID, t=0, sind=0, m=0, q=0, j=0;
         boolean valido = true, x=true;
 
         System.out.println("ADICIONANDO NOVO EMPREGADO\n" + "Digite o nome completo:");
@@ -125,30 +125,44 @@ public class Add{
                 sindicato = "Faz parte do Sindicato.";
                 System.out.println("Identificacao no sindicato");
                 input.nextLine();
-                id_sindicato = input.nextLine();
-                System.out.println("Taxa Sindical");
-                while (valido) {
-                    try {
-                        taxa_sindicato = input.nextDouble();
-                        valido = false;
-                        if(taxa_sindicato<0)
-                        {
-                            System.out.println("Insira um valor maior que zero!");
-                            valido = true;
+                while(true) {
+                    id_sindicato = input.nextLine();
+                    for (j = 0; j < tam; j++) {
+                        acesso = Lista[j].getSindicatoID();
+                        if (Lista[j].getSindicato().equals("Faz parte do Sindicato.")) {
+                            if (id_sindicato.equals(acesso)) {
+                                System.out.println("\nID JA PRESENTE NA LISTA DO SINDICATO\nTENTE NOVAMENTE");
+                                q=1;
+                                break;
+                            }
                         }
-                    } catch (InputMismatchException e) {
-                        System.err.printf("\nException: %s\n", e);
-                        input.nextLine();
-                        System.out.println("Coloque um valor double valido - \n");
+                    }
+                    if(q==0) break;
+                    else if(q==1) q=0;
+                }
+                    System.out.println("Taxa Sindical");
+                    while (valido) {
+                        try {
+                            taxa_sindicato = input.nextDouble();
+                            valido = false;
+                            if(taxa_sindicato<0)
+                            {
+                                System.out.println("Insira um valor maior que zero!");
+                                valido = true;
+                            }
+                        } catch (InputMismatchException e) {
+                            System.err.printf("\nException: %s\n", e);
+                            input.nextLine();
+                            System.out.println("Coloque um valor double valido \n");
+                        }
                     }
                 }
+            else if(sind==0)
+            {
+                sindicato = "Nao faz parte do Sindicato.";
+                id_sindicato = null;
+                taxa_sindicato = 0;
             }
-                else if(sind==0)
-                {
-                    sindicato = "Nao faz parte do Sindicato.";
-                    id_sindicato = null;
-                    taxa_sindicato = 0;
-                }
             Prints.MetodoP();
             valido=true;
             while(valido) {

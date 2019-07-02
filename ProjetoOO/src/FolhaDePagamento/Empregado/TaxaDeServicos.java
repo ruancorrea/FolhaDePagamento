@@ -38,6 +38,8 @@ public abstract class TaxaDeServicos {
                         System.out.println("Insira um valor double valido\n");
                     }
                 }
+
+                System.out.println("Taxa de Serviço cobrada pelo Sindicato no valor R$ " + valor + " para " + Lista[i].getSindicatoID());
                 Funcionario F = new Horista();
                 if(Lista[i].Instancia().equalsIgnoreCase("horista"))
                 {

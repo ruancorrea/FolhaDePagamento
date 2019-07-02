@@ -15,7 +15,7 @@ public abstract class Alt {
             Scanner input = new Scanner(System.in);
             String nome, endereco, id_sindicato, metodoPagamento, tipo, sindicato, agenda=null, pagamento, nasemana ,data;
             double salario, taxa_sindicato,salarioatual, rv, taxaservico;
-            int i=0, np=-1, n=-1,p=0, tam = P3.getTamanho(), diastrabalhados, diaspassados, t=-1, sind=-1, m=-1;
+            int i=0, np=-1, n=-1,p=0, tam = P3.getTamanho(), diastrabalhados, diaspassados, t=-1, sind=-1, m=-1, q=0;
             Funcionario[] Lista = P3.getListadeFuncionarios().clone();
             boolean tem = Prints.ListaEmpregados(Lista,P3.getTamanho()), val=true, mudanca=false, cartao, valido = true, x= true, y=true, taxa, z =true ,taxa2;
             if(tem)
@@ -202,10 +202,25 @@ public abstract class Alt {
                                             }
                                             y = true;
                                             if (sind == 1) {
-                                                sindicato="Faz parte do Sindicato.";
+                                                sindicato = "Faz parte do Sindicato.";
                                                 System.out.println("Identificacao no sindicato");
                                                 input.nextLine();
-                                                id_sindicato = input.nextLine();
+                                                input.nextLine();
+                                                while(true) {
+                                                    id_sindicato = input.nextLine();
+                                                    for (int j = 0; j < tam; j++) {
+                                                        String acesso = Lista[j].getSindicatoID();
+                                                        if (Lista[j].getSindicato().equals("Faz parte do Sindicato.")) {
+                                                            if (id_sindicato.equals(acesso)) {
+                                                                System.out.println("\nID JA PRESENTE NA LISTA DO SINDICATO\nTENTE NOVAMENTE");
+                                                                q=1;
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                    if(q==0) break;
+                                                    else if(q==1) q=0;
+                                                }
                                                 System.out.println("Taxa Sindical");
                                                 while (z) {
                                                     try {
