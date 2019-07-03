@@ -12,14 +12,15 @@ public class Horista extends Funcionario implements Calculos{
     {}
 
     public Horista(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double salario, double taxaSindical,
-                   String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year, int diastrabalhados,
-                   double salarioAtual, boolean cartao, int diaspassados, boolean taxa, boolean taxa2, double taxaServico) {
-        super(nome, endereco, ID, Sindicato, SindicatoID, taxaSindical,salario, metodo, pagamento, agenda, nasemana, day, month, year, diastrabalhados,salarioAtual, cartao, diaspassados, taxa, taxa2, taxaServico);
+                   String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year,
+                   double salarioAtual, boolean cartao, boolean taxa, boolean taxa2, double taxaServico) {
+        super(nome, endereco, ID, Sindicato, SindicatoID, taxaSindical,salario, metodo, pagamento, agenda, nasemana, day, month, year,salarioAtual, cartao, taxa, taxa2, taxaServico);
     }
 
     public static Funcionario CalculoCPHorista(Horista empregado, int horas)
     {
-        int extra, dias = empregado.getDiastrabalhados();
+        int extra;
+        
         double salarioatual = empregado.getSalarioAtual();
         if(!empregado.isTaxaSin())
         {
@@ -29,14 +30,12 @@ public class Horista extends Funcionario implements Calculos{
         if(horas > 8)
         {
             extra = horas - 8 ;
-            salarioatual = salarioatual + (empregado.getSalario() * 8) + (salarioatual * extra * 1.5 );
+            salarioatual = salarioatual + (empregado.getSalario() * 8) + (extra * 1.5 );
         }
         else if(horas <= 8)
         {
             salarioatual = salarioatual + empregado.getSalario() * horas;
         }
-        dias = dias + 1;
-        empregado.setDiastrabalhados(dias);
         empregado.setSalarioAtual(salarioatual);
         return empregado;
     }

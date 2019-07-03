@@ -18,7 +18,7 @@ public abstract class Alt {
             Scanner input = new Scanner(System.in);
             String nome, endereco, id_sindicato, metodoPagamento, tipo, sindicato, agenda=null, pagamento, nasemana ,dat;
             double salario, taxa_sindicato,salarioatual, rv, taxaservico;
-            int i=0, np=-1, n=-1,p=0, tam = P3.getTamanho(), diastrabalhados, diaspassados, t=-1, sind=-1, m=-1, q=0;
+            int i=0, np=-1, n=-1,p=0, tam = P3.getTamanho(), diastrabalhados=0, diaspassados=1, t=-1, sind=-1, m=-1, q=0;
             Funcionario[] Lista = P3.getListadeFuncionarios().clone();
             boolean tem = Prints.ListaEmpregados(Lista,P3.getTamanho()), val=true, mudanca=false, cartao, valido = true, x= true, y=true, taxa, z =true ,taxa2;
             if(tem)
@@ -90,8 +90,11 @@ public abstract class Alt {
                         pagamento = Lista[i].getPagamento();
                         nasemana = Lista[i].getNasemana();
                         salarioatual = Lista[i].getSalarioAtual();
-                        diastrabalhados = Lista[i].getDiastrabalhados();
-                        diaspassados = Lista[i].getDiaspassados();
+                        if( Lista[i] instanceof Assalariado || Lista[i] instanceof Comissionado) {
+
+                            diastrabalhados = ((Assalariado)Lista[i]).getDiastrabalhados();
+                            diaspassados = ((Assalariado)Lista[i]).getDiaspassados();
+                        }
                         cartao = Lista[i].isBateuPonto();
                         taxa = Lista[i].isTaxa();
                         taxa2 = Lista[i].isTaxaSin();
@@ -298,7 +301,7 @@ public abstract class Alt {
                                 if(mudanca) {
                                     switch (tipo) {
                                         case "horista":
-                                            F = new Horista(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2, taxaservico);
+                                            F = new Horista(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), salarioatual, cartao, taxa, taxa2, taxaservico);
                                             break;
                                         case "assalariado":
                                             F = new Assalariado(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2, taxaservico);

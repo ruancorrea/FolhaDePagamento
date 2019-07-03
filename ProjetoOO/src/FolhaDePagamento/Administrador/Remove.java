@@ -46,7 +46,7 @@ public abstract class Remove
                     i++;
                 }
                 if (p == 0 && np!=0) {
-                    System.out.println("\nNúmero não esta presente na lista! Tente novamente\n");
+                    System.out.println("\nID nao esta presente na lista! Tente novamente\n");
                     valido=true;
                     i=0;
                 } else if (p == 1) {

@@ -150,27 +150,30 @@ public abstract class Prints {
         boolean tem = false;
         while(i<tam)
         {
-            if(Lista[i].getID() != -1)
-            {
-                if(tem == false) {
-                    System.out.println("\nLISTA E INFORMACOES DE EMPREGADOS\n");
-                    tem=true;
-                }
-                System.out.printf("ID: %d\nNome: %s\nEndereco: %s\nTipo: %s\n",Lista[i].getID(),Lista[i].getNome(), Lista[i].getEndereco(),Lista[i].Instancia());
-                if(Lista[i] instanceof Horista) System.out.printf("Salario horario: R$ %.2f\n",Lista[i].getSalario());
-                if(Lista[i] instanceof Assalariado) System.out.printf("Salario: R$ %.2f\n",Lista[i].getSalario());
-                if(Lista[i].getSindicato().equals("Faz parte do Sindicato."))
+        	if(Lista[i] != null)
+        	{
+        		if(Lista[i].getID() != -1)
                 {
-                    System.out.printf("Faz parte do Sindicato.\n");
-                    System.out.printf ("Identificacao no sindicato: %s\n", Lista[i].getSindicatoID());
-                    System.out.printf ("Taxa sindical: R$ %.2f\n", Lista[i].getTaxaSindical());
-                }else System.out.printf("Nao faz parte do Sindicato.\n");
+                    if(tem == false) {
+                        System.out.println("\nLISTA E INFORMACOES DE EMPREGADOS\n");
+                        tem=true;
+                    }
+                    System.out.printf("ID: %d\nNome: %s\nEndereco: %s\nTipo: %s\n",Lista[i].getID(),Lista[i].getNome(), Lista[i].getEndereco(),Lista[i].Instancia());
+                    if(Lista[i] instanceof Horista) System.out.printf("Salario horario: R$ %.2f\n",Lista[i].getSalario());
+                    if(Lista[i] instanceof Assalariado) System.out.printf("Salario: R$ %.2f\n",Lista[i].getSalario());
+                    if(Lista[i].getSindicato().equals("Faz parte do Sindicato."))
+                    {
+                        System.out.printf("Faz parte do Sindicato.\n");
+                        System.out.printf ("Identificacao no sindicato: %s\n", Lista[i].getSindicatoID());
+                        System.out.printf ("Taxa sindical: R$ %.2f\n", Lista[i].getTaxaSindical());
+                    }else System.out.printf("Nao faz parte do Sindicato.\n");
 
-                System.out.printf("Agenda de pagamento: %s\n", Lista[i].getAgenda());
-                System.out.printf("Metodo de pagamento: %s\n", Lista[i].getMetodo());
-                System.out.printf("Data de pagamento: %s\n\n", Lista[i].getPagamento());
-            }
-            i++;
+                    System.out.printf("Agenda de pagamento: %s\n", Lista[i].getAgenda());
+                    System.out.printf("Metodo de pagamento: %s\n", Lista[i].getMetodo());
+                    System.out.printf("Data de pagamento: %s\n\n", Lista[i].getPagamento());
+                }
+        	}
+        	i++;
         }
         if(tem == false) System.out.println("Nao ha empregados!");
     }
@@ -211,7 +214,7 @@ public abstract class Prints {
         System.out.println("|--------------------------------------------------|");
         System.out.println("| Digite o numero:                                 |");
         System.out.println("| 0 - NAO, continuo sem fazer parte do Sindicato   |");
-        System.out.println("| 1 - SIM, agora faço parte do Sindicato           |");
+        System.out.println("| 1 - SIM, agora faco parte do Sindicato           |");
         System.out.println("|--------------------------------------------------|");
     }
 
@@ -220,7 +223,7 @@ public abstract class Prints {
         System.out.println("|----------------------------------------|");
         System.out.println("      Ola , qual agenda prefere?         ");
         System.out.println("  1 - segunda-feira                      ");
-        System.out.println("  2 - terça-feira                        ");
+        System.out.println("  2 - terca-feira                        ");
         System.out.println("  3 - quarta-feira                      ");
         System.out.println("  4 - quinta-feira                        ");
         System.out.println("  5 - sexta-feira                         ");

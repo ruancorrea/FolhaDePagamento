@@ -98,7 +98,21 @@ public class Sistema
 
     public static Empresa reiniciando(Empresa P3) {
         Funcionario[] Lista = P3.getListadeFuncionarios();
-        for(int i=0; i<P3.getTamanho();i++) Lista[i].setBateuPonto(false);
+        for(int i=0; i<P3.getTamanho();i++)
+        {
+        	Lista[i].setBateuPonto(false);
+        	
+        	if(Lista[i] instanceof Comissionado)
+        	{
+
+        		((Comissionado) Lista[i]).setDiaspassados(((Comissionado) Lista[i]).getDiaspassados()+1);
+        	}
+        	else if(Lista[i] instanceof Assalariado)
+        	{
+        		((Assalariado) Lista[i]).setDiaspassados(((Assalariado) Lista[i]).getDiaspassados()+1);
+        	}
+        
+       	}
         P3.setListadeFuncionarios(P3,Lista);
         return P3;
     }

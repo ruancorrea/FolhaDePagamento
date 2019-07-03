@@ -8,17 +8,40 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Assalariado extends Funcionario implements Calculos{
+	
+	private int diastrabalhados;
+	private int diaspassados;
 
     public Assalariado(){}
 
     public Assalariado(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double salario, double taxaSindical,
                        String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year, int diastrabalhados,
                        double salarioAtual, boolean cartao, int diaspassados, boolean taxa, boolean taxa2, double taxaServico) {
-        super(nome, endereco, ID, Sindicato, SindicatoID, taxaSindical, salario, metodo, pagamento, agenda, nasemana, day,month,year,diastrabalhados,salarioAtual, cartao, diaspassados, taxa, taxa2, taxaServico);
+        super(nome, endereco, ID, Sindicato, SindicatoID, taxaSindical, salario, metodo, pagamento, agenda, nasemana, day,month,year,salarioAtual, cartao, taxa, taxa2, taxaServico);
+        
+        this.diaspassados = diaspassados;
+        this.diastrabalhados = diastrabalhados;
     }
+    
+    
 
+    public int getDiastrabalhados() {
+		return diastrabalhados;
+	}
 
-    public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n)
+	public void setDiastrabalhados(int diastrabalhados) {
+		this.diastrabalhados = diastrabalhados;
+	}
+
+	public int getDiaspassados() {
+		return diaspassados;
+	}
+
+	public void setDiaspassados(int diaspassados) {
+		this.diaspassados = diaspassados;
+	}
+
+	public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n)
     {
         int dia = P3.getDay(), month = P3.getMonth(), year = P3.getYear(), bi=0, p=0;
         Calendar data = new GregorianCalendar(year, month, dia);
@@ -89,7 +112,7 @@ public class Assalariado extends Funcionario implements Calculos{
     public void CalculoSalario(Funcionario F)
     {
         double salarioatual = F.getSalarioAtual();
-        salarioatual = ((F.getSalario()/F.getDiaspassados()) * F.getDiastrabalhados()) + salarioatual;
+        salarioatual = ((F.getSalario()/((Assalariado)F).getDiaspassados()) * ((Assalariado)F).getDiastrabalhados()) + salarioatual;
         salarioatual = Sindicato.TaxasDescontos(F,salarioatual);
 
         F.setSalarioAtual(salarioatual);

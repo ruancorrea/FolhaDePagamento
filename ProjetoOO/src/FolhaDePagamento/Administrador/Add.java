@@ -194,7 +194,7 @@ public class Add{
             Funcionario F = new Horista();
             switch(tipo){
                 case "horista":
-                    F = new Horista(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0,false,1, false, false, 0);
+                    F = new Horista(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, false, false,false,0);
                     break;
                 case "assalariado":
                     F = new Assalariado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, false, 1, false, false, 0);

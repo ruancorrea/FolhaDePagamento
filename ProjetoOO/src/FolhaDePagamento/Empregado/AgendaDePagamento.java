@@ -43,7 +43,7 @@ public abstract class AgendaDePagamento {
                         Lista[i].setNasemana("segunda-feira");
                         break;
                     case 2:
-                        Lista[i].setNasemana("terça-feira");
+                        Lista[i].setNasemana("ter�a-feira");
                         break;
                     case 3:
                         Lista[i].setNasemana("quarta-feira");
@@ -80,7 +80,7 @@ public abstract class AgendaDePagamento {
                         Lista[i].setNasemana("segunda-feira");
                         break;
                     case 2:
-                        Lista[i].setNasemana("terça-feira");
+                        Lista[i].setNasemana("ter�a-feira");
                         break;
                     case 3:
                         Lista[i].setNasemana("quarta-feira");
@@ -98,8 +98,8 @@ public abstract class AgendaDePagamento {
 
         else if(Lista[i] instanceof Assalariado)
         {
-            System.out.println("Ola! Digite o dia do mês, menor ou igual a " + max + " que desejas receber o pagamento");
-            System.out.println("Certifique-se que se o dia cair em um final de semana, a data de pagamento será na segunda-feira");
+            System.out.println("Ola! Digite o dia do mes, menor ou igual a " + max + " que desejas receber o pagamento");
+            System.out.println("Certifique-se que se o dia cair em um final de semana, a data de pagamento sera na segunda-feira");
 
             while(valido) {
                 try {

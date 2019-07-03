@@ -39,12 +39,12 @@ public abstract class ResultadoDeVendas {
                     System.out.println("Coloque um valor inteiro valido - 0 , 1 ou 2\n");
                 }
             }
-            salarioatual = valor + Lista[i].getSalarioAtual() + (valor*(percentual/100));
+            salarioatual = Lista[i].getSalarioAtual() + (valor*(percentual/100));
 
             Funcionario F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                     Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
-                    Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), Lista[i].getDiastrabalhados(), salarioatual, Lista[i].isBateuPonto(),
-                    Lista[i].getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxaSin(), valor, P3.getData(), Lista[i].getTaxaServico());
+                    Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), ((Comissionado)Lista[i]).getDiastrabalhados(), salarioatual, Lista[i].isBateuPonto(),
+                    ((Comissionado)Lista[i]).getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxaSin(), valor, P3.getData(), Lista[i].getTaxaServico());
 
             Lista[i] = F;
             P3.setListadeFuncionarios(P3,Lista);

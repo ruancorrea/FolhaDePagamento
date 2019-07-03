@@ -28,7 +28,7 @@ public abstract class ControleTempo
         Funcionario[] Lista = P3.getListadeFuncionarios();
 
         if(P3.getDia().equalsIgnoreCase("domingo")) P3.setDay(P3.getDay()+1);
-        if(P3.getDia().equalsIgnoreCase("sábado")) P3.setDay(P3.getDay()+2);
+        if(P3.getDia().equalsIgnoreCase("sábado") || P3.getDia().equalsIgnoreCase("s�bado")) P3.setDay(P3.getDay()+2);
 
         if(P3.getDay() > max)
         {

@@ -9,7 +9,6 @@ public abstract class Funcionario extends Sindicato implements Calculos{
     private String Sindicato;
     private double salario;
     private double salarioAtual;
-    private int diastrabalhados;
     private boolean BateuPonto;
     private String nasemana;
     private String agenda;//
@@ -18,13 +17,12 @@ public abstract class Funcionario extends Sindicato implements Calculos{
     private int day;
     private int month;
     private int year;
-    private int diaspassados;
 
     public Funcionario(){}
 
     public Funcionario(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double taxaSindical, double salario,
-                       String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year, int diastrabalhados,
-                       double salarioAtual, boolean cartao, int diaspassados, boolean taxa, boolean taxa2, double taxaServico)
+                       String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year, double salarioAtual,
+                       boolean cartao, boolean taxa, boolean taxa2, double taxaServico)
     {
         super(taxaSindical, SindicatoID,Sindicato, taxa, taxa2, taxaServico);
         this.nome = nome;
@@ -33,7 +31,6 @@ public abstract class Funcionario extends Sindicato implements Calculos{
         this.Sindicato = Sindicato;
         this.salario = salario;
         this.salarioAtual = salarioAtual;
-        this.diastrabalhados = diastrabalhados;
         this.BateuPonto = cartao;
         this.metodo = metodo;
         this.agenda = agenda;
@@ -42,15 +39,6 @@ public abstract class Funcionario extends Sindicato implements Calculos{
         this.day = day;
         this.month = month;
         this.year = year;
-        this.diaspassados = diaspassados;
-    }
-
-    public int getDiaspassados() {
-        return diaspassados;
-    }
-
-    public void setDiaspassados(int diaspassados) {
-        this.diaspassados = diaspassados;
     }
 
     public String getNasemana() {
@@ -109,24 +97,12 @@ public abstract class Funcionario extends Sindicato implements Calculos{
         BateuPonto = bateuPonto;
     }
 
-    public void setTaxaServico(double taxaServico) {
-        taxaServico = taxaServico;
-    }
-
     public int getDay() {
         return day;
     }
 
     public void setDay(int day) {
         this.day = day;
-    }
-
-    public int getDiastrabalhados() {
-        return diastrabalhados;
-    }
-
-    public void setDiastrabalhados(int diastrabalhados) {
-        this.diastrabalhados = diastrabalhados;
     }
 
     public double getSalario() {

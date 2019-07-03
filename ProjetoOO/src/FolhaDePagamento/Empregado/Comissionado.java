@@ -82,7 +82,7 @@ public class Comissionado extends Assalariado implements Calculos {
     public void CalculoSalario(Funcionario F)
     {
         double salarioatual = F.getSalarioAtual();
-        salarioatual = (((F.getSalario()/2)/F.getDiaspassados()) * F.getDiastrabalhados()) + salarioatual;
+        salarioatual = (((F.getSalario()/2)/((Comissionado) F).getDiaspassados())) * ((Comissionado)F).getDiastrabalhados() + salarioatual;
         salarioatual = Sindicato.TaxasDescontos(F, salarioatual);
         F.setSalarioAtual(salarioatual);
     }
