@@ -26,9 +26,9 @@ public abstract class ResultadoDeVendas {
             {
                 System.out.println("Insira a comissao da venda. Numero double, apenas.");
                 try{
-                    percentual = input.nextInt();
+                    percentual = input.nextDouble();
                     x = false;
-                    if(percentual<=0)
+                    if(percentual<=0 || percentual>=100)
                     {
                         System.out.println("Insira um percetual valido.");
                         x=true;
@@ -40,12 +40,13 @@ public abstract class ResultadoDeVendas {
                     System.out.println("Coloque um valor inteiro valido - 0 , 1 ou 2\n");
                 }
             }
-            salarioatual = valor + Lista[i].getSalarioAtual() + (valor*Lista[i].getID()*(percentual/100));
+            salarioatual = valor + Lista[i].getSalarioAtual() + (valor*(percentual/100));
 
             Funcionario F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                     Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                     Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), Lista[i].getDiastrabalhados(), salarioatual, Lista[i].isBateuPonto(),
                     Lista[i].getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxaSin(), valor, P3.getData(), Lista[i].getTaxaServico());
+
             Lista[i] = F;
             P3.setListadeFuncionarios(P3,Lista);
             UndoRedo.UR(P3, undoredo);

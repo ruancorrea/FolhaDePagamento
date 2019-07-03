@@ -30,6 +30,7 @@ public abstract class UndoRedo {
         {
             indice= indice-1;
             P3 = aplicando(P3, undoredo);
+            System.out.println("UNDO");
         }
         return P3;
     }
@@ -39,6 +40,7 @@ public abstract class UndoRedo {
         {
             indice=indice+1;
             P3 = aplicando(P3, undoredo);
+            System.out.println("REDO");
         }
         else System.out.println("Limite alcançado!");
         return P3;

@@ -275,12 +275,10 @@ public abstract class Alt {
                                         break;
                                     case 6:
                                         P3 = UndoRedo.und(P3, undoredo);
-                                        Prints.ListaInformacoesEmpregados(P3.getListadeFuncionarios(), P3.getTamanho());
                                         mudanca = false;
                                         break;
                                     case 7:
                                         P3 = UndoRedo.red(P3,undoredo);
-                                        Prints.ListaInformacoesEmpregados(P3.getListadeFuncionarios(), P3.getTamanho());
                                         mudanca = false;
                                         break;
                                 }

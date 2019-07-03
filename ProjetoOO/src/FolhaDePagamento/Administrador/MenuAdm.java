@@ -53,11 +53,9 @@ public abstract class MenuAdm {
                     break;
                 case 6:
                     P3 = UndoRedo.und(P3, undoredo);
-                    //Prints.ListaEmpregados(P3.getListadeFuncionarios(), P3.getTamanho());
                     break;
                 case 7:
                     P3 = UndoRedo.red(P3, undoredo);
-                    //Prints.ListaEmpregados(P3.getListadeFuncionarios(), P3.getTamanho());
                     break;
             }
             if(opcao == 0) break;
