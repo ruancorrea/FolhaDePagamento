@@ -75,7 +75,7 @@ public class Sistema
                     }
                     break;
                 case 2:
-                    System.out.printf ("Digite a senha de acesso\n");
+                    System.out.printf ("Digite a senha de acesso\nsenha: 1234 ou java\n");
                     input.nextLine();
                     while(true)
                     {

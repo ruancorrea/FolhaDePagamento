@@ -63,7 +63,7 @@ public abstract class Prints {
     public static void Alteracao(Empresa P3)
     {
         System.out.println("|-----------------------------------------------|");
-        System.out.println("                MENU ALTERAÇÕES                 ");
+        System.out.println("                MENU ALTERACOES                 ");
         System.out.println("     Qual dado deseja alterar?             ");
         System.out.println("   1 - Nome do empregado                   ");
         System.out.println("   2 - Endereco do empregado               ");
@@ -126,7 +126,7 @@ public abstract class Prints {
         boolean tem = false;
         while(i < tam)
         {
-            if(Lista[i].getID() != -1)
+            if(Lista[i]!=null)
             {
                 if(tem == false)
                 {
@@ -140,7 +140,7 @@ public abstract class Prints {
             i++;
         }
 
-        if(tem == false) System.out.println("Não há empregados!");
+        if(tem == false) System.out.println("Nao ha empregados!");
         return tem;
     }
 
@@ -172,7 +172,7 @@ public abstract class Prints {
             }
             i++;
         }
-        if(tem == false) System.out.println("Não há empregados!");
+        if(tem == false) System.out.println("Nao ha empregados!");
     }
 
     public static void novoTipo()
@@ -200,8 +200,8 @@ public abstract class Prints {
         System.out.println("Nao faz mais parte do Sindicato?");
         System.out.println("|-----------------------------------------------|");
         System.out.println("| Digite o numero:                              |");
-        System.out.println("| 0 - NAO, nao faço mais parte do Sindicato     |");
-        System.out.println("| 1 - SIM, ainda faço parte do Sindicato        |");
+        System.out.println("| 0 - NAO, nao faco mais parte do Sindicato     |");
+        System.out.println("| 1 - SIM, ainda faco parte do Sindicato        |");
         System.out.println("|-----------------------------------------------|");
     }
 

@@ -6,6 +6,9 @@ import FolhaDePagamento.Empregado.Funcionario;
 import FolhaDePagamento.Empregado.Horista;
 import FolhaDePagamento.Main.Prints;
 import FolhaDePagamento.Main.UndoRedo;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,7 +16,7 @@ public abstract class Alt {
     public static Empresa Alterar(Empresa P3, Empresa[] undoredo) {
         {
             Scanner input = new Scanner(System.in);
-            String nome, endereco, id_sindicato, metodoPagamento, tipo, sindicato, agenda=null, pagamento, nasemana ,data;
+            String nome, endereco, id_sindicato, metodoPagamento, tipo, sindicato, agenda=null, pagamento, nasemana ,dat;
             double salario, taxa_sindicato,salarioatual, rv, taxaservico;
             int i=0, np=-1, n=-1,p=0, tam = P3.getTamanho(), diastrabalhados, diaspassados, t=-1, sind=-1, m=-1, q=0;
             Funcionario[] Lista = P3.getListadeFuncionarios().clone();
@@ -22,76 +25,84 @@ public abstract class Alt {
             {
                 System.out.println("Digite o numero do empregado que voce deseja alterar os dados");
 
-                while(valido)
-                {
-                    while(np != Lista[i].getID() && np != 0) {
+                while(valido) {
                         try {
                             np = input.nextInt();
                             valido = false;
+                            while (i < tam) {
+                                if (np == Lista[i].getID() && Lista[i] != null) {
+                                    p = 1;
+                                    break;
+                                }
+                                i++;
+                            }
+                            if (p == 0 && np != 0) {
+                                System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA. Tente novamente!");
+                                i=0;
+                                valido = true;
+                            } else if (p == 1) {
+                                valido=false;
+                            }
+                            if(np==0)
+                            {
+                                valido=false;
+                            }
+
                         } catch (InputMismatchException e) {
                             System.err.printf("\nException: %s\n", e);
                             input.nextLine();
                             System.out.println("Insira um ID inteiro valido\n");
                         }
-
-                        while (i < tam) {
-                            if (np == Lista[i].getID() && Lista[i] != null) {
-                                p = 1;
-                                break;
-                            }
-                            i++;
-                        }
-                        if (p == 0 && np != 0) {
-                            System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA. Tente novamente!");
-                            valido = true;
-                        }
-                        else if (p == 1)
-                        {
-                            while (true) {
-                                Prints.Alteracao(P3);
-                                while (x) {
-                                    try {
-                                        n = input.nextInt();
-                                        x = false;
-                                        if(n!=0 && n !=1 && n!=2 && n!=3 && n!=4 && n !=5 && n!=6 && n!=7)
-                                        {
-                                            System.out.println("Insira uma opcao valida");
-                                            x=true;
-                                        }
-                                    } catch (InputMismatchException e) {
-                                        System.err.printf("\nException: %s\n", e);
-                                        input.nextLine();
-                                        System.out.println("Coloque um valor inteiro valido -  de 0 a 7\n");
-                                    }
-                                }
-                                x = true;
-                                nome = Lista[i].getNome();
-                                endereco = Lista[i].getEndereco();
-                                salario = Lista[i].getSalario();
-                                tipo = Lista[i].Instancia();
-                                sindicato = Lista[i].getSindicato();
-                                id_sindicato = Lista[i].getSindicatoID();
-                                taxa_sindicato = Lista[i].getTaxaSindical();
-                                metodoPagamento = Lista[i].getMetodo();
-                                agenda = Lista[i].getAgenda();
-                                pagamento = Lista[i].getPagamento();
-                                nasemana = Lista[i].getNasemana();
-                                salarioatual = Lista[i].getSalarioAtual();
-                                diastrabalhados = Lista[i].getDiastrabalhados();
-                                diaspassados = Lista[i].getDiaspassados();
-                                cartao = Lista[i].isBateuPonto();
-                                taxa = Lista[i].isTaxa();
-                                taxa2 = Lista[i].isTaxaSin();
-                                rv=0;
-                                data=null;
-                                taxaservico= Lista[i].getTaxaServico();
-                                if(Lista[i] instanceof Comissionado)
+                }
+                if (p == 1) {
+                    while(true) {
+                        Prints.Alteracao(P3);
+                        while (x) {
+                            try {
+                                n = input.nextInt();
+                                x = false;
+                                if(n!=0 && n !=1 && n!=2 && n!=3 && n!=4 && n !=5 && n!=6 && n!=7)
                                 {
-                                    rv = ((Comissionado)Lista[i]).getResultadoVendas();
-                                    data = ((Comissionado)Lista[i]).getDataVendas();
+                                    System.out.println("Insira uma opcao valida");
+                                    x=true;
                                 }
-
-
+                            } catch (InputMismatchException e) {
+                                System.err.printf("\nException: %s\n", e);
+                                input.nextLine();
+                                System.out.println("Coloque um valor inteiro valido -  de 0 a 7\n");
+                            }
+                        }
+                        if(n==0)
+                        {
+                            valido=false;
+                            break;
+                        }
+                        x = true;
+                        nome = Lista[i].getNome();
+                        endereco = Lista[i].getEndereco();
+                        salario = Lista[i].getSalario();
+                        tipo = Lista[i].Instancia();
+                        sindicato = Lista[i].getSindicato();
+                        id_sindicato = Lista[i].getSindicatoID();
+                        taxa_sindicato = Lista[i].getTaxaSindical();
+                        metodoPagamento = Lista[i].getMetodo();
+                        agenda = Lista[i].getAgenda();
+                        pagamento = Lista[i].getPagamento();
+                        nasemana = Lista[i].getNasemana();
+                        salarioatual = Lista[i].getSalarioAtual();
+                        diastrabalhados = Lista[i].getDiastrabalhados();
+                        diaspassados = Lista[i].getDiaspassados();
+                        cartao = Lista[i].isBateuPonto();
+                        taxa = Lista[i].isTaxa();
+                        taxa2 = Lista[i].isTaxaSin();
+                        rv=0;
+                        dat=null;
+                        taxaservico= Lista[i].getTaxaServico();
+                        if(Lista[i] instanceof Comissionado)
+                        {
+                            rv = ((Comissionado)Lista[i]).getResultadoVendas();
+                            dat = ((Comissionado)Lista[i]).getDataVendas();
+                        }
                                 switch (n) {
                                     case 1:
                                         System.out.println("Digite o novo nome do empregado:");
@@ -205,7 +216,6 @@ public abstract class Alt {
                                                 sindicato = "Faz parte do Sindicato.";
                                                 System.out.println("Identificacao no sindicato");
                                                 input.nextLine();
-                                                input.nextLine();
                                                 while(true) {
                                                     id_sindicato = input.nextLine();
                                                     for (int j = 0; j < tam; j++) {
@@ -294,9 +304,13 @@ public abstract class Alt {
                                             F = new Assalariado(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2, taxaservico);
                                             break;
                                         case "comissionado":
-                                            F = new Comissionado(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2, rv, data, taxaservico);
+                                            F = new Comissionado(nome, endereco, Lista[i].getID(), sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, nasemana, P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, cartao, diaspassados, taxa, taxa2, rv, dat, taxaservico);
                                             break;
                                     }
+
+                                    Calendar data = new GregorianCalendar(P3.getYear(), P3.getMonth(), P3.getDay());
+                                    pagamento = F.CalcularDiaPagamento(P3,F, data.getActualMaximum(Calendar.DAY_OF_MONTH));
+                                    F.setPagamento(pagamento);
                                     Lista[i] = F;
                                     System.out.println("ALTERACAO FEITA COM SUCESSO!\n");
                                     P3.setListadeFuncionarios(P3, Lista);
@@ -305,16 +319,9 @@ public abstract class Alt {
 
                                 mudanca = false;
                                 val = x = y = z = true;
-                                if(n==0)
-                                {
-                                    valido=false;
-                                    break;
-                                }
                             }
                         }
-                        i=0;
-                    }
-                }
+                    i=0;
             }
         }
         return P3;
