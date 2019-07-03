@@ -22,10 +22,10 @@ public class Horista extends Funcionario implements Calculos{
     {
         int extra, dias = empregado.getDiastrabalhados();
         double salarioatual = empregado.getSalarioAtual();
-        if(!empregado.isTaxa2())
+        if(!empregado.isTaxaSin())
         {
             salarioatual = salarioatual - empregado.getTaxaSindical();
-            empregado.setTaxa2(true);
+            empregado.setTaxaSin(true);
         }
         if(horas > 8)
         {

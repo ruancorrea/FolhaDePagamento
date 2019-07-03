@@ -45,7 +45,7 @@ public abstract class ResultadoDeVendas {
             Funcionario F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                     Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                     Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), Lista[i].getDiastrabalhados(), salarioatual, Lista[i].isBateuPonto(),
-                    Lista[i].getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxa2(), valor, P3.getData(), Lista[i].getTaxaServico());
+                    Lista[i].getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxaSin(), valor, P3.getData(), Lista[i].getTaxaServico());
             Lista[i] = F;
             P3.setListadeFuncionarios(P3,Lista);
             UndoRedo.UR(P3, undoredo);

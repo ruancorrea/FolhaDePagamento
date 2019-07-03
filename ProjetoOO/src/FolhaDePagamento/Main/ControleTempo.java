@@ -34,7 +34,7 @@ public abstract class ControleTempo
         {
             for(int i=0;i<P3.getTamanho();i++)
             {
-                Lista[i].setTaxa2(false);
+                Lista[i].setTaxaSin(false);
                 Lista[i].setTaxa(false);
                 Lista[i].setTaxaServico(0);
             }

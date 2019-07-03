@@ -7,12 +7,10 @@ public abstract class Funcionario extends Sindicato implements Calculos{
     private String nome;
     private String endereco;
     private String Sindicato;
-    private String tipo;
     private double salario;
     private double salarioAtual;
     private int diastrabalhados;
     private boolean BateuPonto;
-    private boolean Pago;
     private String nasemana;
     private String agenda;//
     private String metodo;
@@ -33,7 +31,6 @@ public abstract class Funcionario extends Sindicato implements Calculos{
         this.endereco = endereco;
         this.ID = ID;
         this.Sindicato = Sindicato;
-        this.tipo = tipo;
         this.salario = salario;
         this.salarioAtual = salarioAtual;
         this.diastrabalhados = diastrabalhados;
@@ -78,14 +75,6 @@ public abstract class Funcionario extends Sindicato implements Calculos{
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    public boolean isPago() {
-        return Pago;
-    }
-
-    public void setPago(boolean pago) {
-        Pago = pago;
     }
 
     public String getAgenda() {

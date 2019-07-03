@@ -42,21 +42,21 @@ public abstract class FolhaPagamento {
                     F = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                             Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), pagamento,
                             Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, Lista[i].isBateuPonto(), 1,
-                            Lista[i].isTaxa(), Lista[i].isTaxa2(), Lista[i].getTaxaServico());
+                            Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
                 }
                  else if(Lista[i] instanceof Comissionado)
                 {
                     F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                             Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), pagamento,
                             Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0,
-                            Lista[i].isBateuPonto(), 1, Lista[i].isTaxa(), Lista[i].isTaxa2(), ((Comissionado)Lista[i]).getResultadoVendas(),
+                            Lista[i].isBateuPonto(), 1, Lista[i].isTaxa(), Lista[i].isTaxaSin(), ((Comissionado)Lista[i]).getResultadoVendas(),
                             ((Comissionado)Lista[i]).getDataVendas(), Lista[i].getTaxaServico());
                 }
                 else if(Lista[i] instanceof Assalariado){
                     F = new Assalariado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                             Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                             Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, Lista[i].isBateuPonto(),
-                            1, Lista[i].isTaxa(), Lista[i].isTaxa2(), Lista[i].getTaxaServico());
+                            1, Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
                 }
 
                 Lista[i] = F;

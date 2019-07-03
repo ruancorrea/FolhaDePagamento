@@ -3,29 +3,29 @@ package FolhaDePagamento.Empregado;
 public abstract class Sindicato {
     private static boolean parte = false;
     private boolean taxa;
-    private boolean taxa2;
+    private boolean taxaSin;
     private double taxaSindical;
     private double taxaServico;
     private String sindicatoID;
 
     public Sindicato(){}
 
-    public Sindicato(double taxaSindical, String sindicatoID,String Sindicato, boolean taxa, boolean taxa2, double taxaServico) {
+    public Sindicato(double taxaSindical, String sindicatoID,String Sindicato, boolean taxa, boolean taxaSin, double taxaServico) {
         if(verifica(Sindicato)){
             this.taxaSindical = taxaSindical;
             this.taxaServico = taxaServico;
             this.sindicatoID = sindicatoID;
             this.taxa = taxa;
-            this.taxa2 = taxa2;
+            this.taxaSin = taxaSin;
         }
     }
 
-    public boolean isTaxa2() {
-        return taxa2;
+    public boolean isTaxaSin() {
+        return taxaSin;
     }
 
-    public void setTaxa2(boolean taxa2) {
-        this.taxa2 = taxa2;
+    public void setTaxaSin(boolean taxaSin) {
+        this.taxaSin = taxaSin;
     }
 
     public boolean isTaxa() {
@@ -79,13 +79,13 @@ public abstract class Sindicato {
     {
         if (F.getSindicato().equals("Faz parte do Sindicato"))
         {
-            if(!F.isTaxa2())
+            if(!F.isTaxaSin())
             {
                 salarioatual = salarioatual - F.getTaxaSindical();
-                F.setTaxa2(false);
+                F.setTaxaSin(false);
             }
 
-            salarioatual = salarioatual - F.getTaxaServico();
+            if(!F.isTaxa()) salarioatual = salarioatual - F.getTaxaServico();
         }
 
         return salarioatual;

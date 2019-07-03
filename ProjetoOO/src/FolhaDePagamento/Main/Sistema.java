@@ -2,7 +2,6 @@ package FolhaDePagamento.Main;
 
 import FolhaDePagamento.Empregado.*;
 import FolhaDePagamento.Administrador.*;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

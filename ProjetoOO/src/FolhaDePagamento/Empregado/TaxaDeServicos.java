@@ -46,21 +46,21 @@ public abstract class TaxaDeServicos {
                     F = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                             Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                             Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), Lista[i].getDiastrabalhados(),
-                            Lista[i].getSalarioAtual(), Lista[i].isBateuPonto(), Lista[i].getDiaspassados(), taxa, Lista[i].isTaxa2(), valor);
+                            Lista[i].getSalarioAtual(), Lista[i].isBateuPonto(), Lista[i].getDiaspassados(), taxa, Lista[i].isTaxaSin(), valor);
                 }
                 if(Lista[i].Instancia().equalsIgnoreCase("assalariado"))
                 {
                     F = new Assalariado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                             Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                             Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), Lista[i].getDiastrabalhados(), Lista[i].getSalarioAtual(),
-                            Lista[i].isBateuPonto(), Lista[i].getDiaspassados(), taxa, Lista[i].isTaxa2(), valor);
+                            Lista[i].isBateuPonto(), Lista[i].getDiaspassados(), taxa, Lista[i].isTaxaSin(), valor);
                 }
                 if(Lista[i].Instancia().equalsIgnoreCase("comissionado"))
                 {
                     F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                             Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                             Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), Lista[i].getDiastrabalhados(), Lista[i].getSalarioAtual(),
-                            Lista[i].isBateuPonto(), Lista[i].getDiaspassados(), taxa, Lista[i].isTaxa2(), ((Comissionado) Lista[i]).getResultadoVendas(),
+                            Lista[i].isBateuPonto(), Lista[i].getDiaspassados(), taxa, Lista[i].isTaxaSin(), ((Comissionado) Lista[i]).getResultadoVendas(),
                             ((Comissionado)Lista[i]).getDataVendas(), valor);
                 }
 

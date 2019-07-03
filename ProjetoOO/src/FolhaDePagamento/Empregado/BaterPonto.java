@@ -55,7 +55,7 @@ public abstract class BaterPonto {
                             Funcionario F = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                                     Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                                     Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, salarioatual, true, Lista[i].getDiaspassados(),
-                                    Lista[i].isTaxa(), Lista[i].isTaxa2(), Lista[i].getTaxaServico());
+                                    Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
                             Lista[i] = F;
                             P3.setListadeFuncionarios(P3, Lista);
                             UndoRedo.UR(P3, undoredo);
@@ -93,14 +93,14 @@ public abstract class BaterPonto {
                         F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                                 Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                                 Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, Lista[i].getSalarioAtual(),
-                                true, Lista[i].getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxa2(), ((Comissionado)Lista[i]).getResultadoVendas(),
+                                true, Lista[i].getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxaSin(), ((Comissionado)Lista[i]).getResultadoVendas(),
                                 ((Comissionado)Lista[i]).getDataVendas(), Lista[i].getTaxaServico());
                     }
                     else if(Lista[i] instanceof Assalariado){
                         F = new Assalariado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                                 Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                                 Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), diastrabalhados, Lista[i].getSalarioAtual(), true, Lista[i].getDiaspassados(),
-                                Lista[i].isTaxa(), Lista[i].isTaxa2(), Lista[i].getTaxaServico());
+                                Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
                     }
                     Lista[i] = F;
                     P3.setListadeFuncionarios(P3, Lista);

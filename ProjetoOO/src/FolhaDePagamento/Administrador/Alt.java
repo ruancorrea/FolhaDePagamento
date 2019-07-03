@@ -81,7 +81,7 @@ public abstract class Alt {
                                 diaspassados = Lista[i].getDiaspassados();
                                 cartao = Lista[i].isBateuPonto();
                                 taxa = Lista[i].isTaxa();
-                                taxa2 = Lista[i].isTaxa2();
+                                taxa2 = Lista[i].isTaxaSin();
                                 rv=0;
                                 data=null;
                                 taxaservico= Lista[i].getTaxaServico();
