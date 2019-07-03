@@ -117,8 +117,8 @@ public abstract class AgendaDePagamento {
                 }
             }
         }
-
         pagamento = Lista[i].CalcularDiaPagamento(P3,Lista[i], opcao);
+        System.out.println("Nova data de pagamento: " + pagamento);
         Lista[i].setPagamento(pagamento);
         P3.setListadeFuncionarios(P3,Lista);
         UndoRedo.UR(P3, undoredo);

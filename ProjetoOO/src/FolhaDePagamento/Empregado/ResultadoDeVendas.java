@@ -2,12 +2,11 @@ package FolhaDePagamento.Empregado;
 
 import FolhaDePagamento.Administrador.Empresa;
 import FolhaDePagamento.Main.UndoRedo;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public abstract class ResultadoDeVendas {
-    public static void ResultadoVendas(Empresa P3, int i, String dataEmString, Empresa[] undoredo) {
+    public static void ResultadoVendas(Empresa P3, int i, Empresa[] undoredo) {
         Scanner input = new Scanner(System.in);
         Funcionario[] Lista = P3.getListadeFuncionarios();
         double salarioatual,valor, percentual=0;

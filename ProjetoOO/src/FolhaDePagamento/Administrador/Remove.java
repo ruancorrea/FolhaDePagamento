@@ -36,6 +36,8 @@ public abstract class Remove
                         System.out.println("Insira um ID inteiro valido\n");
                     }
                 }
+                if(np==0)break;
+
                 while (i < tam) {
                     if (Lista[i].getID() == np && Lista[i] != null) {
                         p = 1;

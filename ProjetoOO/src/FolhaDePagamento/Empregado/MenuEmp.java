@@ -34,7 +34,7 @@ public abstract class MenuEmp {
                     BaterPonto.BaterPonto(P3, i, undoredo);
                     break;
                 case 2:
-                    ResultadoDeVendas.ResultadoVendas(P3, i, P3.getData(), undoredo);
+                    ResultadoDeVendas.ResultadoVendas(P3, i, undoredo);
                     break;
                 case 3:
                     TaxaDeServicos.TaxaServicos(P3, i, undoredo);

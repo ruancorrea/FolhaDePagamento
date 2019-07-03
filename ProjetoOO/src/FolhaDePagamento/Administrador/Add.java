@@ -29,6 +29,8 @@ public class Add{
         Funcionario[] Lista = P3.getListadeFuncionarios().clone();
         nome = input.nextLine();
 
+        if(nome.equals("0")) return;
+
         for(i=0; i < tam ; i++)
         {
             acesso = Lista[i].getNome();

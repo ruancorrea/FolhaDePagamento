@@ -1,7 +1,6 @@
 package FolhaDePagamento.Empregado;
 
 import FolhaDePagamento.Administrador.Empresa;
-
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
