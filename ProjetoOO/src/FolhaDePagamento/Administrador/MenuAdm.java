@@ -7,7 +7,7 @@ import FolhaDePagamento.Main.UndoRedo;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class MenuAdm {
+public class MenuAdm {
     public static Empresa MenuAdministrador(Empresa P3, Empresa[] undoredo) {
         Scanner input = new Scanner(System.in);
         int opcao=-1;

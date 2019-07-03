@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Assalariado extends Funcionario implements Calculos{
+public class Assalariado extends Funcionario{
 	
 	private int diastrabalhados;
 	private int diaspassados;
@@ -23,7 +23,12 @@ public class Assalariado extends Funcionario implements Calculos{
         this.diastrabalhados = diastrabalhados;
     }
     
-    
+    @Override
+    public String toString()
+    {
+    	String s = "Nome: " + this.getNome() + " " + "Salario atual: " + this.getSalarioAtual() + "\n";
+    	return s;
+    }
 
     public int getDiastrabalhados() {
 		return diastrabalhados;

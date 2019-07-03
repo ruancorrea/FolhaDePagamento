@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public abstract class BaterPonto {
+public class BaterPonto {
     public static void BaterPonto(Empresa P3, int i, Empresa[] undoredo)
     {
         Funcionario[] Lista = P3.getListadeFuncionarios();
@@ -49,6 +49,7 @@ public abstract class BaterPonto {
                         System.out.println(hora + " horas trabalhando.");
                         if (hora < 18) {
                             Lista[i] = ((Horista) Lista[i]).CalculoCPHorista((Horista) Lista[i], hora);
+                            System.out.println(((Horista)Lista[i]).toString());
                             salarioatual = Lista[i].getSalarioAtual();
 
                             Funcionario F = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),

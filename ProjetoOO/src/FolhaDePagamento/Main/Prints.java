@@ -3,7 +3,7 @@ package FolhaDePagamento.Main;
 import FolhaDePagamento.Administrador.*;
 import FolhaDePagamento.Empregado.*;
 
-public abstract class Prints {
+public class Prints {
 
     public static void EscolhaTipo()
     {

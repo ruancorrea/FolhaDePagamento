@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class Alt {
+public class Alt {
     public static Empresa Alterar(Empresa P3, Empresa[] undoredo) {
         {
             Scanner input = new Scanner(System.in);

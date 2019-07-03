@@ -6,10 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Horista extends Funcionario implements Calculos{
+public class Horista extends Funcionario{
 
-    public Horista()
-    {}
+    public Horista(){}
 
     public Horista(String nome, String endereco, int ID, String Sindicato, String SindicatoID, double salario, double taxaSindical,
                    String metodo, String pagamento, String agenda, String nasemana, int day, int month, int year,
@@ -39,6 +38,9 @@ public class Horista extends Funcionario implements Calculos{
         empregado.setSalarioAtual(salarioatual);
         return empregado;
     }
+    
+
+    public void CalculoSalario(Funcionario F){}
 
     public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n)
     {
@@ -86,5 +88,11 @@ public class Horista extends Funcionario implements Calculos{
     public String Instancia()
     {
         return "horista";
+    }
+    @Override
+    public String toString()
+    {
+    	String s = "Nome: " + this.getNome() + " " + "Salario atual: " + this.getSalarioAtual() + "\n";
+    	return s;
     }
 }

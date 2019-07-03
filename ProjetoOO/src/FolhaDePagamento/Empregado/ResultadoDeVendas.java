@@ -5,7 +5,7 @@ import FolhaDePagamento.Main.UndoRedo;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class ResultadoDeVendas {
+public class ResultadoDeVendas {
     public static void ResultadoVendas(Empresa P3, int i, Empresa[] undoredo) {
         Scanner input = new Scanner(System.in);
         Funcionario[] Lista = P3.getListadeFuncionarios();
@@ -47,6 +47,7 @@ public abstract class ResultadoDeVendas {
                     ((Comissionado)Lista[i]).getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxaSin(), valor, P3.getData(), Lista[i].getTaxaServico());
 
             Lista[i] = F;
+            System.out.println(((Comissionado)Lista[i]).toString());
             P3.setListadeFuncionarios(P3,Lista);
             UndoRedo.UR(P3, undoredo);
         }

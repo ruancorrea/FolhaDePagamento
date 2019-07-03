@@ -1,6 +1,6 @@
 package FolhaDePagamento.Empregado;
 
-public abstract class Sindicato {
+public class Sindicato {
     private static boolean parte = false;
     private boolean taxa;
     private boolean taxaSin;

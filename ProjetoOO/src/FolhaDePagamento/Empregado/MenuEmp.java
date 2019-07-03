@@ -6,7 +6,7 @@ import FolhaDePagamento.Main.UndoRedo;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class MenuEmp {
+public class MenuEmp {
     public static void MenuEmpregado(Empresa P3, int i, Empresa[] undoredo) {
         Scanner input = new Scanner(System.in);
         int opcao=-1;

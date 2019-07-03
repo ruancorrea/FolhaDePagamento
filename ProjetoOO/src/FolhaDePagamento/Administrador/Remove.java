@@ -6,7 +6,7 @@ import FolhaDePagamento.Main.UndoRedo;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class Remove
+public class Remove
 {
     public static void Removendo(Empresa P3, Empresa[] undoredo){
         Scanner input = new Scanner(System.in);

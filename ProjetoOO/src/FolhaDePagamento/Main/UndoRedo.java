@@ -2,7 +2,7 @@ package FolhaDePagamento.Main;
 
 import FolhaDePagamento.Administrador.*;
 
-public abstract class UndoRedo {
+public class UndoRedo {
 
     static int indice =0, redo=0;
 

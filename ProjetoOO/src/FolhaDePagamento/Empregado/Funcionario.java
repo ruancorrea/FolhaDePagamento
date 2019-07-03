@@ -2,7 +2,7 @@ package FolhaDePagamento.Empregado;
 
 import FolhaDePagamento.Administrador.Empresa;
 
-public abstract class Funcionario extends Sindicato implements Calculos{
+public abstract class Funcionario extends Sindicato{
     private int ID;
     private String nome;
     private String endereco;
@@ -40,6 +40,10 @@ public abstract class Funcionario extends Sindicato implements Calculos{
         this.month = month;
         this.year = year;
     }
+
+    public abstract String CalcularDiaPagamento(Empresa P3, Funcionario F, int n);
+
+    public abstract void CalculoSalario(Funcionario F);
 
     public String getNasemana() {
         return nasemana;
@@ -153,15 +157,5 @@ public abstract class Funcionario extends Sindicato implements Calculos{
         Sindicato = sindicato;
     }
 
-    public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n)
-    {
-        return pagamento;
-    }
-
-    public String Instancia()
-    {
-        return "funcionario";
-    }
-
-    public void CalculoSalario(Funcionario F) {}
+    public abstract String Instancia();
 }

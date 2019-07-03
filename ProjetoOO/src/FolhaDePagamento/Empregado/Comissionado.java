@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Comissionado extends Assalariado implements Calculos {
+public class Comissionado extends Assalariado {
     private double resultadoVendas;
     private String DataVendas;
 

@@ -5,7 +5,7 @@ import FolhaDePagamento.Main.UndoRedo;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class TaxaDeServicos {
+public class TaxaDeServicos {
     public static void TaxaServicos(Empresa P3, int i, Empresa[] undoredo) {
         boolean y = true;
         Funcionario[] Lista = P3.getListadeFuncionarios();
@@ -39,7 +39,7 @@ public abstract class TaxaDeServicos {
                     }
                 }
 
-                System.out.println("Taxa de Serviço cobrada pelo Sindicato no valor R$ " + valor + " para " + Lista[i].getSindicatoID());
+                System.out.println("Taxa de Servico cobrada pelo Sindicato no valor R$ " + valor + " para " + Lista[i].getSindicatoID());
                 Funcionario F = new Horista();
                 if(Lista[i].Instancia().equalsIgnoreCase("horista"))
                 {

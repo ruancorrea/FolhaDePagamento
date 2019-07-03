@@ -9,13 +9,14 @@ import FolhaDePagamento.Empregado.Horista;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public abstract class FolhaPagamento {
+public class FolhaPagamento {
 
     public static void RodaFolha(Empresa P3, Empresa[] undoredo)
     {
         Calendar data = new GregorianCalendar(P3.getYear(), P3.getMonth(), P3.getDay());
         Funcionario[] Lista = P3.getListadeFuncionarios();
         boolean tem=false;
+        int p=0;
 
         for(int i=0; i< P3.getTamanho(); i++)
         {
@@ -25,6 +26,7 @@ public abstract class FolhaPagamento {
                 if(!tem)
                 {
                     tem=true;
+                    p=1;
                     System.out.println("|-----------------------------------------------------------------------------|");
                     System.out.println("                    Folha de Pagamento de " + P3.getDia() + " - " + P3.getData() + "\n");
                 }
@@ -73,5 +75,6 @@ public abstract class FolhaPagamento {
             }
         }
         if(tem) System.out.println("|-----------------------------------------------------------------------------|");
+        if(p==0)System.out.println("Nao ha funcionarios a serem pagos hoje.");
     }
 }
