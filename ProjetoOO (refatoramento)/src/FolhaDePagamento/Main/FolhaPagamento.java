@@ -38,8 +38,7 @@ public class FolhaPagamento {
                 data = new GregorianCalendar(P3.getYear(), P3.getMonth(), data.getActualMaximum (Calendar.DAY_OF_MONTH));
                 String pagamento = Lista[i].CalcularDiaPagamento(P3, Lista[i], data.getActualMaximum (Calendar.DAY_OF_MONTH));
                 P3.setListadeFuncionarios(P3,Lista);
-                Funcionario F = yolo(P3, Lista, i, pagamento);
-                Lista[i] = F;
+                Lista[i] = yolo(P3, Lista, i, pagamento);
                 P3.setListadeFuncionarios(P3,Lista);
                 UndoRedo.UR(P3, undoredo);
             }

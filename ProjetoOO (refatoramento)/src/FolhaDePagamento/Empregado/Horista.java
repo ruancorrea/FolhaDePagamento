@@ -35,7 +35,6 @@ public class Horista extends FolhaDePagamento.Empregado.Funcionario {
         {
             salarioatual = salarioatual + empregado.getSalario() * horas;
         }
-        if(salarioatual<0) salarioatual = 0;
 
         empregado.setSalarioAtual(salarioatual);
         return empregado;
@@ -87,7 +86,7 @@ public class Horista extends FolhaDePagamento.Empregado.Funcionario {
     @Override
     public void CalculoSalario(Funcionario F)
     {
-
+        if(F.getSalarioAtual()<0) F.setSalarioAtual(0);
     }
 
     public String Instancia()

@@ -227,14 +227,15 @@ public class Alt {
 
     public static boolean escolhaSindicato(String sindicato)
     {
+        int sind;
         if (sindicato.equals("Faz parte do Sindicato.")) {
             Prints.NaoFazParte();
-            int sind = escolhendoopcao();
+            sind = escolhendoopcao();
             if (sind == 0) return true;
         }
         if (sindicato.equals("Nao faz parte do Sindicato.")) {
             Prints.QuerFazer();
-            int sind = escolhendoopcao();
+            sind = escolhendoopcao();
             if (sind == 1) return true;
         }
         return false;

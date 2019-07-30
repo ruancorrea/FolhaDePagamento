@@ -117,7 +117,7 @@ public class Assalariado extends Funcionario{
         double salarioatual = F.getSalarioAtual();
         salarioatual = ((F.getSalario()/((Assalariado)F).getDiaspassados()) * ((Assalariado)F).getDiastrabalhados()) + salarioatual;
         salarioatual = Sindicato.TaxasDescontos(F,salarioatual);
-
+        if(salarioatual<0) salarioatual=0;
         F.setSalarioAtual(salarioatual);
     }
 

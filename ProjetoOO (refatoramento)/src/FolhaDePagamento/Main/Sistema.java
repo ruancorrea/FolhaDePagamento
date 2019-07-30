@@ -10,7 +10,7 @@ public class Sistema
     static Scanner input = new Scanner(System.in);
 
     public static void Controle(){
-        int day = 6;
+        int day = 7;
         int month = 7;
         int year = 2019;
         String dataEmString = "0" + day + "/" + "0" + (month+1) + "/" + year, DiaDaSemana = "Quarta-feira";
