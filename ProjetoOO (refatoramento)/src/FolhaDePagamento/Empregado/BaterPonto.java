@@ -3,7 +3,6 @@ package FolhaDePagamento.Empregado;
 import FolhaDePagamento.Administrador.Empresa;
 import FolhaDePagamento.Main.Prints;
 import FolhaDePagamento.Main.UndoRedo;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;

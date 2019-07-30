@@ -20,10 +20,10 @@ public class MenuAdm {
 
             switch (opcao) {
                 case 1:
-                    FolhaDePagamento.Administrador.Add.Adicionando(P3, undoredo);
+                    AddRem.Adicionando(P3, undoredo);
                     break;
                 case 2:
-                    Remove.Removendo(P3, undoredo);
+                    AddRem.Removendo(P3, undoredo);
                     break;
                 case 3:
                     P3 = FolhaDePagamento.Administrador.Alt.Alterar(P3, undoredo);

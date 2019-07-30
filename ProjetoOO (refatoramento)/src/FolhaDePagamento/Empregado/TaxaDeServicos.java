@@ -8,7 +8,7 @@ public class TaxaDeServicos {
     public static void TaxaServicos(Empresa P3, int i, Empresa[] undoredo) {
         FolhaDePagamento.Empregado.Funcionario[] Lista = P3.getListadeFuncionarios();
         boolean taxa = Lista[i].isTaxa();
-        double valor=-1;
+        double valor;
 
         if(Lista[i].verifica(Lista[i].getSindicato()))
         {

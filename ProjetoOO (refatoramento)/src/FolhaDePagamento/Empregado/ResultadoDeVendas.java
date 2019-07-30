@@ -1,15 +1,13 @@
 package FolhaDePagamento.Empregado;
 
 import FolhaDePagamento.Administrador.Empresa;
+import FolhaDePagamento.Main.Exceptions;
 import FolhaDePagamento.Main.UndoRedo;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class ResultadoDeVendas {
     public static void ResultadoVendas(Empresa P3, int i, Empresa[] undoredo) {
-        Scanner input = new Scanner(System.in);
         FolhaDePagamento.Empregado.Funcionario[] Lista = P3.getListadeFuncionarios();
-        double salarioatual,valor, percentual=0;
+        double salarioatual, valor, percentual=0;
         boolean x=true;
         if(Lista[i] instanceof FolhaDePagamento.Empregado.Comissionado)
         {
@@ -23,20 +21,12 @@ public class ResultadoDeVendas {
 
             while(x)
             {
-                System.out.println("Insira a comissao da venda. Numero double, apenas.");
-                try{
-                    percentual = input.nextDouble();
-                    x = false;
-                    if(percentual<=0 || percentual>=100)
-                    {
-                        System.out.println("Insira um percetual valido.");
-                        x=true;
-                    }
-                }catch(InputMismatchException e)
+                percentual = Exceptions.dbl();
+                x=false;
+                if(percentual<=0 || percentual>=100)
                 {
-                    System.err.printf("\nException: %s\n", e);
-                    input.nextLine();
-                    System.out.println("Coloque um valor inteiro valido - 0 , 1 ou 2\n");
+                    System.out.println("Insira um percetual valido.");
+                    x=true;
                 }
             }
             salarioatual = Lista[i].getSalarioAtual() + (valor*(percentual/100));

@@ -75,7 +75,6 @@ public class Alt {
                     switch (n) {
                         case 1:
                             System.out.println("Digite o novo nome do empregado:");
-                            //input.nextLine();
                             nome = input.nextLine();
                             mudanca = true;
                             break;
@@ -140,7 +139,7 @@ public class Alt {
                                     input.nextLine();
                                     while(true) {
                                         id_sindicato = input.nextLine();
-                                        q = Add.pesquisaIDSindicato(Lista, id_sindicato, tam);
+                                        q = AddRem.pesquisaIDSindicato(Lista, id_sindicato, tam);
                                         if(q==0) break;
                                         else if(q==1) q=0;
                                     }

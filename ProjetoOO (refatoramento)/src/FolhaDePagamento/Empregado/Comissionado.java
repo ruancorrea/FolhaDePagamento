@@ -2,13 +2,10 @@ package FolhaDePagamento.Empregado;
 
 import FolhaDePagamento.Administrador.Empresa;
 import FolhaDePagamento.Main.Exceptions;
-
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Comissionado extends FolhaDePagamento.Empregado.Assalariado {
     private double resultadoVendas;

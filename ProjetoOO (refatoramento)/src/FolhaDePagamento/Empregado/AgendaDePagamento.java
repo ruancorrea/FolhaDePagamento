@@ -6,82 +6,33 @@ import FolhaDePagamento.Main.Prints;
 import FolhaDePagamento.Main.UndoRedo;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public abstract class AgendaDePagamento {
-    public static Empresa NovaAgenda(Empresa P3, int i, Empresa[] undoredo) {
+    public static Empresa NovaAgenda(Empresa P3, int i, Empresa[] undoredo)
+    {
         Funcionario[] Lista = P3.getListadeFuncionarios();
         String pagamento;
         Calendar data = new GregorianCalendar(P3.getYear(),P3.getMonth(),P3.getDay());
         int max = data.getActualMaximum (Calendar.DAY_OF_MONTH);
-        Scanner input = new Scanner(System.in);
         int opcao=-1;
         boolean valido = true;
 
         if(Lista[i] instanceof Horista)
         {
             Prints.nvagenda();
-            while(opcao!=0 && opcao!=1 && opcao!=2 && opcao!=3 && opcao!=4 && opcao!=5)
+            while(opcao<0 || opcao>5)
             {
-                while(valido)
-                {
-                    try{
-                        opcao = input.nextInt();
-                        valido = false;
-
-                    }catch(InputMismatchException e)
-                    {
-                        System.err.printf("\nException: %s\n", e);
-                        input.nextLine();
-                        System.out.println("Coloque um valor inteiro valido - 0 a 5\n");
-                    }
-                }
-
-                switch (opcao)
-                {
-                    case 1:
-                        Lista[i].setNasemana("segunda-feira");
-                        break;
-                    case 2:
-                        Lista[i].setNasemana("terça-feira");
-                        break;
-                    case 3:
-                        Lista[i].setNasemana("quarta-feira");
-                        break;
-                    case 4:
-                        Lista[i].setNasemana("quinta-feira");
-                        break;
-                    case 5:
-                        Lista[i].setNasemana("sexta-feira");
-                        break;
-                }
-                valido=true;
+                opcao = Exceptions.inteiro();
             }
+            Lista[i].setNasemana(dia(opcao));
         }
 
         if(Lista[i] instanceof Comissionado) {
             Prints.nvagenda();
-            while(opcao!=0 && opcao!=1 && opcao!=2 && opcao!=3 && opcao!=4 && opcao!=5) {
+            while(opcao<0 || opcao>5) {
                 opcao = Exceptions.inteiro();
-                switch (opcao) {
-                    case 1:
-                        Lista[i].setNasemana("segunda-feira");
-                        break;
-                    case 2:
-                        Lista[i].setNasemana("terça-feira");
-                        break;
-                    case 3:
-                        Lista[i].setNasemana("quarta-feira");
-                        break;
-                    case 4:
-                        Lista[i].setNasemana("quinta-feira");
-                        break;
-                    case 5:
-                        Lista[i].setNasemana("sexta-feira");
-                        break;
-                }
             }
+            Lista[i].setNasemana(dia(opcao));
         }
 
         else if(Lista[i] instanceof Assalariado)
@@ -90,18 +41,11 @@ public abstract class AgendaDePagamento {
             System.out.println("Certifique-se que se o dia cair em um final de semana, a data de pagamento sera na segunda-feira");
 
             while(valido) {
-                try {
-                    opcao = input.nextInt();
-                    valido = false;
-                    if (opcao > max) {
-                        valido = true;
-                        System.out.println("Insira um numero menor que " + max);
-                    }
-
-                } catch (InputMismatchException e) {
-                    System.err.printf("\nException: %s\n", e);
-                    input.nextLine();
-                    System.out.println("Coloque um valor inteiro valido\n");
+                opcao = Exceptions.inteiro();
+                valido = false;
+                if (opcao > max) {
+                    valido = true;
+                    System.out.println("Insira um numero menor que " + max);
                 }
             }
         }
@@ -112,5 +56,28 @@ public abstract class AgendaDePagamento {
         UndoRedo.UR(P3, undoredo);
 
         return P3;
+    }
+
+    public static String dia(int opcao)
+    {
+        String dia = null;
+        switch (opcao) {
+            case 1:
+                dia = "segunda-feira";
+                break;
+            case 2:
+                dia = "terça-feira";
+                break;
+            case 3:
+                dia = "quarta-feira";
+                break;
+            case 4:
+                dia = "quinta-feira";
+                break;
+            case 5:
+                dia = "sexta-feira";
+                break;
+        }
+        return dia;
     }
 }
