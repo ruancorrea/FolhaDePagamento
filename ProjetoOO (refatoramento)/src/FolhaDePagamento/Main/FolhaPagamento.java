@@ -38,37 +38,7 @@ public class FolhaPagamento {
                 data = new GregorianCalendar(P3.getYear(), P3.getMonth(), data.getActualMaximum (Calendar.DAY_OF_MONTH));
                 String pagamento = Lista[i].CalcularDiaPagamento(P3, Lista[i], data.getActualMaximum (Calendar.DAY_OF_MONTH));
                 P3.setListadeFuncionarios(P3,Lista);
-
-                Funcionario F= new Horista();
-                if(Lista[i] instanceof Horista) {
-                    F = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
-                            Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), pagamento,
-                            Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, Lista[i].isBateuPonto(),
-                            Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
-                }
-                else if(Lista[i] instanceof Comissionado)
-                {
-                    F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
-                            Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), pagamento,
-                            Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0,
-                            Lista[i].isBateuPonto(), 1, Lista[i].isTaxa(), Lista[i].isTaxaSin(), ((Comissionado)Lista[i]).getResultadoVendas(),
-                            ((Comissionado)Lista[i]).getDataVendas(), Lista[i].getTaxaServico());
-
-
-                    System.out.println("dias passados" + ((Comissionado) Lista[i]).getDiaspassados());
-
-                    ((Comissionado) Lista[i]).setDiaspassados(1);
-                }
-                else if(Lista[i] instanceof Assalariado){
-                    F = new Assalariado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
-                            Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
-                            Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, Lista[i].isBateuPonto(),
-                            1, Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
-                    System.out.println(((Assalariado) Lista[i]).getDiaspassados());
-
-                    ((Assalariado) Lista[i]).setDiaspassados(1);
-                }
-
+                Funcionario F = yolo(P3, Lista, i, pagamento);
                 Lista[i] = F;
                 P3.setListadeFuncionarios(P3,Lista);
                 UndoRedo.UR(P3, undoredo);
@@ -76,5 +46,39 @@ public class FolhaPagamento {
         }
         if(tem) System.out.println("|-----------------------------------------------------------------------------|");
         if(p==0)System.out.println("Nao ha funcionarios a serem pagos hoje.");
+    }
+
+    public static Funcionario yolo(Empresa P3, Funcionario[] Lista, int i, String pagamento)
+    {
+        Funcionario F = new Horista();
+        if(Lista[i] instanceof Horista) {
+            F = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+                    Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), pagamento,
+                    Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, Lista[i].isBateuPonto(),
+                    Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
+        }
+        else if(Lista[i] instanceof Comissionado)
+        {
+            F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+                    Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), pagamento,
+                    Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0,
+                    Lista[i].isBateuPonto(), 1, Lista[i].isTaxa(), Lista[i].isTaxaSin(), ((Comissionado)Lista[i]).getResultadoVendas(),
+                    ((Comissionado)Lista[i]).getDataVendas(), Lista[i].getTaxaServico());
+
+
+            System.out.println("dias passados" + ((Comissionado) Lista[i]).getDiaspassados());
+
+            ((Comissionado) Lista[i]).setDiaspassados(1);
+        }
+        else if(Lista[i] instanceof Assalariado){
+            F = new Assalariado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+                    Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
+                    Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, Lista[i].isBateuPonto(),
+                    1, Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
+            System.out.println(((Assalariado) Lista[i]).getDiaspassados());
+
+            ((Assalariado) Lista[i]).setDiaspassados(1);
+        }
+        return F;
     }
 }

@@ -105,7 +105,7 @@ public class Prints {
         System.out.println ("  Nome: " + F.getNome());
         System.out.println ("  Endereco: " + F.getEndereco());
         System.out.println ("  Tipo: " + F.Instancia());
-        System.out.println ("  Salario/Comissao: R$ " + F.getSalario());
+        System.out.println ("  Salario: R$ " + F.getSalario());
         if(F.getSindicato().equals("Faz parte do Sindicato."))
         {
             System.out.printf ("  Faz parte do Sindicato.\n");

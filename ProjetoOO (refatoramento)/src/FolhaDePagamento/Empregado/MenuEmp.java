@@ -1,33 +1,17 @@
 package FolhaDePagamento.Empregado;
 
-import FolhaDePagamento.Administrador.*;
+import FolhaDePagamento.Main.Exceptions;
 import FolhaDePagamento.Main.Prints;
 import FolhaDePagamento.Main.UndoRedo;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class MenuEmp {
     public static void MenuEmpregado(FolhaDePagamento.Administrador.Empresa P3, int i, FolhaDePagamento.Administrador.Empresa[] undoredo) {
-        Scanner input = new Scanner(System.in);
-        int opcao=-1;
-        boolean valido = true;
 
-        FolhaDePagamento.Empregado.Funcionario[] Lista = P3.getListadeFuncionarios();
+        Funcionario[] Lista = P3.getListadeFuncionarios();
 
         while (true) {
             Prints.MenuEmp(P3);
-
-            while (valido) {
-                try {
-                    opcao = input.nextInt();
-                    valido = false;
-                } catch (InputMismatchException e) {
-                    System.err.printf("\nException: %s\n", e);
-                    input.nextLine();
-                    System.out.println("Coloque um valor inteiro valido - de 0 a 7\n");
-                }
-            }
-            valido = true;
+            int opcao = Exceptions.inteiro();
 
             switch (opcao) {
                 case 1:

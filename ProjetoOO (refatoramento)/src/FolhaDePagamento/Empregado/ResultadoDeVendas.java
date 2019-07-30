@@ -47,7 +47,7 @@ public class ResultadoDeVendas {
                     ((FolhaDePagamento.Empregado.Comissionado)Lista[i]).getDiaspassados(), Lista[i].isTaxa(), Lista[i].isTaxaSin(), valor, P3.getData(), Lista[i].getTaxaServico());
 
             Lista[i] = F;
-            System.out.println(((FolhaDePagamento.Empregado.Comissionado)Lista[i]).toString());
+            System.out.println(((Comissionado)Lista[i]).toString());
             P3.setListadeFuncionarios(P3,Lista);
             UndoRedo.UR(P3, undoredo);
         }

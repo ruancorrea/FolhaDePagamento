@@ -1,6 +1,7 @@
 package FolhaDePagamento.Empregado;
 
 import FolhaDePagamento.Administrador.Empresa;
+import FolhaDePagamento.Main.Exceptions;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -84,30 +85,15 @@ public class Comissionado extends FolhaDePagamento.Empregado.Assalariado {
         double salarioatual = F.getSalarioAtual();
         salarioatual = (((F.getSalario()/2)/((Comissionado) F).getDiaspassados())) * ((Comissionado)F).getDiastrabalhados() + salarioatual;
         salarioatual = Sindicato.TaxasDescontos(F, salarioatual);
+        if(salarioatual<0) salarioatual=0;
         F.setSalarioAtual(salarioatual);
     }
 
-    public static double CalculoResultadoVendas(Comissionado empregado)
+    public static double CalculoResultadoVendas()
     {
-        Scanner input = new Scanner(System.in);
         System.out.println("Informe o valor da venda");
-        double valor=0;
-        boolean x= true;
-        while (x) {
-            try {
-                valor = input.nextDouble();
-                x = false;
-                if(valor<=0)
-                {
-                    System.out.println("Insira um valor maior que zero!");
-                    x = true;
-                }
-            } catch (InputMismatchException e) {
-                System.err.printf("\nException: %s\n", e);
-                input.nextLine();
-                System.out.println("Insira um valor double valido - \n");
-            }
-        }
+        double valor;
+        valor = Exceptions.dbl();
         return valor;
     }
 

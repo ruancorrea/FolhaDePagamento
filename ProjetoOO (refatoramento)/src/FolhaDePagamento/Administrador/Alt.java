@@ -12,13 +12,12 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class Alt {
+
+    static Scanner input = new Scanner(System.in);
     public static Empresa Alterar(Empresa P3, Empresa[] undoredo) {
         {
-            Scanner input = new Scanner(System.in);
-            String nome, endereco, id_sindicato, metodoPagamento, tipo, sindicato, agenda=null, pagamento, nasemana ,dat;
-            double salario, taxa_sindicato,salarioatual, rv, taxaservico;
             int i=0;
-            int np=-1;
+            int np;
             int n=-1;
             int p=0;
             int tam = P3.getTamanho();
@@ -27,13 +26,10 @@ public class Alt {
             int t=-1;
             int sind=-1;
             int m=-1;
-            int q=0;
+            int q;
             Funcionario[] Lista = P3.getListadeFuncionarios().clone();
             boolean tem = Prints.ListaEmpregados(Lista,P3.getTamanho());
             boolean mudanca=false;
-            boolean cartao;
-            boolean taxa;
-            boolean taxa2;
             if(tem)
             {
                 System.out.println("Digite o numero do empregado que voce deseja alterar os dados");
@@ -59,43 +55,39 @@ public class Alt {
                 if (p == 1) {
                     while(true) {
                         Prints.Alteracao(P3);
-
                         while(n<0 || n>7)
                         {
                             n = Exceptions.inteiro();
-                            if(n<0 || n>7)
-                            {
-
-                                System.out.println("Insira uma opcao valida");
-                            }
+                            if(n<0 || n>7) System.out.println("Insira uma opcao valida");
                         }
 
                         if(n==0) break;
 
-                        nome = Lista[i].getNome();
-                        endereco = Lista[i].getEndereco();
-                        salario = Lista[i].getSalario();
-                        tipo = Lista[i].Instancia();
-                        sindicato = Lista[i].getSindicato();
-                        id_sindicato = Lista[i].getSindicatoID();
-                        taxa_sindicato = Lista[i].getTaxaSindical();
-                        metodoPagamento = Lista[i].getMetodo();
-                        agenda = Lista[i].getAgenda();
-                        pagamento = Lista[i].getPagamento();
-                        nasemana = Lista[i].getNasemana();
-                        salarioatual = Lista[i].getSalarioAtual();
+                        String nome = Lista[i].getNome();
+                        String endereco = Lista[i].getEndereco();
+                        double salario = Lista[i].getSalario();
+                        String tipo = Lista[i].Instancia();
+                        String sindicato = Lista[i].getSindicato();
+                        String id_sindicato = Lista[i].getSindicatoID();
+                        double taxa_sindicato = Lista[i].getTaxaSindical();
+                        String metodoPagamento = Lista[i].getMetodo();
+                        String agenda = Lista[i].getAgenda();
+                        String pagamento = Lista[i].getPagamento();
+                        String nasemana = Lista[i].getNasemana();
+                        double salarioatual = Lista[i].getSalarioAtual();
 
                         if( Lista[i] instanceof Assalariado || Lista[i] instanceof Comissionado) {
 
                             diastrabalhados = ((Assalariado)Lista[i]).getDiastrabalhados();
                             diaspassados = ((Assalariado)Lista[i]).getDiaspassados();
                         }
-                        cartao = Lista[i].isBateuPonto();
-                        taxa = Lista[i].isTaxa();
-                        taxa2 = Lista[i].isTaxaSin();
-                        rv=0;
-                        dat=null;
-                        taxaservico= Lista[i].getTaxaServico();
+                        boolean cartao = Lista[i].isBateuPonto();
+                        boolean taxa = Lista[i].isTaxa();
+                        boolean taxa2 = Lista[i].isTaxaSin();
+                        double rv=0;
+                        String dat=null;
+                        double taxaservico= Lista[i].getTaxaServico();
+
                         if(Lista[i] instanceof Comissionado)
                         {
                             rv = ((Comissionado)Lista[i]).getResultadoVendas();
@@ -116,37 +108,30 @@ public class Alt {
                                 break;
                             case 3:
                                 Prints.novoTipo();
-                                while(t != 1 && t != 2 && t != 3)
+                                while(t<0 || t> 3)
                                 {
                                     t = Exceptions.inteiro();
-                                    if (t != 1 && t != 2 && t != 3) {
-                                        System.out.println("Insira uma opcao valida!");
-                                    }
+                                    if (t != 1 && t != 2 && t != 3) System.out.println("Insira uma opcao valida!");
                                 }
                                 switch (t) {
                                     case 1:
                                         tipo = "horista";
                                         agenda = "semanalmente";
                                         nasemana = "sexta-feira";
-                                        System.out.println("Insira o salario por hora:");
-                                        mudanca = true;
                                         break;
                                     case 2:
                                         tipo = "assalariado";
                                         agenda = "mensalmente";
-                                        System.out.println("Insira o salario por mes:");
-                                        mudanca = true;
                                         break;
                                     case 3:
                                         tipo = "comissionado";
                                         agenda = "bi-semanalmente";
                                         nasemana = "sexta-feira";
-                                        System.out.println("Insira o salario:");
-                                        mudanca = true;
                                         break;
                                 }
-
+                                System.out.println("Insira o salario:");
                                 salario = Exceptions.dbl();
+                                mudanca = true;
                                 break;
                             case 4:
                                 if (sindicato.equals("Faz parte do Sindicato.")) {
@@ -154,9 +139,7 @@ public class Alt {
                                     while(sind!=0 || sind!=1)
                                     {
                                         sind = Exceptions.inteiro();
-                                        if (sind != 0 && sind != 1) {
-                                            System.out.println("Insira uma opcao valida!");
-                                        }
+                                        if (sind != 0 && sind != 1) System.out.println("Insira uma opcao valida!");
                                     }
 
                                     if (sind == 0) {
@@ -170,9 +153,7 @@ public class Alt {
                                     while(sind!=0 || sind!=1)
                                     {
                                         sind = Exceptions.inteiro();
-                                        if (sind != 0 && sind != 1) {
-                                            System.out.println("Insira uma opcao valida!");
-                                        }
+                                        if (sind != 0 && sind != 1) System.out.println("Insira uma opcao valida!");
                                     }
                                     if (sind == 1) {
                                         sindicato = "Faz parte do Sindicato.";
@@ -180,16 +161,7 @@ public class Alt {
                                         input.nextLine();
                                         while(true) {
                                             id_sindicato = input.nextLine();
-                                            for (int j = 0; j < tam; j++) {
-                                                String acesso = Lista[j].getSindicatoID();
-                                                if (Lista[j].getSindicato().equals("Faz parte do Sindicato.")) {
-                                                    if (id_sindicato.equals(acesso)) {
-                                                        System.out.println("\nID JA PRESENTE NA LISTA DO SINDICATO\nTENTE NOVAMENTE");
-                                                        q=1;
-                                                        break;
-                                                    }
-                                                }
-                                            }
+                                            q = Add.pesquisaIDSindicato(Lista, id_sindicato, tam);
                                             if(q==0) break;
                                             else if(q==1) q=0;
                                         }
@@ -204,24 +176,20 @@ public class Alt {
                                 while(m!=1 && m!=2 && m!=3)
                                 {
                                     m = Exceptions.inteiro();
-                                    if (m!=1 && m!=2 && m!=3) {
-                                        System.out.println("Insira uma opcao valida!");
-                                    }
+                                    if (m<1 || m>3) System.out.println("Insira uma opcao valida!");
                                 }
                                 switch (m) {
                                     case 1:
                                         metodoPagamento = "Cheque pelos Correios";
-                                        mudanca = true;
                                         break;
                                     case 2:
                                         metodoPagamento = "Cheque em maos";
-                                        mudanca = true;
                                         break;
                                     case 3:
                                         metodoPagamento = "Deposito em conta bancaria";
-                                        mudanca = true;
                                         break;
                                 }
+                                mudanca = true;
                                 break;
                             case 6:
                                 P3 = UndoRedo.und(P3, undoredo);

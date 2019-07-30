@@ -28,16 +28,15 @@ public class Add{
         String sindicato = null;
         String metodoPagamento = null;
         String agenda = null;
-        double salario = 0;
+        double salario;
         double taxa_sindicato = 0;
         int p=0;
         int i;
         int ID;
-        int t=0;
-        int sind=0;
+        int t=-1;
+        int sind=-1;
         int m=0;
-        int q=0;
-        int j=0;
+        int q;
 
         System.out.println("ADICIONANDO NOVO EMPREGADO\n" + "Digite o nome completo:");
         int tam = P3.getTamanho();
@@ -62,33 +61,32 @@ public class Add{
             endereco = input.nextLine();
             Prints.EscolhaTipo();
 
-            while(t!=1 && t!= 2 && t!=3)
+            while(t<1 || t>3)
             {
                 t = Exceptions.inteiro();
+                if(t!=1 && t!= 2 && t!=3) System.out.println("Digite um numero valido.");
             }
 
             switch(t){
                 case 1:
                     tipo = "horista";
                     agenda = "semanalmente";
-                    dianasemana = "sexta-feira";
-                    System.out.println("Insira o salario por hora:");
+                    dianasemana = "Sexta-feira";
                     break;
                 case 2:
                     tipo ="assalariado";
                     agenda = "mensalmente";
                     data = new GregorianCalendar(P3.getYear(), P3.getMonth(), data.getActualMaximum (Calendar.DAY_OF_MONTH));
                     dianasemana = new DateFormatSymbols().getWeekdays()[data.get(Calendar.DAY_OF_WEEK)];
-                    System.out.println("Insira o salario por mes:");
                     break;
                 case 3:
                     tipo = "comissionado";
-                    dianasemana = "sexta-feira";
+                    dianasemana = "Sexta-feira";
                     agenda ="bi-semanalmente";
-                    System.out.println("Insira o salario:");
                     break;
             }
 
+            System.out.println("Insira o salario:");
             salario = Exceptions.dbl();
 
             System.out.println("Faz parte do Sindicato?");
@@ -97,10 +95,7 @@ public class Add{
             while(sind!=1 && sind!=0)
             {
                 sind = Exceptions.inteiro();
-                if(sind!=1 && sind!=0)
-                {
-                    System.out.println("Insira um numero valido.");
-                }
+                if(sind!=1 && sind!=0) System.out.println("Insira um numero valido.");
             }
 
             if(sind==1)
@@ -112,16 +107,7 @@ public class Add{
                 while(true)
                 {
                     id_sindicato = input.nextLine();
-                    for (j = 0; j < tam; j++) {
-                        acesso = Lista[j].getSindicatoID();
-                        if (Lista[j].getSindicato().equals("Faz parte do Sindicato.")) {
-                            if (id_sindicato.equals(acesso)) {
-                                System.out.println("\nID JA PRESENTE NA LISTA DO SINDICATO\nTENTE NOVAMENTE");
-                                q=1;
-                                break;
-                            }
-                        }
-                    }
+                    q = pesquisaIDSindicato(Lista, id_sindicato, tam);
                     if(q==0) break;
                     else if(q==1) q=0;
                 }
@@ -138,13 +124,10 @@ public class Add{
 
             Prints.MetodoP();
 
-            while(m!=1 && m!= 2 && m!=3)
+            while(m<1 || m>3)
             {
                 m = Exceptions.inteiro();
-                if(m!=1 && m!= 2 && m!=3)
-                {
-                    System.out.println("Insira uma opcao valida!");
-                }
+                if(m!=1 && m!= 2 && m!=3) System.out.println("Insira uma opcao valida!");
 
             }
             if(m==1) metodoPagamento =("Cheque pelos Correios");
@@ -175,5 +158,19 @@ public class Add{
             UndoRedo.UR(P3, undoredo);
             System.out.println("\nEMPREGADO ADICIONADO COM SUCESSO!\n");
         }
+    }
+
+    public static int pesquisaIDSindicato(Funcionario[] Lista, String id, int tam)
+    {
+        for (int j = 0; j < tam; j++) {
+            String acesso = Lista[j].getSindicatoID();
+            if (Lista[j].getSindicato().equals("Faz parte do Sindicato.")) {
+                if (id.equals(acesso)) {
+                    System.out.println("\nID JA PRESENTE NA LISTA DO SINDICATO\nTENTE NOVAMENTE");
+                    return 1;
+                }
+            }
+        }
+        return 0;
     }
 }
