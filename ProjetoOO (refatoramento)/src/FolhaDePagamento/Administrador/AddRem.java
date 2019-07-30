@@ -126,22 +126,19 @@ public class AddRem {
 
             String s = P3.getMonth() + "" + P3.getDay() + "" + tam;
             int ID = Integer.parseInt(s);
-            Funcionario F = new Horista();
             switch(tipo){
                 case "horista":
-                    F = new Horista(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, false, false,false,0);
+                    Lista[tam] = new Horista(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, false, false,false,0);
                     break;
                 case "assalariado":
-                    F = new Assalariado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, false, 1, false, false, 0);
+                    Lista[tam] = new Assalariado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, false, 1, false, false, 0);
                     break;
                 case "comissionado":
-                    F = new Comissionado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(),0, 0, false , 1, false, false, 0 , null, 0);
+                    Lista[tam] = new Comissionado(nome,endereco, ID, sindicato, id_sindicato, salario, taxa_sindicato, metodoPagamento, pagamento, agenda, dianasemana, P3.getDay(), P3.getMonth(), P3.getYear(),0, 0, false , 1, false, false, 0 , null, 0);
                     break;
             }
-            pagamento = F.CalcularDiaPagamento(P3,F, data.getActualMaximum (Calendar.DAY_OF_MONTH));
-            F.setPagamento(pagamento);
-            Lista[tam] = F;
-            Prints.ficha(F);
+            Lista[tam].setPagamento(Lista[tam].CalcularDiaPagamento(P3, Lista[tam], data.getActualMaximum (Calendar.DAY_OF_MONTH)));
+            Prints.ficha(Lista[tam]);
             tam = tam + 1;
             P3.setTamanho(tam);
             P3.setListadeFuncionarios(P3,Lista);
@@ -192,7 +189,7 @@ public class AddRem {
 
             while(true) {
                 i = MenuAdm.verificacaoID(Lista,tam);
-                Lista[i]=null;
+                Lista[i] = null;
                 System.out.println("\nNOME REMOVIDO COM SUCESSO!\n");
                 P3.setTamanho(P3.getTamanho()-1);
                 P3.setListadeFuncionarios(P3, Lista);

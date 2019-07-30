@@ -89,9 +89,8 @@ public class Comissionado extends FolhaDePagamento.Empregado.Assalariado {
     public static double CalculoResultadoVendas()
     {
         System.out.println("Informe o valor da venda");
-        double valor;
-        valor = Exceptions.dbl();
-        return valor;
+        return Exceptions.dbl();
+
     }
 
     public String Instancia()

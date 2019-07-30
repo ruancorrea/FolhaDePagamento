@@ -25,8 +25,7 @@ public class Assalariado extends Funcionario{
     @Override
     public String toString()
     {
-        String s = "Nome: " + this.getNome() + " " + "Salario atual: " + this.getSalarioAtual() + "\n";
-        return s;
+        return "Nome: " + this.getNome() + " " + "Salario atual: " + this.getSalarioAtual() + "\n";
     }
 
     public int getDiastrabalhados() {

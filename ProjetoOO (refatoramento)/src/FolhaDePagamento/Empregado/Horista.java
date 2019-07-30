@@ -16,7 +16,7 @@ public class Horista extends FolhaDePagamento.Empregado.Funcionario {
         super(nome, endereco, ID, Sindicato, SindicatoID, taxaSindical,salario, metodo, pagamento, agenda, nasemana, day, month, year,salarioAtual, cartao, taxa, taxa2, taxaServico);
     }
 
-    public static FolhaDePagamento.Empregado.Funcionario CalculoCPHorista(Horista empregado, int horas)
+    public static Funcionario CalculoCPHorista(Horista empregado, int horas)
     {
         int extra;
 
@@ -35,16 +35,15 @@ public class Horista extends FolhaDePagamento.Empregado.Funcionario {
         {
             salarioatual = salarioatual + empregado.getSalario() * horas;
         }
+        if(salarioatual<0) salarioatual = 0;
+
         empregado.setSalarioAtual(salarioatual);
         return empregado;
     }
 
-
-    public void CalculoSalario(FolhaDePagamento.Empregado.Funcionario F){}
-
-    public String CalcularDiaPagamento(Empresa P3, FolhaDePagamento.Empregado.Funcionario F, int n)
+    public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n)
     {
-        int dia = P3.getDay(), month = P3.getMonth(), year = P3.getYear(), bi=0, p=0;
+        int dia = P3.getDay(), month = P3.getMonth(), year = P3.getYear(), p=0;
 
         Calendar data = new GregorianCalendar(year, month, dia);
         String diadasemana = new DateFormatSymbols().getWeekdays()[data.get(Calendar.DAY_OF_WEEK)];
@@ -85,6 +84,12 @@ public class Horista extends FolhaDePagamento.Empregado.Funcionario {
         return DataPagamento;
     }
 
+    @Override
+    public void CalculoSalario(Funcionario F)
+    {
+
+    }
+
     public String Instancia()
     {
         return "horista";
@@ -92,7 +97,6 @@ public class Horista extends FolhaDePagamento.Empregado.Funcionario {
     @Override
     public String toString()
     {
-        String s = "Nome: " + this.getNome() + " " + "Salario atual: " + this.getSalarioAtual() + "\n";
-        return s;
+        return "Nome: " + this.getNome() + " " + "Salario atual: " + this.getSalarioAtual() + "\n";
     }
 }

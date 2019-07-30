@@ -200,7 +200,7 @@ public class Prints {
 
     public static void NaoFazParte()
     {
-        System.out.println("Nao faz mais parte do Sindicato?");
+        System.out.println("Ainda faz mais parte do Sindicato?");
         System.out.println("|-----------------------------------------------|");
         System.out.println("| Digite o numero:                              |");
         System.out.println("| 0 - NAO, nao faco mais parte do Sindicato     |");

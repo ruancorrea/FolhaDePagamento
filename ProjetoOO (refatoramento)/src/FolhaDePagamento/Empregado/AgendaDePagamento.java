@@ -17,17 +17,7 @@ public abstract class AgendaDePagamento {
         int opcao=-1;
         boolean valido = true;
 
-        if(Lista[i] instanceof Horista)
-        {
-            Prints.nvagenda();
-            while(opcao<0 || opcao>5)
-            {
-                opcao = Exceptions.inteiro();
-            }
-            Lista[i].setNasemana(dia(opcao));
-        }
-
-        if(Lista[i] instanceof Comissionado) {
+        if(Lista[i] instanceof Horista || Lista[i] instanceof Comissionado) {
             Prints.nvagenda();
             while(opcao<0 || opcao>5) {
                 opcao = Exceptions.inteiro();

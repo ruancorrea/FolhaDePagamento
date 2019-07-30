@@ -50,16 +50,15 @@ public class FolhaPagamento {
 
     public static Funcionario yolo(Empresa P3, Funcionario[] Lista, int i, String pagamento)
     {
-        Funcionario F = new Horista();
         if(Lista[i] instanceof Horista) {
-            F = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+            Lista[i] = new Horista(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                     Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), pagamento,
                     Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, Lista[i].isBateuPonto(),
                     Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
         }
         else if(Lista[i] instanceof Comissionado)
         {
-            F = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+            Lista[i] = new Comissionado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                     Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), pagamento,
                     Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0,
                     Lista[i].isBateuPonto(), 1, Lista[i].isTaxa(), Lista[i].isTaxaSin(), ((Comissionado)Lista[i]).getResultadoVendas(),
@@ -71,7 +70,7 @@ public class FolhaPagamento {
             ((Comissionado) Lista[i]).setDiaspassados(1);
         }
         else if(Lista[i] instanceof Assalariado){
-            F = new Assalariado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
+            Lista[i] = new Assalariado(Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getID(), Lista[i].getSindicato(),
                     Lista[i].getSindicatoID(), Lista[i].getSalario(), Lista[i].getTaxaSindical(), Lista[i].getMetodo(), Lista[i].getPagamento(),
                     Lista[i].getAgenda(), Lista[i].getNasemana(), P3.getDay(), P3.getMonth(), P3.getYear(), 0, 0, Lista[i].isBateuPonto(),
                     1, Lista[i].isTaxa(), Lista[i].isTaxaSin(), Lista[i].getTaxaServico());
@@ -79,6 +78,6 @@ public class FolhaPagamento {
 
             ((Assalariado) Lista[i]).setDiaspassados(1);
         }
-        return F;
+        return Lista[i];
     }
 }

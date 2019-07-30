@@ -64,7 +64,7 @@ public class Sistema
             String senha = input.nextLine();
             if(senha.equals("1234") || senha.equals("java"))
             {
-                P3 = MenuAdm.MenuAdministrador(P3, undoredo);
+                MenuAdm.MenuAdministrador(P3, undoredo);
                 break;
             }
             else System.out.println("SENHA INCORRETA. TENTE NOVAMENTE.");
