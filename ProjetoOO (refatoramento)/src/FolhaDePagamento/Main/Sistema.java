@@ -13,7 +13,7 @@ public class Sistema
         int day = 6;
         int month = 7;
         int year = 2019;
-        String senha, dataEmString = day + "/" + "0" + (month+1) + "/" + year, DiaDaSemana = "Quarta-feira";
+        String dataEmString = "0" + day + "/" + "0" + (month+1) + "/" + year, DiaDaSemana = "Quarta-feira";
         Empresa[] undoredo = new Empresa[501];
         undoredo[0] = new Empresa(DiaDaSemana, dataEmString, day, month, year, 0);
         Empresa P3 = new Empresa(new Funcionario[501], DiaDaSemana, dataEmString, day, month, year, 0);

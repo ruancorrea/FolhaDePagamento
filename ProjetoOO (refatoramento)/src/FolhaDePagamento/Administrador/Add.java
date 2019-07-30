@@ -16,11 +16,10 @@ public class Add{
 
     static Scanner input = new Scanner(System.in);
 
-    public static void Adicionando(Empresa P3, Empresa[] undoredo){
+    public static void Adicionando(Empresa P3, Empresa[] undoredo)
+    {
         Calendar data = new GregorianCalendar(P3.getYear(), P3.getMonth(), P3.getDay());
         String nome;
-        String acesso;
-        String endereco;
         String pagamento= null;
         String id_sindicato = null;
         String dianasemana = null;
@@ -28,11 +27,7 @@ public class Add{
         String sindicato = null;
         String metodoPagamento = null;
         String agenda = null;
-        double salario;
         double taxa_sindicato = 0;
-        int p=0;
-        int i;
-        int ID;
         int t=-1;
         int sind=-1;
         int m=0;
@@ -45,20 +40,15 @@ public class Add{
 
         if(nome.equals("0")) return;
 
-        for(i=0; i < tam ; i++)
+        while(!verificando(Lista,tam,nome))
         {
-            acesso = Lista[i].getNome();
-            if(nome.equals(acesso))
-            {
-                System.out.println("\nNOME JA PRESENTE NA LISTA\n");
-                p = 1;
-                break;
-            }
+            nome = input.nextLine();
         }
-        if(p == 0)
+
+        if(verificando(Lista,tam,nome))
         {
             System.out.println("Digite o endereco:");
-            endereco = input.nextLine();
+            String endereco = input.nextLine();
             Prints.EscolhaTipo();
 
             while(t<1 || t>3)
@@ -87,7 +77,7 @@ public class Add{
             }
 
             System.out.println("Insira o salario:");
-            salario = Exceptions.dbl();
+            double salario = Exceptions.dbl();
 
             System.out.println("Faz parte do Sindicato?");
             Prints.SN();
@@ -135,7 +125,7 @@ public class Add{
             if(m==3) metodoPagamento =("Deposito em conta bancaria");
 
             String s = P3.getMonth() + "" + P3.getDay() + "" + tam;
-            ID = Integer.parseInt(s);
+            int ID = Integer.parseInt(s);
             Funcionario F = new Horista();
             switch(tipo){
                 case "horista":
@@ -172,5 +162,19 @@ public class Add{
             }
         }
         return 0;
+    }
+
+    public static boolean verificando(Funcionario[] Lista, int tam, String nome)
+    {
+        for(int i=0; i < tam ; i++)
+        {
+            String acesso = Lista[i].getNome();
+            if(nome.equals(acesso))
+            {
+                System.out.println("\nNOME JA PRESENTE NA LISTA\n");
+                return false;
+            }
+        }
+        return true;
     }
 }

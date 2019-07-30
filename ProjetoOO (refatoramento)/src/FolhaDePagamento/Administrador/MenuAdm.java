@@ -1,5 +1,8 @@
 package FolhaDePagamento.Administrador;
 
+import FolhaDePagamento.Empregado.Funcionario;
+import FolhaDePagamento.Main.Exceptions;
+
 public class MenuAdm {
     public static Empresa MenuAdministrador(Empresa P3, Empresa[] undoredo) {
         int opcao=-1;
@@ -43,5 +46,31 @@ public class MenuAdm {
             opcao=-1;
         }
         return P3;
+    }
+
+    public static int verificacaoID(Funcionario[] Lista, int tam)
+    {
+        int p=0;
+        int i=0;
+        while(p!=1)
+        {
+            int np = Exceptions.inteiro();
+            while (i < tam) {
+                if (np == Lista[i].getID() && Lista[i] != null) {
+                    p = 1;
+                    break;
+                }
+                i++;
+            }
+
+            if (p == 0 && np != 0) {
+                System.out.println("\nNOME NAO ESTA PRESENTE NA LISTA. Tente novamente!");
+                i=0;
+            }
+
+            if(np==0) break;
+        }
+
+        return i;
     }
 }

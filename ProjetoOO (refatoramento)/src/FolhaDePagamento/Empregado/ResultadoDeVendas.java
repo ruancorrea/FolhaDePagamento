@@ -17,7 +17,7 @@ public class ResultadoDeVendas {
             {
                 System.out.println("Ultima venda: R$ " + ((FolhaDePagamento.Empregado.Comissionado) Lista[i]).getResultadoVendas() + " Data: " + ((FolhaDePagamento.Empregado.Comissionado) Lista[i]).getDataVendas());
             }
-            valor = ((FolhaDePagamento.Empregado.Comissionado) Lista[i]).CalculoResultadoVendas(((FolhaDePagamento.Empregado.Comissionado) Lista[i]));
+            valor = ((Comissionado) Lista[i]).CalculoResultadoVendas();
 
             System.out.println("Venda no valor de R$ " + valor + " na data: " + P3.getData() );
 
