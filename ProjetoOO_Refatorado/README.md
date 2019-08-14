@@ -79,6 +79,8 @@ public class dataPagamentoSemanal implements dataPagamento
 
 **Padrão de Projeto Facade**
 
+Interface
+
 ```java
 public interface Facade {
     public void adicionando(Empresa P3, UndoRedoSingleton undoredo);
@@ -112,6 +114,23 @@ Classe onde a interface é implementada
 
 ```java
 public class FacadeBean implements Facade
+```
+
+**Padrão de Projeto Prototype**
+
+Classe Abstrata
+
+```java
+public abstract class Prototype {
+    public abstract Prototype cloneEmpresa();
+
+}
+```
+
+Classes concentra onde a classe abstrata é extendida
+
+```java
+public class EmpresaPrototype extends Prototype
 ```
 
 
