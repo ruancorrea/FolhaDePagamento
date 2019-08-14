@@ -18,7 +18,7 @@ Tornar o código mais claro, simples e organizado utilizando padrões de projeto
 | Singleton  |
 | Prototype  |
 
-**Padrão de Projeto Command**
+## Padrão de Projeto Command
 
 [link do pacote PP_Command aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Command)
 
@@ -55,7 +55,7 @@ public class Interacao {
 }
 ```
 
-**Padrão de Projeto Facade**
+## Padrão de Projeto Facade
 
 
 [link do pacote PP_Facade aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Facade)
@@ -119,7 +119,7 @@ public class Principal {
 }
 ```
 
-**Padrão de Projeto Strategy**
+## Padrão de Projeto Strategy
 
 
 [link do pacote PP_Strategy aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Strategy)
@@ -169,7 +169,7 @@ public class Adicionar{
 }
 ```
 
-**Padrão de Projeto Prototype**
+## Padrão de Projeto Prototype
 
 
 [link do pacote PP_Prototype aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Prototype)
@@ -208,7 +208,7 @@ public class EmpresaPrototype extends Prototype {
 ```
 
 
-**Padrão de Projeto Builder**
+## Padrão de Projeto Builder
 
 
 [link do pacote PP_Builder aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Builder)
@@ -277,7 +277,7 @@ public class UndoRedoSingleton {
 ```
 
 
-**Padrão de Projeto Singleton**
+## Padrão de Projeto Singleton
 
 [link do pacote PP_Singleton aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Singleton)
 
@@ -285,6 +285,9 @@ public class UndoRedoSingleton {
 Aplicação
 
 ```java
+public class Singleton {
+    private static UndoRedoSingleton instancia;
+    
     public static UndoRedoSingleton getInstance(){
         if(instance == null){
             synchronized (UndoRedoSingleton.class) {
@@ -295,6 +298,7 @@ Aplicação
         }else System.out.println("Natasha");
         return instance;
     }
+}
 ```
 
 ```java
@@ -304,7 +308,7 @@ public class Principal {
 ```
 
 
-**Padrão de Projeto FactoryMethod**
+## Padrão de Projeto FactoryMethod
 
 [link do pacote PP_FactoryMethod aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Factory)
 
