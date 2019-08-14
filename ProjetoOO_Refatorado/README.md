@@ -163,3 +163,60 @@ Aplicação
         return instance;
     }
 ```
+
+**Padrão de Projeto Builder**
+
+
+[link do pacote PP_Builder aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Builder)
+
+Localização
+
+```java
+public class Empresa {
+    public static class EmpresaBuilder {}
+}
+```
+
+```java
+public class Assalariado extends Funcionario implements TipodeFuncionario {
+    public static class AssalariadoBuilder {}
+}
+```
+
+```java
+public class Comissionado extends Funcionario implements TipodeFuncionario {
+    public static class ComissionadoBuilder {}
+}
+```
+
+```java
+public class Horista extends Funcionario implements TipodeFuncionario {
+    public static class HoristaBuilder{}
+}
+```
+
+
+**Padrão de Projeto FactoryMethod**
+
+[link do pacote PP_FactoryMethod aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Factory)
+
+
+Interface 
+
+```java
+public interface TipodeFuncionario {
+    public String hac();
+}
+```
+
+Aplicação
+
+```java
+public enum Tipos {
+    public abstract TipodeFuncionario obterTipo(int ID, String nome, String endereco, double salario, double salarioAtual, String metododePagamento, String id_sindicato,
+                                                double taxaSindical, boolean participacaoSindicato, boolean taxaServ, double taxaServico, boolean taxaSin, boolean cartaoPonto,
+                                                String pagamento, String nasemana);
+}
+```
+
+
