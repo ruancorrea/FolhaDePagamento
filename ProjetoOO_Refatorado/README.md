@@ -127,10 +127,27 @@ public abstract class Prototype {
 }
 ```
 
-Classes concentra onde a classe abstrata é extendida
+Classes concretra onde a classe abstrata é extendida
 
 ```java
 public class EmpresaPrototype extends Prototype
+```
+
+**Padrão de Projeto Singleton**
+
+Aplicação
+
+```java
+    public static UndoRedoSingleton getInstance(){
+        if(instance == null){
+            synchronized (UndoRedoSingleton.class) {
+                if (instance == null) {
+                    instance = new UndoRedoSingleton();
+                }
+            }
+        }else System.out.println("Natasha");
+        return instance;
+    }
 ```
 
 
