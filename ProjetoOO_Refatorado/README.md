@@ -55,33 +55,6 @@ public class Interacao {
 }
 ```
 
-**Padrão de Projeto Strategy**
-
-
-[link do pacote PP_Strategy aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Strategy)
-
-Interface
-
-```java
-public interface dataPagamento {
-    public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n);
-}
-```
-
-Classes onde a interface é implementada
-
-```java
-public class dataPagamentoBiSemanal implements dataPagamento 
-```
-
-```java
-public class dataPagamentoMensal implements dataPagamento 
-```
-
-```java
-public class dataPagamentoSemanal implements dataPagamento 
-```
-
 **Padrão de Projeto Facade**
 
 
@@ -124,6 +97,78 @@ Classe onde a interface é implementada
 public class FacadeBean implements Facade
 ```
 
+Aplicação dupla entre **Command** e **Facade**
+
+```java
+public class Principal {
+    public Empresa direcao(int esc, Empresa P3, UndoRedoSingleton undoredo){
+        Escolha escolha = new Escolha();
+        FacadeBean f = new FacadeBean(escolha);
+
+        Interacao interacao = new Interacao();
+        if(esc==1){
+            interacao.setAcao(f.getEmpregadoPlataforma());
+            P3 = interacao.executandoAcao(P3, undoredo);
+        }
+        else if(esc == 2){
+            interacao.setAcao(f.getAdministradorPlataforma());
+            P3 = interacao.executandoAcao(P3, undoredo);
+        }
+        return P3;
+    }
+}
+```
+
+**Padrão de Projeto Strategy**
+
+
+[link do pacote PP_Strategy aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Strategy)
+
+Interface
+
+```java
+public interface dataPagamento {
+    public String CalcularDiaPagamento(Empresa P3, Funcionario F, int n);
+}
+```
+
+Classes onde a interface é implementada
+
+```java
+public class dataPagamentoBiSemanal implements dataPagamento 
+```
+
+```java
+public class dataPagamentoMensal implements dataPagamento 
+```
+
+```java
+public class dataPagamentoSemanal implements dataPagamento 
+```
+
+Aplicação
+
+```java
+public class dataPagamento {
+    public String sabendo(Empresa P3, Funcionario F, int opcao){
+        if(((TipodeFuncionario)F).hac().equalsIgnoreCase("horista")) return new dataPagamentoSemanal().CalcularDiaPagamento(P3,F,opcao);
+        else if(((TipodeFuncionario)F).hac().equalsIgnoreCase("assalariado")) return new dataPagamentoMensal().CalcularDiaPagamento(P3,F,opcao);
+        else return new dataPagamentoBiSemanal().CalcularDiaPagamento(P3,F,opcao);
+    }
+}
+```
+
+```java
+public class Adicionar{
+    public void adicionandoFuncionario(Empresa P3, UndoRedoSingleton undoredo)
+    {
+        //[...]
+        String pagamento = new dataPagamento().sabendo(P3,Lista[P3.getTamanho()], data.getActualMaximum (Calendar.DAY_OF_MONTH));
+        //[...]
+    }
+}
+```
+
 **Padrão de Projeto Prototype**
 
 
@@ -164,6 +209,12 @@ Aplicação
     }
 ```
 
+```java
+public class Principal {
+    UndoRedoSingleton undoredo = Singleton.getInstance();
+}
+```
+
 **Padrão de Projeto Builder**
 
 
@@ -196,6 +247,8 @@ public class Horista extends Funcionario implements TipodeFuncionario {
 ```
 
 
+
+
 **Padrão de Projeto FactoryMethod**
 
 [link do pacote PP_FactoryMethod aplicado ao código](https://github.com/ruancorrea/FolhaDePagamento/tree/master/ProjetoOO_Refatorado/src/PadroesDeProjeto/PP_Factory)
@@ -218,5 +271,6 @@ public enum Tipos {
                                                 String pagamento, String nasemana);
 }
 ```
+
 
 
