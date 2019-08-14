@@ -63,10 +63,10 @@ public class Uteis {
 
     public boolean SimNao()
     {
-        System.out.print("(0) Nao, (1) Sim.");
+        System.out.print("(0) Nao, (1) Sim: ");
         while(true){
             int esc = new Exceptions().inteiro();
-            if(esc!=0 && esc!=1) System.out.println("Insira uma opcao valida.");
+            if(esc!=0 && esc!=1) System.out.print("Insira uma opcao valida: ");
             if(esc == 0 || esc == 1) return esc == 1 ? true : false;
         }
     }
@@ -101,7 +101,7 @@ public class Uteis {
         {
             if(Lista[i]!=null)
             {
-                if(tem == false)
+                if(!tem)
                 {
                     System.out.println(" LISTA DE EMPREGADOS:");
                     tem=true;
@@ -147,7 +147,7 @@ public class Uteis {
     public Empresa createEmpresa()
     {
         //Padrao BUILDER
-        Empresa n = new Empresa.EmpresaBuilder()
+        return new Empresa.EmpresaBuilder()
                 .listadeFuncionarios(new Funcionario[501])
                 .dia("Quarta-feira")
                 .data("14/08/2019")
@@ -156,7 +156,6 @@ public class Uteis {
                 .year(2019)
                 .tamanho(0)
                 .criarEmpresa();
-        return n;
     }
 
     public void RodaFolha(Empresa P3, UndoRedoSingleton undoredo)
@@ -179,13 +178,14 @@ public class Uteis {
                     System.out.println("                            Folha de Pagamento de " + P3.getDia() + " - " + P3.getData() + "\n");
                 }
 
-                Lista[i].CalculoSalario(Lista[i]);
+                Lista[i].setSalarioAtual(Lista[i].CalculoSalario(Lista[i]));
 
-                System.out.println(Lista[i].getID() + " - " + Lista[i].getNome() + " Salario: R$ " + Lista[i].getSalarioAtual() + ": Metodo de Pagamento- " +  Lista[i].getMetododePagamento());data = new GregorianCalendar(P3.getYear(), P3.getMonth(), data.getActualMaximum (Calendar.DAY_OF_MONTH));
+                System.out.println(Lista[i].getID() + " - " + Lista[i].getNome() + " Salario: R$ " + Lista[i].getSalarioAtual() + ": Metodo de Pagamento- " +  Lista[i].getMetododePagamento());
+                data = new GregorianCalendar(P3.getYear(), P3.getMonth(), data.getActualMaximum (Calendar.DAY_OF_MONTH));
                 String pagamento = new dataPagamento().sabendo(P3,Lista[i], data.getActualMaximum (Calendar.DAY_OF_MONTH));
                 System.out.println("       Nova data da pagamento: " + pagamento + " - " + ((TipodeFuncionario)Lista[i]).hac() + "\n");
-                P3.setListadeFuncionarios(P3,Lista);
                 Funcionario F = copia(Lista[i]);
+                F.setSalarioAtual(0);
                 F.setPagamento(pagamento);
                 Lista[i] = copia(F);
                 P3.setListadeFuncionarios(P3,Lista);
@@ -259,6 +259,8 @@ public class Uteis {
                                     .taxaServ(F.isTaxaServ())
                                     .cartaoPonto(F.isCartaoPonto())
                                     .pagamento(F.getPagamento())
+                                    .diasPassados(((Assalariado)F).getDiasPassados())
+                                    .diasTrabalhados(((Assalariado)F).getDiasTrabalhados())
                                     .criarAssalariado();
         }
         else return new Comissionado.ComissionadoBuilder()
@@ -278,6 +280,8 @@ public class Uteis {
                                     .taxaServ(F.isTaxaServ())
                                     .cartaoPonto(F.isCartaoPonto())
                                     .pagamento(F.getPagamento())
+                                    .diasPassados(((Comissionado)F).getDiasPassados())
+                                    .diasTrabalhados(((Comissionado)F).getDiasTrabalhados())
                                     .criarComissionado();
     }
 }

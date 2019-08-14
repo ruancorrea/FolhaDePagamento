@@ -4,11 +4,12 @@ import PadroesDeProjeto.PP_Command.Escolha;
 import PadroesDeProjeto.PP_Command.Interacao;
 import PadroesDeProjeto.PP_Builder.Empresa;
 import PadroesDeProjeto.PP_Facade.FacadeBean;
+import PadroesDeProjeto.PP_Singleton.Singleton;
 import PadroesDeProjeto.PP_Singleton.UndoRedoSingleton;
 
 public class Principal {
     Empresa P3 = new Uteis().createEmpresa();
-    UndoRedoSingleton undoredo = UndoRedoSingleton.getInstance();
+    UndoRedoSingleton undoredo = Singleton.getInstance();
 
     public void Controle(){
         while(true){

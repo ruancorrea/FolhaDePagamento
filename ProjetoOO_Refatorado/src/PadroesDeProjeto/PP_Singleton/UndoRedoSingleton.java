@@ -7,24 +7,12 @@ import PadroesDeProjeto.PP_Prototype.EmpresaPrototype;
 import PadroesDeProjeto.PP_Prototype.Prototype;
 
 public class UndoRedoSingleton {
-    private static UndoRedoSingleton instance;
     private Empresa[] lista_empresa;
     private int indice;
     private int redo;
     protected boolean mudanca;
 
-    public static UndoRedoSingleton getInstance(){
-        if(instance == null){
-            synchronized (UndoRedoSingleton.class) {
-                if (instance == null) {
-                    instance = new UndoRedoSingleton();
-                }
-            }
-        }else System.out.println("Natasha");
-        return instance;
-    }
-
-    private UndoRedoSingleton() {
+    UndoRedoSingleton() {
         this.lista_empresa = new Empresa[501];
         this.lista_empresa[0] = new Uteis().createEmpresa();
         this.indice = 0;
@@ -62,16 +50,7 @@ public class UndoRedoSingleton {
         {
             this.indice++;
             this.redo = this.indice;
-            EmpresaPrototype cobaia = new EmpresaPrototype();
-            cobaia.setLista(P3.getListadeFuncionarios());
-            cobaia.setTamanho(P3.getTamanho());
-            cobaia.setYear(P3.getYear());
-            cobaia.setMonth(P3.getMonth());
-            cobaia.setDay(P3.getDay());
-            cobaia.setData(P3.getData());
-            cobaia.setDia(P3.getDia());
-
-            Prototype p = cobaia.cloneEmpresa();
+            Prototype p = new EmpresaPrototype().clonagemPrototype(P3);
             EmpresaPrototype XX = null;
             XX = (EmpresaPrototype) p;
             Funcionario[] listaCLONE = XX.getLista();
@@ -81,7 +60,6 @@ public class UndoRedoSingleton {
             int y = XX.getYear();
             String dia = XX.getDia();
             String data = XX.getData();
-            //this.lista_empresa[indice] = new Empresa(listaCLONE,t,d,m,y,dia,data);
             this.lista_empresa[indice] = new Empresa.EmpresaBuilder()
                     .listadeFuncionarios(listaCLONE)
                     .year(y)
@@ -100,15 +78,13 @@ public class UndoRedoSingleton {
 
     protected Empresa aplicando(Empresa P3) {
         if(this.indice>=0) {
-            System.out.println("NATASHA");
-            int t = instance.lista_empresa[indice].getTamanho();
-            int d = instance.lista_empresa[indice].getDay();
-            int m = instance.lista_empresa[indice].getMonth();
-            int y = instance.lista_empresa[indice].getYear();
-            String data = instance.lista_empresa[indice].getData();
-            String dia = instance.lista_empresa[indice].getDia();
-            Funcionario[] lista = instance.lista_empresa[indice].getListadeFuncionarios();
-            //P3 = new Empresa.EmpresaBuilder().(lista,t,d,m,y,dia,data);
+            int t = lista_empresa[indice].getTamanho();
+            int d = lista_empresa[indice].getDay();
+            int m = lista_empresa[indice].getMonth();
+            int y = lista_empresa[indice].getYear();
+            String data = lista_empresa[indice].getData();
+            String dia = lista_empresa[indice].getDia();
+            Funcionario[] lista = lista_empresa[indice].getListadeFuncionarios();
             P3 = new Empresa.EmpresaBuilder()
                     .listadeFuncionarios(lista)
                     .year(y)
@@ -127,8 +103,8 @@ public class UndoRedoSingleton {
         {
             this.indice--;
             P3 = aplicando(P3);
-            System.out.println("UNDO");
-        }else System.out.println("Limite de UNDOs alcancado.");
+            System.out.println("UNDO realizado!");
+        }else System.out.println("Limite de UNDO alcancado.");
         return P3;
     }
 
@@ -137,9 +113,9 @@ public class UndoRedoSingleton {
         {
             this.indice++;
             P3 = aplicando(P3);
-            System.out.println("REDO");
+            System.out.println("REDO realizado!");
         }
-        else System.out.println("Limite de REDOs alcancado!");
+        else System.out.println("Limite de REDO alcancado!");
         return P3;
     }
 }

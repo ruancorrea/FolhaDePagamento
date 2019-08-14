@@ -14,6 +14,7 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class Adicionar{
+    Scanner input = new Scanner(System.in);
     public void adicionandoFuncionario(Empresa P3, UndoRedoSingleton undoredo)
     {
         Calendar data = new GregorianCalendar(P3.getYear(), P3.getMonth(), P3.getDay());
@@ -30,20 +31,12 @@ public class Adicionar{
     }
 
     public TipodeFuncionario recolhendoInformacoes(Empresa P3) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Digite o nome: ");
-        String nome = input.nextLine();
+        String nome = recolhendoNome(P3);
         String id_sindicato = null;
         double taxa_sindical = 0;
-        while (!new Uteis().verificandoNome(P3, nome)) {
-            nome = input.next();
-            input.nextLine();
-        }
-        System.out.print("Digite o endereco: ");
-        String endereco = input.nextLine();
+        String endereco = recolhendoEndereco();
         int esc = recolhendoTipo();
-        System.out.print("Insira o salario: R$ ");
-        double salario = new Exceptions().dbl();
+        double salario =recolhendoSalario();
         System.out.println("Faz parte do Sindicato?");
         boolean participacaoSindicato = new Uteis().SimNao();
         if (participacaoSindicato) {
@@ -70,7 +63,6 @@ public class Adicionar{
 
     public String recolhendoIDSindicato(Empresa P3)
     {
-        Scanner input = new Scanner(System.in);
         while(true)
         {
             String id_sindicato = input.nextLine();
@@ -101,5 +93,22 @@ public class Adicionar{
                 return "Deposito em conta bancaria";
         }
         return null;
+    }
+
+    public String recolhendoNome(Empresa P3){
+        System.out.print("Digite o nome do empregado: ");
+        String nome = input.nextLine();
+        while (!new Uteis().verificandoNome(P3, nome)) nome = input.nextLine();
+        return nome;
+    }
+
+    public double recolhendoSalario(){
+        System.out.print("Insira o salario: R$ ");
+        return new Exceptions().dbl();
+    }
+
+    public String recolhendoEndereco(){
+        System.out.print("Digite o endereco do empregado: ");
+        return input.nextLine();
     }
 }

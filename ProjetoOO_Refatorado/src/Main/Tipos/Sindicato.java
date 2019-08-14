@@ -96,9 +96,12 @@ public class Sindicato {
             if(!F.isTaxaSin())
             {
                 salarioatual = salarioatual - F.getTaxaSindical();
-                F.setTaxaSin(false);
+                F.setTaxaSin(true);
             }
-            if(!F.isTaxaServ()) salarioatual = salarioatual - F.getTaxaServico();
+            if(F.isTaxaServ()) {
+                salarioatual = salarioatual - F.getTaxaServico();
+                F.setTaxaServico(0);
+            }
         }
         return salarioatual;
     }

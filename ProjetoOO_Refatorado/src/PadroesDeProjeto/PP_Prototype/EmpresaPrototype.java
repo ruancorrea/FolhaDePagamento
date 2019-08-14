@@ -2,6 +2,7 @@ package PadroesDeProjeto.PP_Prototype;
 
 import Main.Tipos.Funcionario;
 import Main.Uteis;
+import PadroesDeProjeto.PP_Builder.Empresa;
 
 public class EmpresaPrototype extends Prototype {
     private Funcionario[] lista = new Funcionario[501] ;
@@ -85,5 +86,17 @@ public class EmpresaPrototype extends Prototype {
 
     public void setDia(String dia) {
         this.dia = dia;
+    }
+
+    public Prototype clonagemPrototype(Empresa P3){
+        EmpresaPrototype cobaia = new EmpresaPrototype();
+        cobaia.setLista(P3.getListadeFuncionarios());
+        cobaia.setTamanho(P3.getTamanho());
+        cobaia.setYear(P3.getYear());
+        cobaia.setMonth(P3.getMonth());
+        cobaia.setDay(P3.getDay());
+        cobaia.setData(P3.getData());
+        cobaia.setDia(P3.getDia());
+        return cobaia.cloneEmpresa();
     }
 }

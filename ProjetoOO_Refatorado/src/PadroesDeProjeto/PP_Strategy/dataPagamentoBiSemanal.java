@@ -19,6 +19,7 @@ public class dataPagamentoBiSemanal implements Strategy {
         int bi=0;
         Calendar data = new GregorianCalendar(year, month, dia);
         int max = data.getActualMaximum (Calendar.DAY_OF_MONTH);
+        System.out.println(((Comissionado) F).getNasemana());
         if(((TipodeFuncionario)F).hac().equalsIgnoreCase("comissionado")) {
             while (bi != 2) {
                 dia++;

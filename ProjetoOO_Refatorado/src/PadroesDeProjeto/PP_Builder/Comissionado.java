@@ -3,10 +3,10 @@ package PadroesDeProjeto.PP_Builder;
 import Main.Exceptions;
 import Main.Tipos.Funcionario;
 import Main.Tipos.Sindicato;
-import PadroesDeProjeto.PP_Strategy.Strategy;
 import PadroesDeProjeto.PP_Singleton.UndoRedoSingleton;
 import PadroesDeProjeto.PP_Factory.TipodeFuncionario;
 import Main.Uteis;
+import PadroesDeProjeto.PP_Strategy.dataPagamento;
 
 public class Comissionado extends Funcionario implements TipodeFuncionario {
     private double resultadoVendas;
@@ -184,9 +184,9 @@ public class Comissionado extends Funcionario implements TipodeFuncionario {
             System.out.println("Mais um dia de trabalho?");
             if(new Uteis().SimNao()){
                 Lista[i].setCartaoPonto(true);
-                ((Assalariado)Lista[i]).setDiasTrabalhados(getDiasTrabalhados()+1);
-                System.out.println("Mais um dia trabalhado, somando assim " + ((Comissionado)Lista[i]).getDiasTrabalhados() +
-                        "dias trabalhados em " + ((Comissionado)Lista[i]).getDiasPassados() + " dias passados!");
+                ((Comissionado)Lista[i]).setDiasTrabalhados(getDiasTrabalhados()+1);
+                System.out.println("INFORMACAO: Mais um dia trabalhado, somando assim " + ((Comissionado)Lista[i]).getDiasTrabalhados() +
+                        " dias trabalhados em " + ((Comissionado)Lista[i]).getDiasPassados() + " dias passados!");
                 P3.setListadeFuncionarios(P3, Lista);
                 undoredo.setMudanca(true);
             }
@@ -197,10 +197,11 @@ public class Comissionado extends Funcionario implements TipodeFuncionario {
         Funcionario[] Lista = P3.getListadeFuncionarios().clone();
         if(((Comissionado) Lista[i]).getResultadoVendas() > 0) System.out.println("Ultima venda: R$ " + ((Comissionado) Lista[i]).getResultadoVendas() + " Data: " + ((Comissionado) Lista[i]).getDataVendas());
         double valor = ((Comissionado) Lista[i]).CalculoResultadoVendas();
+        ((Comissionado)Lista[i]).setResultadoVendas(valor);
         System.out.println("Venda no valor de R$ " + valor + " na data: " + P3.getData() );
         double percentual = recolhendoPercentual();
         Lista[i].setSalarioAtual(Lista[i].getSalarioAtual() + (valor*(percentual/100)));
-        System.out.println((Lista[i]).toString());
+        System.out.println("Venda no valor R$ "+valor+" realizada em " + P3.getData() + " tendo " + percentual + " % de comissao para " + Lista[i].getNome() +".");
         P3.setListadeFuncionarios(P3,Lista);
         undoredo.setMudanca(true);
         return P3;
@@ -209,11 +210,12 @@ public class Comissionado extends Funcionario implements TipodeFuncionario {
     public double recolhendoPercentual(){
         boolean x = true;
         double percentual = 0;
+        System.out.print("Qual o percentual proprio da venda? (Insira um valor double/inteiro entre 0 e 100)");
         while(x)
         {
             percentual = new Exceptions().dbl();
             x=false;
-            if(percentual<=0 || percentual>=100)
+            if(percentual<=0 || percentual>100)
             {
                 System.out.println("Insira um percetual valido.");
                 x = true;
@@ -224,7 +226,7 @@ public class Comissionado extends Funcionario implements TipodeFuncionario {
 
     public double CalculoResultadoVendas()
     {
-        System.out.println("Informe o valor da venda: R$ ");
+        System.out.print("Informe o valor da venda: R$ ");
         return new Exceptions().dbl();
     }
 
@@ -238,10 +240,6 @@ public class Comissionado extends Funcionario implements TipodeFuncionario {
 
     public String getDataVendas() {
         return dataVendas;
-    }
-
-    public void setDataVendas(String dataVendas) {
-        this.dataVendas = dataVendas;
     }
 
     public int getDiasPassados() {
@@ -273,11 +271,12 @@ public class Comissionado extends Funcionario implements TipodeFuncionario {
     public Empresa novaAgendadePagamento(Empresa P3, int i, UndoRedoSingleton undoredo) {
         Funcionario[] Lista = P3.getListadeFuncionarios();
         int opcao= new Uteis().agenda();
-        if(opcao!=0) ((Comissionado)Lista[i]).setNasemana(new Uteis().dia(opcao));
-        System.out.println("Nova data de pagamento: " + ((Strategy)Lista[i]).CalcularDiaPagamento(P3,Lista[i], opcao));
-        Lista[i].setPagamento(((Strategy)Lista[i]).CalcularDiaPagamento(P3,Lista[i], opcao));
-        P3.setListadeFuncionarios(P3,Lista);
-        undoredo.UR(P3);
+        if(opcao!=0){
+            System.out.println("Nova data de pagamento: " + new dataPagamento().sabendo(P3,Lista[i], opcao));
+            Lista[i].setPagamento(new dataPagamento().sabendo(P3,Lista[i], opcao));
+            P3.setListadeFuncionarios(P3,Lista);
+            undoredo.UR(P3);
+        }
         return P3;
     }
 

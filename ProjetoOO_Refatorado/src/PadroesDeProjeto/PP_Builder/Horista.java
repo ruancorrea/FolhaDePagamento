@@ -2,12 +2,12 @@ package PadroesDeProjeto.PP_Builder;
 
 import Main.Exceptions;
 import Main.Tipos.Funcionario;
-import PadroesDeProjeto.PP_Strategy.Strategy;
+import Main.Tipos.Sindicato;
 import PadroesDeProjeto.PP_Singleton.UndoRedoSingleton;
 import Main.Uteis;
 import PadroesDeProjeto.PP_Factory.TipodeFuncionario;
-import PadroesDeProjeto.PP_Prototype.EmpresaPrototype;
-import PadroesDeProjeto.PP_Prototype.Prototype;
+import PadroesDeProjeto.PP_Strategy.dataPagamento;
+
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -24,29 +24,24 @@ public class Horista extends Funcionario implements TipodeFuncionario {
 
     @Override
     public void BaterPonto(Empresa P3, int i, UndoRedoSingleton undoredo) {
-        //Prototype clone = new EmpresaPrototype().cloneEmpresa(P3);
-        //Funcionario[] Lista = ((EmpresaPrototype)clone).getListaClone();
         Funcionario[] Lista = P3.getListadeFuncionarios();
         if (!Lista[i].isCartaoPonto()) {
             int diff = horario();
             Lista[i] = ((Horista) Lista[i]).CalculoCPHorista((Horista) Lista[i], diff);
             System.out.println("Salario atual: R$ " + Lista[i].getSalarioAtual());
             Lista[i].setCartaoPonto(true);
-           // Lista[i] = Alterar.novaInstancia(Lista[i], Lista[i].getNome(), Lista[i].getEndereco(), Lista[i].getSalario(), Lista[i].getPagamento(),
-           //         Lista[i].getMetododePagamento(), Lista[i].isSindicato(), Lista[i].getSindicatoID(),true, Lista[i].isTaxaSin(), Lista[i].isTaxaServ(),
-           //         Lista[i].getTaxaServico(), Lista[i].getTaxaSindical(), ((TipodeFuncionario)Lista[i]).hac(), Alterar.posicaoTipo(((TipodeFuncionario)Lista[i]).hac()));
             P3.setListadeFuncionarios(P3, Lista);
             undoredo.UR(P3);
-        } else System.out.println("Esse dia ja foi finalizado.\n");
+        } else System.out.println("Esse dia ja foi finalizado.");
     }
 
     public int horario(){
         Scanner input = new Scanner(System.in);
         int diff = 17;
         while (diff > 16) {
-            System.out.print("Horario de entrada (HH:mm):");
+            System.out.print("Horario de entrada (HH:mm): ");
             String entrada = input.nextLine();
-            System.out.print("Horario de saida (HH:mm):");
+            System.out.print("Horario de saida (HH:mm): ");
             String saida = input.nextLine();
             diff = new Exceptions().horas(entrada,saida, new SimpleDateFormat("HH:mm"));
         }
@@ -64,7 +59,10 @@ public class Horista extends Funcionario implements TipodeFuncionario {
 
     @Override
     public double CalculoSalario(Funcionario F) {
-        return F.getSalarioAtual();
+        double salarioatual = F.getSalarioAtual();
+        salarioatual = new Sindicato().TaxasDescontos(F, salarioatual);
+        if(salarioatual<0) salarioatual=0;
+        return salarioatual;
     }
 
     @Override
@@ -72,8 +70,9 @@ public class Horista extends Funcionario implements TipodeFuncionario {
         Funcionario[] Lista = P3.getListadeFuncionarios();
         int opcao= new Uteis().agenda();
         if(opcao!=0){
-            System.out.println("Nova data de pagamento: " + ((Strategy)Lista[i]).CalcularDiaPagamento(P3,Lista[i], opcao));
-            Lista[i].setPagamento(((Strategy)Lista[i]).CalcularDiaPagamento(P3,Lista[i], opcao));
+            ((Horista)Lista[i]).setNasemana(new Uteis().dia(opcao));
+            System.out.println("Nova data de pagamento: " + new dataPagamento().sabendo(P3,Lista[i], opcao));
+            Lista[i].setPagamento(new dataPagamento().sabendo(P3,Lista[i], opcao));
             P3.setListadeFuncionarios(P3,Lista);
             undoredo.setMudanca(true);
         }

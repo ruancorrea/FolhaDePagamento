@@ -182,13 +182,13 @@ public class Assalariado extends Funcionario implements TipodeFuncionario {
 
     @Override
     public void BaterPonto(Empresa P3, int i, UndoRedoSingleton undoredo) {
-        Funcionario[] Lista = P3.getListadeFuncionarios().clone();
+        Funcionario[] Lista = P3.getListadeFuncionarios();
         if (!(Lista[i]).isCartaoPonto()) {
             System.out.println("Mais um dia de trabalho?");
             if(new Uteis().SimNao()){
                 Lista[i].setCartaoPonto(true);
                 ((Assalariado)Lista[i]).setDiasTrabalhados(((Assalariado)Lista[i]).getDiasTrabalhados()+1);
-                System.out.println("Mais um dia trabalhado, somando assim " + ((Assalariado)Lista[i]).getDiasTrabalhados() +
+                System.out.println("INFORMACAO: Mais um dia trabalhado, somando assim " + ((Assalariado)Lista[i]).getDiasTrabalhados() +
                         " dias trabalhados em " + ((Assalariado)Lista[i]).getDiasPassados() + " dias passados!\n");
                 P3.setListadeFuncionarios(P3, Lista);
                 undoredo.setMudanca(true);

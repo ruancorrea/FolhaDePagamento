@@ -56,7 +56,7 @@ public class Escolha {
     public Empresa MenuEmp(Empresa P3, UndoRedoSingleton undoredo, int i) {
         while (true) {
             Funcionario[] Lista = P3.getListadeFuncionarios();
-            System.out.println(Lista[i].getID() + " - " + Lista[i].getNome() + " - Salario atual: R$ " + Lista[i].getSalarioAtual() + " - Pagamento: " + Lista[i].getPagamento() + " - " + ((TipodeFuncionario)Lista[i]).hac());
+            System.out.println("\n" +Lista[i].getID() + " - " + Lista[i].getNome() + " - Salario atual: R$ " + Lista[i].getSalarioAtual() + " - Pagamento: " + Lista[i].getPagamento() + " - " + ((TipodeFuncionario)Lista[i]).hac());
             System.out.println("MENU EMPREGADO");
             System.out.println("(1) Bater Ponto, (2) Vendas, (3) Servicos, (4) Agenda, (5) Informacoes, (6) UNDO, (7) REDO, (0) VOLTAR AO MENU");
             int esc = new Exceptions().inteiro();
@@ -67,7 +67,6 @@ public class Escolha {
 
     public Empresa rumoEmpregado(Empresa P3, UndoRedoSingleton undoredo, int esc, int i) {
         Funcionario[] Lista = P3.getListadeFuncionarios();
-        System.out.println(Lista[i].getNome());
         if (new Uteis().verificandoEmpregados(P3)) {
             switch (esc) {
                 case 0:

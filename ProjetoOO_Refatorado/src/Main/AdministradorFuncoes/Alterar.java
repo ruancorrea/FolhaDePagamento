@@ -13,10 +13,8 @@ import PadroesDeProjeto.PP_Strategy.dataPagamento;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Scanner;
 
 public class Alterar  {
-    static Scanner input = new Scanner(System.in);
 
     public Empresa alterandoDadosFuncionario(Empresa P3, UndoRedoSingleton undoredo)
     {
@@ -61,25 +59,24 @@ public class Alterar  {
             case 0:
                 return P3;
             case 1:
-                nome = mudarNome(Lista[i]);
+                nome =  new Adicionar().recolhendoNome(P3);
                 break;
             case 2:
-                endereco = mudarEndereco(Lista[i]);
+                endereco = new Adicionar().recolhendoEndereco();
                 break;
             case 3:
                 tipo = mudarTipo(Lista[i], nome, endereco,salario,pagamento,metododePagamento,Lista[i].isSindicato(),
                         Lista[i].getSindicatoID(),cartaoPonto,Lista[i].isTaxaSin(),Lista[i].isTaxaServ(),
                         Lista[i].getTaxaServico(), Lista[i].getTaxaSindical(),tipo);
-
                 break;
             case 4:
-                salario = mudarSalario(Lista[i]);
+                salario = new Adicionar().recolhendoSalario();
                 break;
             case 5:
                 P3 = mudarSindicato(P3, undoredo, Lista, i);
                 break;
             case 6:
-                metododePagamento = mudarMetodo(Lista[i]);
+                metododePagamento = new Adicionar().recolhendoMetodo();
                 break;
         }
         if(esc==1 || esc==2 || esc==3 || esc==4 || esc==6){
@@ -88,21 +85,11 @@ public class Alterar  {
                     Lista[i].getSindicatoID(),cartaoPonto,Lista[i].isTaxaSin(),Lista[i].isTaxaServ(),
                     Lista[i].getTaxaServico(),Lista[i].getTaxaSindical(),tipo, posicaoTipo(tipo));
             Lista[i].setPagamento(new dataPagamento().sabendo(P3, Lista[i], data.getActualMaximum (Calendar.DAY_OF_MONTH)));
-            System.out.println("Alteracao feita com sucesso!");
+            System.out.println("Alteracao feita com sucesso!\n");
             P3.setListadeFuncionarios(P3, Lista);
             undoredo.setMudanca(true);
         }
         return P3;
-    }
-
-    public String mudarNome(Funcionario F){
-        System.out.println("Digite o novo nome do empregado:");
-        return input.nextLine();
-    }
-
-    public String mudarEndereco(Funcionario F){
-        System.out.println("Digite o novo endereco do empregado:");
-        return input.nextLine();
     }
 
     public String mudarTipo(Funcionario F, String nome, String endereco, double salario, String pagamento,
@@ -128,14 +115,9 @@ public class Alterar  {
         else return 3;
     }
 
-    public double mudarSalario(Funcionario F){
-        System.out.print("Digite o novo salario: R$ ");
-        return new Exceptions().dbl();
-    }
-
     public Empresa mudarSindicato(Empresa P3, UndoRedoSingleton undoredo, Funcionario[] Lista, int i){
         if(Lista[i].isSindicato()){
-            System.out.println("Deseja nao fazer mais parte do Sindicato? ");
+            System.out.print("Deseja nao fazer mais parte do Sindicato? ");
             if(new Uteis().SimNao())
             {
                 Lista[i] = novaInstancia(Lista[i],Lista[i].getNome(),Lista[i].getEndereco(),Lista[i].getSalario(),
@@ -162,11 +144,6 @@ public class Alterar  {
                 return P3;
             }else return P3;
         }
-    }
-
-    public String mudarMetodo(Funcionario F)
-    {
-        return new Adicionar().recolhendoMetodo();
     }
 
     public String AgendaSemanal(Funcionario F){
