@@ -10,13 +10,13 @@ Tornar o código mais claro, simples e organizado utilizando padrões de projeto
 
 | Utilizados  |
 | ------------- |
-| Strategy  |
 | Command  |
-| FactoryMethod  |
 | Facade  |
+| Strategy  |
+| Prototype  |
 | Builder  |
 | Singleton  |
-| Prototype  |
+| FactoryMethod  |
 
 ## Padrão de Projeto Command
 
